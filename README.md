@@ -13,7 +13,7 @@ assets/site.css                       @font-face, tokens, nav, buttons,
 assets/fonts/                         self-hosted woff2
 work/index.html                       /work/ — case study index
 work/aragocor-minerals/index.html     /work/aragocor-minerals/
-case-studies/aragocor/                images for that case study
+case-studies/aragocor/                screenshots for that case study
 tools/set-image-dims.py               writes real image sizes into the HTML
 ```
 
@@ -170,6 +170,3 @@ In `index.html` only:
 - [ ] `james@lernerworks.com` — set up as a real mailbox
 - [ ] The two `PROJECT NAME` cards under "Recent work"
 
-In the case study:
-
-- [ ] Drop the three PNGs into `case-studies/aragocor/` — see the README there
