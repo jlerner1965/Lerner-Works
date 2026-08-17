@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lerner Works — Web design &amp; marketing for small businesses in Boulder County</title>
 <meta name="description" content="James Lerner builds fast, clear websites for small businesses across Boulder County — then runs the marketing that keeps the phone ringing. Fixed prices, posted publicly. Based in Niwot." />
+<link rel="canonical" href="https://lernerworks.com/" />
 
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://lernerworks.com/" />
 <meta property="og:title" content="Lerner Works — Web design &amp; marketing for small businesses in Boulder County" />
 <meta property="og:description" content="Fast, clear websites for small businesses across Boulder County, plus the marketing that keeps the phone ringing. Fixed prices, posted publicly." />
 <meta property="og:site_name" content="Lerner Works" />
@@ -26,11 +28,14 @@
   ─────────────────────────────────────────────────────────────
 -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
+<link rel="preload" href="assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-<!-- Shared foundation: tokens, base type, nav, buttons, footer.
+<!-- Shared foundation: webfonts, tokens, base type, nav, buttons, footer.
      Also used by /work/ and the case studies. Page-specific CSS
      stays in the <style> block below, which loads after it. -->
 <link rel="stylesheet" href="assets/site.css" />

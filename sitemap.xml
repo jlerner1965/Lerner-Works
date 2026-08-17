@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Every page on the site. Add a <url> entry when you add a case study.
+  Keep <loc> matching the page's own <link rel="canonical"> exactly —
+  a mismatch is worse than no sitemap at all.
+  <changefreq> and <priority> are omitted on purpose; Google ignores them.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lernerworks.com/</loc>
+    <lastmod>2026-08-17</lastmod>
+  </url>
+  <url>
+    <loc>https://lernerworks.com/work/</loc>
+    <lastmod>2026-08-17</lastmod>
+  </url>
+  <url>
+    <loc>https://lernerworks.com/work/aragocor-minerals/</loc>
+    <lastmod>2026-08-17</lastmod>
+  </url>
+</urlset>
