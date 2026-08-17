@@ -20,6 +20,32 @@ case-studies/aragocor/                images for that case study
 shared furniture. Page-specific CSS lives in a `<style>` block in the page
 that needs it, loaded *after* the stylesheet so it wins on the cascade.
 
+## Open Graph images
+
+The link preview for the home page is `assets/og/home.png` — a typographic
+card built from the site's own colour, type and headline. No stock imagery.
+
+It is generated, not hand-drawn. The source is `assets/og/home.html`; render
+it with:
+
+```sh
+python3 -m http.server 8765 &     # from the repo root
+node assets/og/render.js
+```
+
+Playwright is the only thing this needs (`npx playwright install chromium`)
+and it is dev-only — the site itself still has no build step and no packages.
+
+**If you change the home page `h1`, re-render the card.** It quotes that
+headline verbatim, and a preview that contradicts the page is worse than a
+plain one. `assets/og/home.html` carries `noindex`, so the source never shows
+up in search results.
+
+The case studies use their own lead image as the OG image instead, which is
+the right call — a real screenshot of the work beats a generated card. `/work/`
+currently borrows the AragoCor hero; give it its own card via `render.js`
+if you'd rather it stood on its own.
+
 ## Fonts
 
 Public Sans and Source Serif 4 are **self-hosted** in `assets/fonts/`. A page
