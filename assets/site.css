@@ -1,0 +1,209 @@
+/* ─────────────────────────────────────────────────────────────
+   Lerner Works — shared foundation
+   Tokens, base type, nav, buttons, footer, and the reusable
+   case-study template. Page-specific CSS stays inline in the
+   page that needs it, in a <style> AFTER this file loads.
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  --navy:#14283F;
+  --navy-2:#1E3A57;
+  --slate:#4A5B6E;
+  --slate-2:#6B7A8A;
+  --paper:#F5F7F8;
+  --white:#FFFFFF;
+  --ever:#1D6B52;
+  --ever-light:#5FBF97;
+  --ever-soft:#E8F1ED;
+  --line:#DCE3E8;
+  --line-dark:rgba(245,247,248,.18);
+
+  --serif:"Source Serif 4", Georgia, serif;
+  --sans:"Public Sans", system-ui, -apple-system, sans-serif;
+
+  --pad:clamp(1.25rem, 5vw, 4.5rem);
+  --maxw:1140px;
+  --r:6px;
+  --shadow:0 1px 2px rgba(20,40,63,.06), 0 8px 24px rgba(20,40,63,.05);
+
+  /* Long-form reading measure — the case study is a long read.
+     Calibrated by measuring rendered lines in Public Sans, not guessed:
+     the `ch` unit is the width of "0", which in this face is a good deal
+     narrower than the average glyph, so 55ch lands at ~70 characters.
+     Re-measure if the body font ever changes. */
+  --measure:54ch;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper);color:var(--navy);
+  font-family:var(--sans);font-size:1.02rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.14;letter-spacing:-.011em;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+.eyebrow{
+  font-size:.74rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ever);margin-bottom:1rem;
+}
+.eyebrow--dark{color:var(--ever-light);}
+:is(a,button,input,summary):focus-visible{
+  outline:2px solid var(--ever);outline-offset:3px;border-radius:3px;
+}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:var(--pad);top:.5rem;z-index:100;background:var(--white);
+  padding:.6rem 1rem;border-radius:var(--r);box-shadow:var(--shadow);}
+
+/* ── nav ─────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+     backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem;}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.12rem;text-decoration:none;letter-spacing:-.015em;}
+.brand small{display:block;font-family:var(--sans);font-size:.66rem;font-weight:500;
+             letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);margin-top:.1rem;}
+.nav__links{display:flex;gap:1.7rem;align-items:center;}
+/* :not(.btn) matters — without it these rules out-specify .btn--go and paint
+   the nav's primary CTA slate-on-green, which is about 1.3:1 contrast. */
+.nav__links a:not(.btn){font-size:.9rem;font-weight:500;color:var(--slate);text-decoration:none;}
+.nav__links a:not(.btn):hover{color:var(--ever);}
+.nav__tel{font-weight:600!important;color:var(--navy)!important;}
+.nav__links a[aria-current="page"]{color:var(--navy);font-weight:600;}
+/* .nav__keep survives the first breakpoint — Work and the phone number
+   are the two links worth holding onto on a narrow screen. */
+@media (max-width:820px){ .nav__links a:not(.btn):not(.nav__keep){display:none;} }
+@media (max-width:520px){ .nav__links{gap:1rem;} .nav__links a.nav__tel{display:none;} }
+
+/* ── buttons ─────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+     font-family:var(--sans);font-weight:600;font-size:.94rem;
+     padding:.78rem 1.3rem;border-radius:var(--r);border:1px solid transparent;
+     text-decoration:none;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
+.btn--go{background:var(--ever);color:#fff;}
+.btn--go:hover{background:#175540;transform:translateY(-1px);}
+.btn--line{border-color:var(--line);background:var(--white);color:var(--navy);}
+.btn--line:hover{border-color:var(--navy);}
+.btn--onDark{border-color:var(--line-dark);color:#fff;}
+.btn--onDark:hover{border-color:var(--ever-light);color:var(--ever-light);}
+
+/* ── closing block / footer ──────────────────────── */
+.end{background:var(--navy);color:#fff;padding-block:clamp(3.2rem,7vw,5.2rem);}
+.end h2{font-size:clamp(1.9rem,1.4rem + 2.6vw,3.2rem);color:#fff;max-width:16ch;}
+.end p{margin-top:1.2rem;color:rgba(255,255,255,.78);max-width:48ch;}
+.end__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem;}
+.foot{border-top:1px solid var(--line-dark);margin-top:clamp(2.6rem,5vw,4rem);padding-top:1.5rem;
+  display:flex;flex-wrap:wrap;gap:.8rem 1.5rem;justify-content:space-between;
+  font-size:.82rem;color:rgba(255,255,255,.5);}
+.foot a{color:rgba(255,255,255,.66);text-decoration:none;}
+.foot a:hover{color:var(--ever-light);}
+
+
+/* ═══════════════════════════════════════════════════
+   WORK INDEX — /work/
+   ═══════════════════════════════════════════════════ */
+
+.work-head{background:var(--white);border-bottom:1px solid var(--line);
+  padding-block:clamp(2.8rem,7vw,4.6rem) clamp(2.2rem,5vw,3.2rem);}
+.work-head h1{font-size:clamp(2rem,1.4rem + 3vw,3.3rem);max-width:18ch;}
+.work-head p{margin-top:1.2rem;max-width:var(--measure);color:var(--slate);
+  font-size:clamp(1.02rem,1rem + .3vw,1.15rem);}
+
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
+  padding-block:clamp(2.6rem,6vw,4.2rem);}
+@media (max-width:940px){.work-grid{grid-template-columns:1fr;}}
+
+.wcard{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.7rem 1.5rem;min-height:270px;display:flex;flex-direction:column;
+  justify-content:space-between;box-shadow:var(--shadow);
+  text-decoration:none;color:inherit;
+  transition:border-color .15s ease,transform .12s ease,box-shadow .15s ease;}
+a.wcard:hover{border-color:var(--ever);transform:translateY(-2px);
+  box-shadow:0 2px 4px rgba(20,40,63,.07), 0 14px 32px rgba(20,40,63,.08);}
+.wcard__tag{font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--slate-2);}
+.wcard h2{font-size:1.24rem;margin:.85rem 0 .5rem;}
+.wcard p{font-size:.96rem;color:var(--slate);}
+.wcard__go{margin-top:1.4rem;font-size:.9rem;font-weight:600;color:var(--ever);}
+
+/* Placeholder cards: same box, same rhythm, visibly not-yet-filled. */
+.wcard--soon{background:transparent;border-style:dashed;border-color:#C9D4DC;
+  box-shadow:none;}
+.wcard--soon h2{color:var(--slate-2);}
+.wcard--soon .wcard__go{color:var(--slate-2);font-weight:500;}
+
+
+/* ═══════════════════════════════════════════════════
+   CASE STUDY TEMPLATE — /work/<slug>/
+   Reusable. Copy work/aragocor-minerals/index.html,
+   swap the copy, images, and meta. No page-specific CSS
+   should be needed.
+   ═══════════════════════════════════════════════════ */
+
+.cs-head{background:var(--white);border-bottom:1px solid var(--line);
+  padding-block:clamp(1.6rem,4vw,2.4rem) clamp(2.4rem,6vw,3.6rem);}
+.cs-back{display:inline-block;font-size:.86rem;font-weight:500;color:var(--slate);
+  text-decoration:none;margin-bottom:clamp(1.6rem,4vw,2.4rem);}
+.cs-back:hover{color:var(--ever);}
+.cs-head h1{font-size:clamp(2.1rem,1.4rem + 3.2vw,3.5rem);max-width:16ch;}
+.cs-summary{margin-top:1.3rem;max-width:var(--measure);
+  font-family:var(--serif);font-size:clamp(1.15rem,1.05rem + .5vw,1.45rem);
+  line-height:1.42;color:var(--navy-2);}
+.cs-meta{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--line);
+  font-size:.88rem;color:var(--slate-2);max-width:var(--measure);}
+
+/* Lead image sits full-bleed-ish under the header, on white. */
+.cs-lead{background:var(--white);border-bottom:1px solid var(--line);
+  padding-block:0 clamp(2.4rem,6vw,3.6rem);}
+.cs-lead img{width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r);}
+
+/* Body: text held to the measure, figures allowed to run wider. */
+.cs-body{padding-block:clamp(2.6rem,6vw,4rem) clamp(2.6rem,6vw,4rem);
+  font-size:1.06rem;line-height:1.72;}
+.cs-body > *{max-width:var(--measure);}
+.cs-body h2{font-size:clamp(1.5rem,1.25rem + 1.3vw,2.05rem);max-width:20ch;
+  margin-top:clamp(2.6rem,6vw,3.6rem);}
+.cs-body > h2:first-child{margin-top:0;}
+.cs-body p{margin-top:1.15rem;color:var(--slate);}
+.cs-body h2 + p{margin-top:1.1rem;}
+/* Bold lead-ins carry the argument — give them the real 600 weight,
+   not a synthesised 700 the font file doesn't ship. */
+.cs-body strong{font-weight:600;color:var(--navy);}
+
+.cs-fig{margin:clamp(2rem,5vw,2.8rem) 0 0;max-width:56rem;}
+.cs-fig img{width:100%;height:auto;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--white);}
+.cs-fig figcaption{margin-top:.75rem;font-size:.84rem;line-height:1.55;
+  color:var(--slate-2);max-width:var(--measure);}
+
+/* Drop-in slot for artwork that isn't exported yet. Holds the exact
+   aspect ratio so the finished layout is what you're looking at. */
+.cs-ph{border:2px dashed #BFCCD6;border-radius:var(--r);background:var(--white);
+  display:grid;place-items:center;text-align:center;padding:1.5rem;}
+.cs-ph span{font-size:.85rem;line-height:1.6;color:var(--slate-2);max-width:34ch;}
+.cs-ph strong{display:block;font-weight:600;color:var(--slate);margin-bottom:.35rem;}
+
+/* ── inline diagrams ─────────────────────────────── */
+.cs-dgm{margin:clamp(2rem,5vw,2.8rem) 0 0;max-width:var(--measure);}
+.dgm{display:block;width:100%;max-width:480px;height:auto;}
+.dgm text{font-family:var(--sans);}
+.dgm .b{fill:var(--white);stroke:var(--line);stroke-width:1.5;}
+.dgm .b--dash{fill:var(--paper);stroke:#BFCCD6;stroke-width:1.5;stroke-dasharray:5 4;}
+.dgm .b--end{fill:var(--ever-soft);stroke:#CBE0D6;stroke-width:1.5;}
+.dgm .t{font-size:14px;font-weight:600;fill:var(--navy);}
+.dgm .k{font-size:10px;font-weight:600;letter-spacing:.11em;fill:var(--ever);}
+.dgm .k--mute{fill:var(--slate-2);}
+.dgm .s{font-size:11px;font-weight:500;fill:var(--slate-2);}
+.dgm .ln{fill:none;stroke:var(--slate-2);stroke-width:1.6;}
+.dgm .ln--dash{stroke-dasharray:5 4;}
+.dgm .ln--ok{stroke:var(--ever);}
+.dgm .ah{fill:var(--slate-2);}
+.dgm .ah--ok{fill:var(--ever);}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+  html{scroll-behavior:auto;}
+}
