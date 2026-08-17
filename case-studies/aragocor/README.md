@@ -14,11 +14,27 @@ references them at `../../case-studies/aragocor/<file>`.
 placeholder at the right aspect ratio; the markup that replaces it is in an
 HTML comment directly above it.
 
-**If your exports are a different size**, update the `width` and `height`
-attributes on the matching `<img>` to the real pixel dimensions, and update
-`og:image:width` / `og:image:height` in `<head>` for the hero. The CSS sets
-`height:auto`, so a mismatch won't distort the image — but the attributes are
-what reserve the right amount of space before the file loads, which is what
-keeps the page from shifting.
+The sizes above are what the HTML currently declares, not a requirement —
+export at whatever size looks right. After dropping the files in, run this
+from the repo root:
+
+```sh
+python3 tools/set-image-dims.py --write
+```
+
+It reads each file and writes the real dimensions into the `<img>` tags and
+the `og:image` meta, so the declared sizes can't drift from the actual ones.
+The CSS sets `height:auto`, so a mismatch never distorts an image — but the
+attributes are what reserve the right space before the file loads, which is
+what keeps the page from shifting.
+
+Export tips, since these are screenshots of a live site:
+
+- **Crop the browser scrollbar off.** It reads as a screenshot of a browser
+  rather than a picture of the work.
+- **Cut at a section boundary**, not mid-card — a row of tiles sliced in half
+  at the bottom edge looks like a mistake.
+- 2x a ~1265px viewport (so ~2530px wide) is plenty; the widest the case
+  study ever displays them is 896px.
 
 No stock photography here — these are screenshots of real work only.

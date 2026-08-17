@@ -14,6 +14,7 @@ assets/fonts/                         self-hosted woff2
 work/index.html                       /work/ — case study index
 work/aragocor-minerals/index.html     /work/aragocor-minerals/
 case-studies/aragocor/                images for that case study
+tools/set-image-dims.py               writes real image sizes into the HTML
 ```
 
 `assets/site.css` is the single source of truth for colour, type and the
@@ -96,15 +97,29 @@ rename it to the new slug, then:
 2. Update `<title>`, `<meta name="description">`, `<link rel="canonical">`
    and the `og:` / `twitter:` tags. The OG image is the lead image, as an
    absolute URL.
-3. Put images in `case-studies/<slug>/`. Every `<img>` needs an explicit
-   `width` and `height` (the real pixel dimensions) so nothing shifts while
-   the page loads, plus `loading="lazy"` on everything below the lead image.
+3. Put images in `case-studies/<slug>/`, then run
+   `python3 tools/set-image-dims.py --write` — it reads each file and writes
+   the real pixel dimensions into the `<img>` tags (and the `og:image` ones).
+   Add `loading="lazy"` to everything below the lead image by hand.
 4. Add a card to `work/index.html` — swap one of the `wcard--soon`
    placeholders for an `<a class="wcard" href="./<slug>/">`.
 5. Add a `<url>` entry to `sitemap.xml`. Its `<loc>` must match the page's
    own `<link rel="canonical">` character for character.
 
 No page-specific CSS should be needed; the `.cs-*` classes cover it.
+
+### Image dimensions
+
+`python3 tools/set-image-dims.py` reads every local image and reports where
+the HTML disagrees with the file; `--write` applies the fix. It covers the
+`<img>` tags and the `og:image:width` / `og:image:height` meta on all three
+pages, ignores markup inside HTML comments, and is safe to re-run.
+
+Run it whenever you add or re-export an image. Those attributes are what
+reserve space before the file downloads — wrong numbers mean the page jumps
+as it loads, which is the exact thing they exist to prevent.
+
+Standard library Python, no packages.
 
 ### Things worth not breaking
 
