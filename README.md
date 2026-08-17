@@ -172,6 +172,4 @@ In `index.html` only:
 
 In the case study:
 
-- [ ] Drop the four PNGs into `case-studies/aragocor/` — see the README there
-- [ ] `05-calculator.png` is still a dashed placeholder box; the markup that
-      replaces it is in an HTML comment directly above it
+- [ ] Drop the three PNGs into `case-studies/aragocor/` — see the README there

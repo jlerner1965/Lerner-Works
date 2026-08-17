@@ -1,18 +1,17 @@
 # AragoCor case study images
 
-Drop the four PNGs here. The case study at `/work/aragocor-minerals/`
+Drop the three PNGs here. The case study at `/work/aragocor-minerals/`
 references them at `../../case-studies/aragocor/<file>`.
 
 | File | Placement | Export size |
 |---|---|---|
-| `01-home-hero.png` | Lead image (also the OG image) | 1600 × 900 |
+| `01-home-hero.png` | Lead image (also the OG image) | 1600 × 1000 |
 | `03-home-applications.png` | "What I built" — structure paragraph | 1600 × 1000 |
 | `04-products.png` | "What I built" — graded products paragraph | 1600 × 1000 |
-| `05-calculator.png` | "Then: the sourcing tool" | 1600 × 1000 |
 
-`05-calculator.png` is not exported yet. Its slot in the page is a dashed
-placeholder at the right aspect ratio; the markup that replaces it is in an
-HTML comment directly above it.
+The sourcing-tool section carries no screenshot by decision — its two
+diagrams do that work. (A slot for `tool-calculator.png` existed and was
+removed; it's in git history if that ever reverses.)
 
 The sizes above are what the HTML currently declares, not a requirement —
 export at whatever size looks right. After dropping the files in, run this
