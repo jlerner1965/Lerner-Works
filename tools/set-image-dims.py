@@ -26,7 +26,11 @@ import struct
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "work/index.html", "work/aragocor-minerals/index.html"]
+PAGES = sorted(
+    path.relative_to(ROOT).as_posix()
+    for path in ROOT.rglob("*.html")
+    if "assets/og" not in path.as_posix()
+)
 
 # og:image is written as an absolute URL; strip this to get a repo path.
 SITE = "https://lernerworks.com/"
