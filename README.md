@@ -13,9 +13,18 @@ assets/site.css                       @font-face, tokens, nav, buttons,
 assets/fonts/                         self-hosted woff2
 work/index.html                       /work/ — case study index
 work/aragocor-minerals/index.html     /work/aragocor-minerals/
+work/hm-mechanical/index.html         /work/hm-mechanical/ — unsolicited concept case study
+concepts/hm-mechanical/               two-page noindex H&M concept
 case-studies/aragocor/                screenshots for that case study
+case-studies/hm-mechanical/           before-and-after evidence for H&M
 tools/set-image-dims.py               writes real image sizes into the HTML
 ```
+
+The H&M concept is intentionally excluded from the sitemap and carries a
+`noindex,nofollow,noarchive` robots directive on both pages. Its public case
+study is indexable. The final after PageSpeed measurement should be recorded
+only after the owner has seen the concept and a reachable noindex preview has
+been approved.
 
 `assets/site.css` is the single source of truth for colour, type and the
 shared furniture. Page-specific CSS lives in a `<style>` block in the page
@@ -169,4 +178,3 @@ In `index.html` only:
       matters more than anything else on the page
 - [ ] `james@lernerworks.com` — set up as a real mailbox
 - [ ] The two `PROJECT NAME` cards under "Recent work"
-
