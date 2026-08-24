@@ -179,4 +179,6 @@ In `index.html` only:
       matters more than anything else on the page
 - [x] `james@lernerworks.com` — the contact address, linked from the footer.
       Confirm the mailbox actually receives before launch.
-- [ ] The two `PROJECT NAME` cards under "Recent work"
+- [ ] The remaining `PROJECT NAME` card under "Recent work" — the clinic
+      concept. It has a twin slot in `work/index.html` (`wcard--soon`,
+      "In progress"); build both or drop both, but keep them in sync.
