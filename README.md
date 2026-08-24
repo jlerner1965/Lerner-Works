@@ -58,26 +58,22 @@ if you'd rather it stood on its own.
 
 ## The portrait
 
-`assets/james-lerner.jpg` is the headshot in "Who you're hiring" — 640×800
-(4:5), which is 2× the 300px column it sits in.
+`assets/james-lerner.jpg` is the headshot in "Who you're hiring" — 640×800,
+which is 2× the 300px column it sits in. The source was a studio frame,
+already 4:5 and already on a plain mottled backdrop, so it needed nothing but
+a resize: trimmed 1122×1402 to an exact 1120×1400 first, because 0.8003 is
+not 0.8 and a stretched face is worth two pixels of crop.
 
-The source frame was shot against a green step-and-repeat banner. The subject
-was cut out and set on a flat cool-grey backdrop built from the site's own
-palette, lit slightly brighter behind the head. That is the point of the
-treatment: on a page whose whole argument is "one person, the one you talk
-to", nothing in the frame should compete with the face — least of all another
-organisation's logo.
+Saved at JPEG quality 86 (~47 KB). The backdrop is a smooth gradient, which
+is exactly where JPEG bands first — check that area, not the face, if you
+ever re-encode it lower.
 
-The cut-out also buys the framing. The blazer runs off both edges in the
-original, so the crop can never be *wider* than the source without leaving a
-hard vertical edge where the shoulders stop — but the top can be extended
-freely, because the backdrop is synthetic. 70px of generated headroom puts
-the eyes at roughly two-fifths down the frame, which is where a portrait
-wants them.
-
-If you replace it, keep the treatment: plain backdrop, no busy background,
-looking at the camera. Re-run `python3 tools/set-image-dims.py --write`
-afterwards so the `width`/`height` attributes match the new file.
+If you replace it, keep it a real headshot: plain backdrop, nothing in frame
+competing with the face, looking at the camera. On a section whose whole
+argument is "one person, the one you talk to", a busy background is working
+against the copy. Re-run `python3 tools/set-image-dims.py --write` afterwards
+so the `width`/`height` attributes match the new file, and mind the
+`height:auto` note on `.bio__photo` in `index.html` — it is load-bearing.
 
 ## Fonts
 
