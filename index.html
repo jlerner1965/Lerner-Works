@@ -23,18 +23,6 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314283F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%235FBF97' text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
-<!--
-  ─────────────────────────────────────────────────────────────
-  BEFORE LAUNCH — find and replace:
-    YOUR-PHONE         your business number, e.g. (555) 123-4567
-    YOUR-BOOKING-LINK  a Cal.com or Calendly URL (free)
-    PHOTO              swap the placeholder in "Who you're hiring"
-                       for a real headshot — this matters more
-                       than anything else on the page
-    james@lernerworks.com — set up as a real mailbox before launch
-  ─────────────────────────────────────────────────────────────
--->
-
 <!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
      connection to set up and no CSS-then-font request chain. These two
      preloads are the latin subsets actually used by English copy; the
@@ -101,9 +89,11 @@
   /* ── bio ─────────────────────────────────────────── */
   .bio{display:grid;grid-template-columns:300px 1fr;gap:clamp(2rem,5vw,3.5rem);align-items:start;}
   @media (max-width:800px){.bio{grid-template-columns:1fr;}}
-  .bio__photo{aspect-ratio:4/5;border-radius:var(--r);background:linear-gradient(155deg,#DDE5EA,#C6D2DA);
-    border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:1.5rem;}
-  .bio__photo span{font-size:.8rem;color:var(--slate);line-height:1.5;}
+  /* height:auto is load-bearing — without it the img's height attribute wins
+     as a presentational hint, aspect-ratio is ignored, and the portrait
+     renders 300x800 instead of 300x375. */
+  .bio__photo{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;
+    border-radius:var(--r);border:1px solid var(--line);}
   .bio h2{max-width:16ch;}
   .bio p + p{margin-top:1.1rem;}
   .bio p{color:var(--slate);max-width:56ch;}
@@ -174,8 +164,8 @@
       <a href="#services">What I do</a>
       <a href="#about">Who you're hiring</a>
       <a href="#pricing">Pricing</a>
-      <a class="nav__tel nav__keep" href="tel:YOUR-PHONE">YOUR-PHONE</a>
-      <a class="btn btn--go" href="YOUR-BOOKING-LINK">Book a call</a>
+      <a class="nav__tel nav__keep" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
     </div>
   </div>
 </nav>
@@ -186,7 +176,7 @@
     <h1>Your website should be your best salesperson. Most are a brochure nobody reads.</h1>
     <p class="hero__sub">I'm James Lerner. I build fast, clear websites for small businesses across Boulder County — then run the marketing that keeps the phone ringing. You work with me directly, start to finish.</p>
     <div class="hero__cta">
-      <a class="btn btn--go" href="YOUR-BOOKING-LINK">Book a 20-minute call</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
       <a class="btn btn--line" href="#calc">See what a quiet phone costs</a>
     </div>
 
@@ -271,12 +261,13 @@
 </section>
 
 <!-- TRUST: the single highest-value section on this page for a solo operator.
-     Replace the photo placeholder with a real headshot before launch. -->
+     The portrait is cut out and set on a flat backdrop so nothing in the
+     frame competes with the face. Swap it and keep that treatment. -->
 <section class="sec" id="about">
   <div class="wrap bio">
-    <div class="bio__photo">
-      <span>PHOTO<br />Replace with a real headshot.<br />Daylight, plain background,<br />you looking at the camera.</span>
-    </div>
+    <img class="bio__photo" src="assets/james-lerner.jpg"
+         width="640" height="800" loading="lazy" decoding="async"
+         alt="James Lerner, who runs Lerner Works" />
     <div>
       <p class="eyebrow">Who you're hiring</p>
       <h2>One person. The one you talk to.</h2>
@@ -366,7 +357,7 @@
           <li>Google Business Profile set up</li>
           <li>Live in about two weeks</li>
         </ul>
-        <a class="btn btn--line" href="YOUR-BOOKING-LINK">Start here</a>
+        <a class="btn btn--line" href="https://calendly.com/james-lernerworks/30min">Start here</a>
       </div>
       <div class="tier tier--mid">
         <p class="tier__name">Growth · most common</p>
@@ -379,7 +370,7 @@
           <li>Email list and welcome sequence</li>
           <li>90 days of tuning after launch</li>
         </ul>
-        <a class="btn btn--go" href="YOUR-BOOKING-LINK">Book a call</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
       </div>
       <div class="tier">
         <p class="tier__name">Care &amp; marketing</p>
@@ -392,7 +383,7 @@
           <li>Ad management if you run ads</li>
           <li>Monthly report, plain English</li>
         </ul>
-        <a class="btn btn--line" href="YOUR-BOOKING-LINK">Add it on</a>
+        <a class="btn btn--line" href="https://calendly.com/james-lernerworks/30min">Add it on</a>
       </div>
     </div>
   </div>
@@ -437,8 +428,8 @@
     <h2>Twenty minutes, no pitch.</h2>
     <p>Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
     <div class="end__cta">
-      <a class="btn btn--go" href="YOUR-BOOKING-LINK">Book a 20-minute call</a>
-      <a class="btn btn--onDark" href="tel:YOUR-PHONE">YOUR-PHONE</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
     </div>
     <div class="foot">

@@ -56,6 +56,29 @@ the right call — a real screenshot of the work beats a generated card. `/work/
 currently borrows the AragoCor hero; give it its own card via `render.js`
 if you'd rather it stood on its own.
 
+## The portrait
+
+`assets/james-lerner.jpg` is the headshot in "Who you're hiring" — 640×800
+(4:5), which is 2× the 300px column it sits in.
+
+The source frame was shot against a green step-and-repeat banner. The subject
+was cut out and set on a flat cool-grey backdrop built from the site's own
+palette, lit slightly brighter behind the head. That is the point of the
+treatment: on a page whose whole argument is "one person, the one you talk
+to", nothing in the frame should compete with the face — least of all another
+organisation's logo.
+
+The cut-out also buys the framing. The blazer runs off both edges in the
+original, so the crop can never be *wider* than the source without leaving a
+hard vertical edge where the shoulders stop — but the top can be extended
+freely, because the backdrop is synthetic. 70px of generated headroom puts
+the eyes at roughly two-fifths down the frame, which is where a portrait
+wants them.
+
+If you replace it, keep the treatment: plain backdrop, no busy background,
+looking at the camera. Re-run `python3 tools/set-image-dims.py --write`
+afterwards so the `width`/`height` attributes match the new file.
+
 ## Fonts
 
 Public Sans and Source Serif 4 are **self-hosted** in `assets/fonts/`. A page
@@ -166,15 +189,21 @@ them on. **Do both before submitting anything to Google Search Console.**
 
 ## Before launch — find and replace
 
-Across `index.html`, `work/index.html` and `work/aragocor-minerals/index.html`:
+Across `index.html`, `work/index.html`, `work/hm-mechanical/index.html` and
+`work/aragocor-minerals/index.html`:
 
-- [ ] `YOUR-PHONE` — your business phone number (appears in the nav and footer;
-      the `tel:` links need digits only, e.g. `tel:+13035551234`)
-- [ ] `YOUR-BOOKING-LINK` — a Cal.com or Calendly URL (both have free tiers)
+- [x] `YOUR-PHONE` — now **(949) 205-9056**, written as `tel:+19492059056` in
+      the nav of every page and in the home-page footer
+- [x] `YOUR-BOOKING-LINK` — now `https://calendly.com/james-lernerworks/30min`
+      on all ten "Book a call" buttons. It is a plain link, not an embedded
+      widget, so the page still makes zero third-party requests.
 
 In `index.html` only:
 
-- [ ] The **PHOTO** placeholder in "Who you're hiring" — a real headshot
-      matters more than anything else on the page
-- [ ] `james@lernerworks.com` — set up as a real mailbox
-- [ ] The two `PROJECT NAME` cards under "Recent work"
+- [x] The **PHOTO** placeholder in "Who you're hiring" — now
+      `assets/james-lerner.jpg` (see "The portrait" below)
+- [x] `james@lernerworks.com` — the contact address, linked from the footer.
+      Confirm the mailbox actually receives before launch.
+- [ ] The remaining `PROJECT NAME` card under "Recent work" — the clinic
+      concept. It has a twin slot in `work/index.html` (`wcard--soon`,
+      "In progress"); build both or drop both, but keep them in sync.
