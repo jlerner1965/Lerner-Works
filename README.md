@@ -166,15 +166,17 @@ them on. **Do both before submitting anything to Google Search Console.**
 
 ## Before launch — find and replace
 
-Across `index.html`, `work/index.html` and `work/aragocor-minerals/index.html`:
+Across `index.html`, `work/index.html`, `work/hm-mechanical/index.html` and
+`work/aragocor-minerals/index.html`:
 
-- [ ] `YOUR-PHONE` — your business phone number (appears in the nav and footer;
-      the `tel:` links need digits only, e.g. `tel:+13035551234`)
+- [x] `YOUR-PHONE` — now **(949) 205-9056**, written as `tel:+19492059056` in
+      the nav of every page and in the home-page footer
 - [ ] `YOUR-BOOKING-LINK` — a Cal.com or Calendly URL (both have free tiers)
 
 In `index.html` only:
 
 - [ ] The **PHOTO** placeholder in "Who you're hiring" — a real headshot
       matters more than anything else on the page
-- [ ] `james@lernerworks.com` — set up as a real mailbox
+- [x] `james@lernerworks.com` — the contact address, linked from the footer.
+      Confirm the mailbox actually receives before launch.
 - [ ] The two `PROJECT NAME` cards under "Recent work"
