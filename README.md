@@ -56,24 +56,18 @@ the right call — a real screenshot of the work beats a generated card. `/work/
 currently borrows the AragoCor hero; give it its own card via `render.js`
 if you'd rather it stood on its own.
 
-## The portrait
+## "Who you're hiring"
 
-`assets/james-lerner.jpg` is the headshot in "Who you're hiring" — 640×800,
-which is 2× the 300px column it sits in. The source was a studio frame,
-already 4:5 and already on a plain mottled backdrop, so it needed nothing but
-a resize: trimmed 1122×1402 to an exact 1120×1400 first, because 0.8003 is
-not 0.8 and a stretched face is worth two pixels of crop.
+The bio section runs on copy alone — there is no portrait. It previously
+carried a 4:5 headshot in a 300px left column; the image, the two-column
+`.bio` grid and the `.bio__photo` rule all came out together, so the section
+is now a single column of text like `#process`.
 
-Saved at JPEG quality 86 (~47 KB). The backdrop is a smooth gradient, which
-is exactly where JPEG bands first — check that area, not the face, if you
-ever re-encode it lower.
-
-If you replace it, keep it a real headshot: plain backdrop, nothing in frame
-competing with the face, looking at the camera. On a section whose whole
-argument is "one person, the one you talk to", a busy background is working
-against the copy. Re-run `python3 tools/set-image-dims.py --write` afterwards
-so the `width`/`height` attributes match the new file, and mind the
-`height:auto` note on `.bio__photo` in `index.html` — it is load-bearing.
+If a photo ever goes back in, rebuild the grid rather than dropping an `<img>`
+into the flow, and mind this: an `<img>`'s `height` attribute wins over
+`aspect-ratio` as a presentational hint, so `height:auto` is what makes the
+ratio apply at all. Re-run `python3 tools/set-image-dims.py --write`
+afterwards so the `width`/`height` attributes match the file.
 
 ## Fonts
 
@@ -196,8 +190,8 @@ Across `index.html`, `work/index.html`, `work/hm-mechanical/index.html` and
 
 In `index.html` only:
 
-- [x] The **PHOTO** placeholder in "Who you're hiring" — now
-      `assets/james-lerner.jpg` (see "The portrait" below)
+- [x] The **PHOTO** placeholder in "Who you're hiring" — gone; the section
+      makes its argument in copy, with no image (see "Who you're hiring" above)
 - [x] `james@lernerworks.com` — the contact address, linked from the footer.
       Confirm the mailbox actually receives before launch.
 - [ ] The remaining `PROJECT NAME` card under "Recent work" — the clinic
