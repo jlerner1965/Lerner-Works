@@ -2,7 +2,8 @@
 
 Site for **James Lerner · Lerner Works** — web design & marketing for small
 businesses in Boulder County. Hand-written static HTML: no build step, no
-framework, no third-party requests at all.
+framework, and a single third-party request — the GA4 snippet that feeds
+the BigQuery export (see "Analytics" below).
 
 ```
 index.html                            home
@@ -18,6 +19,10 @@ concepts/hm-mechanical/               two-page noindex H&M concept
 case-studies/aragocor/                screenshots for that case study
 case-studies/hm-mechanical/           before-and-after evidence for H&M
 tools/set-image-dims.py               writes real image sizes into the HTML
+queries/                              starter SQL against the GA4 BigQuery
+                                      export — see queries/README.md
+scripts/ga4-bigquery-setup.sh         checks/creates the Cloud-side pieces:
+                                      BigQuery API, export dataset, budget
 ```
 
 The H&M concept is intentionally excluded from the sitemap and carries a
@@ -71,10 +76,11 @@ afterwards so the `width`/`height` attributes match the file.
 
 ## Fonts
 
-Public Sans and Source Serif 4 are **self-hosted** in `assets/fonts/`. A page
-therefore makes zero requests to any other origin — no DNS, no TLS handshake,
-and no CSS-then-font request chain, which is the slow part of using Google
-Fonts. Each page preloads the two latin files it will certainly need.
+Public Sans and Source Serif 4 are **self-hosted** in `assets/fonts/`. The
+type therefore makes zero requests to any other origin — no DNS, no TLS
+handshake, and no CSS-then-font request chain, which is the slow part of
+using Google Fonts. Each page preloads the two latin files it will
+certainly need.
 
 Both are variable fonts, so one file covers the whole weight range — hence one
 `@font-face` per subset rather than one per weight. Only **latin** and
@@ -150,11 +156,38 @@ Standard library Python, no packages.
   much narrower than the average glyph in Public Sans — so the value (54ch)
   was calibrated against rendered text, not derived. Re-measure if the body
   font ever changes.
-- **No client-side JS on case studies.** The home page has the calculator;
-  the case studies ship zero scripts, which is most of why they load fast.
+- **Almost no client-side JS.** The home page has the calculator; beyond
+  the shared analytics snippet, the case studies ship zero scripts, which
+  is most of why they load fast.
 - **Heading levels.** One `h1` per page, `h2` for sections, no skips. The
   bold lead-ins inside "What I built" are `<strong>` inside the paragraph on
   purpose — they read as headings but are not, so the outline stays clean.
+
+## Analytics — GA4 → BigQuery
+
+Every page's `<head>` ends with the standard gtag.js snippet, loaded
+`async` — the one third-party request the site makes. The Measurement ID
+is still the `G-XXXXXXXX` placeholder; swapping in the real one (GA4
+Admin → Data streams) is on the launch checklist below.
+
+The GA4 property is linked to BigQuery in the Cloud project *named*
+"BigQuery" (lernerworks.com org). The Cloud-side pieces are scripted:
+
+```sh
+scripts/ga4-bigquery-setup.sh --project <PROJECT_ID>          # report only
+scripts/ga4-bigquery-setup.sh --project <PROJECT_ID> --apply  # make changes
+```
+
+It verifies the BigQuery API is enabled, looks for the
+`analytics_<property id>` dataset the link creates (allow ~24 h after
+linking), and sets up a $300 budget on the billing account with alerts
+at 50/90/100%. It needs the Cloud SDK (`gcloud` + `bq`) and a logged-in
+account (`gcloud auth login`), so it runs on your machine — nothing here
+runs at build or serve time, because there is no build or serve time.
+
+`queries/` holds starter SQL against the export — daily events, landing
+pages, source/medium, conversions. `queries/README.md` covers running
+them and what they cost (rounding error at this site's traffic).
 
 ## Publish with GitHub Pages (free)
 
@@ -186,7 +219,7 @@ Across `index.html`, `work/index.html`, `work/hm-mechanical/index.html` and
       the nav of every page and in the home-page footer
 - [x] `YOUR-BOOKING-LINK` — now `https://calendly.com/james-lernerworks/30min`
       on all ten "Book a call" buttons. It is a plain link, not an embedded
-      widget, so the page still makes zero third-party requests.
+      widget, so it adds no third-party request of its own.
 
 In `index.html` only:
 
@@ -197,3 +230,11 @@ In `index.html` only:
 - [ ] The remaining `PROJECT NAME` card under "Recent work" — the clinic
       concept. It has a twin slot in `work/index.html` (`wcard--soon`,
       "In progress"); build both or drop both, but keep them in sync.
+
+In every page's `<head>` — all six, the two H&M concept pages included:
+
+- [ ] `G-XXXXXXXX` — the GA4 Measurement ID placeholder. Swap in the real
+      one from GA4 Admin → Data streams:
+      `scripts/ga4-bigquery-setup.sh --measurement-id G-… --apply`, or
+      find-and-replace by hand. Until then the snippet loads but reports
+      nowhere.

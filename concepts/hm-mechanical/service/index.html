@@ -9,6 +9,18 @@
 <link rel="preload" href="../../../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../../../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="../concept.css" />
+
+<!-- Google Analytics 4 — feeds the BigQuery export. The site's only
+     third-party request. G-XXXXXXXX is a placeholder: swap in the real
+     Measurement ID (GA4 Admin → Data streams), by hand or via
+     scripts/ga4-bigquery-setup.sh --measurement-id G-… -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXX');
+</script>
 </head>
 <body>
 
