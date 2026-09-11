@@ -4,21 +4,21 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lerner Works — Web design &amp; marketing for small businesses in Boulder County</title>
-<meta name="description" content="James Lerner builds fast, clear websites for small businesses across Boulder County — then runs the marketing that keeps the phone ringing. Fixed prices, posted publicly. Based in Niwot." />
+<meta name="description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
 <link rel="canonical" href="https://lernerworks.com/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lernerworks.com/" />
 <meta property="og:title" content="Lerner Works — Web design &amp; marketing for small businesses in Boulder County" />
-<meta property="og:description" content="Fast, clear websites for small businesses across Boulder County, plus the marketing that keeps the phone ringing. Fixed prices, posted publicly." />
+<meta property="og:description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
 <meta property="og:site_name" content="Lerner Works" />
-<!-- Typographic card, generated from assets/og/home.html — see that file
-     before editing. Regenerate if the h1 above the fold ever changes. -->
 <meta property="og:image" content="https://lernerworks.com/assets/og/home.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Lerner Works — web design and marketing in Boulder County. Your website should be your best salesperson. Most are a brochure nobody reads." />
+<meta property="og:image:alt" content="Lerner Works — web design and marketing in Boulder County. A website that brings in work, built by the person you actually talk to." />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lerner Works — Web design &amp; marketing for small businesses in Boulder County" />
+<meta name="twitter:description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
 <meta name="twitter:image" content="https://lernerworks.com/assets/og/home.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314283F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%235FBF97' text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
@@ -27,302 +27,205 @@
      connection to set up and no CSS-then-font request chain. These two
      preloads are the latin subsets actually used by English copy; the
      latin-ext files load only if a page needs them. -->
-<link rel="preload" href="assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-<!-- Shared foundation: webfonts, tokens, base type, nav, buttons, footer.
-     Also used by /work/ and the case studies. Page-specific CSS
-     stays in the <style> block below, which loads after it. -->
-<link rel="stylesheet" href="assets/site.css" />
-
-<style>
-  /* ── hero ────────────────────────────────────────── */
-  .hero{background:var(--white);border-bottom:1px solid var(--line);
-        padding-block:clamp(3.2rem,8vw,5.8rem) clamp(2.6rem,6vw,4rem);}
-  .hero h1{font-size:clamp(2.2rem,1.4rem + 3.6vw,3.9rem);max-width:19ch;font-weight:600;}
-  .hero__sub{margin-top:1.4rem;max-width:54ch;color:var(--slate);font-size:clamp(1.05rem,1rem + .35vw,1.22rem);}
-  .hero__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem;}
-  .assure{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid var(--line);}
-  .assure div{display:flex;align-items:center;gap:.55rem;font-size:.9rem;color:var(--slate);}
-  .tick{flex:0 0 auto;width:17px;height:17px;border-radius:50%;background:var(--ever-soft);
-        display:grid;place-items:center;}
-  .tick svg{width:10px;height:10px;stroke:var(--ever);stroke-width:2.6;fill:none;}
-
-  /* ── calculator ──────────────────────────────────── */
-  .calc{background:var(--navy);color:#fff;padding-block:clamp(3rem,7vw,4.8rem);}
-  .calc__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.2rem);align-items:center;}
-  @media (max-width:880px){.calc__grid{grid-template-columns:1fr;}}
-  .calc h2{font-size:clamp(1.75rem,1.3rem + 1.9vw,2.6rem);color:#fff;max-width:15ch;}
-  .calc__lede{margin-top:1rem;color:rgba(255,255,255,.75);max-width:46ch;}
-  .field{margin-bottom:1.8rem;}
-  .field__top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.55rem;}
-  .field__label{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.72);}
-  .field__val{font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--ever-light);}
-  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:3px;
-    background:rgba(255,255,255,.22);outline:none;margin:0;}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;
-    border-radius:50%;background:var(--ever-light);cursor:pointer;border:3px solid var(--navy);}
-  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;
-    background:var(--ever-light);cursor:pointer;border:3px solid var(--navy);}
-  .result{border:1px solid var(--line-dark);border-radius:var(--r);padding:1.5rem 1.5rem;background:rgba(0,0,0,.18);}
-  .result__num{font-family:var(--serif);font-weight:700;letter-spacing:-.025em;
-    font-size:clamp(2.4rem,1.6rem + 3.4vw,3.9rem);line-height:1;color:var(--ever-light);}
-  .result__label{margin-top:.65rem;font-size:.98rem;color:rgba(255,255,255,.76);max-width:34ch;}
-  .result__fine{margin-top:.9rem;font-size:.76rem;line-height:1.6;color:rgba(255,255,255,.48);}
-
-  /* ── sections ────────────────────────────────────── */
-  .sec{padding-block:clamp(3.2rem,7vw,5.2rem);}
-  .sec--white{background:var(--white);border-block:1px solid var(--line);}
-  .sec h2{font-size:clamp(1.8rem,1.3rem + 2.1vw,2.9rem);max-width:19ch;}
-  .sec__lede{margin-top:1rem;max-width:54ch;color:var(--slate);}
-
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.8rem;}
-  @media (max-width:880px){.cards{grid-template-columns:1fr;}}
-  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
-        padding:1.7rem 1.5rem;box-shadow:var(--shadow);}
-  .sec--white .card{background:var(--paper);box-shadow:none;}
-  .card h3{font-size:1.24rem;margin-bottom:.6rem;}
-  .card p{color:var(--slate);font-size:.99rem;}
-  .card ul{margin:1.1rem 0 0;padding:0;list-style:none;}
-  .card li{font-size:.9rem;color:var(--slate);padding:.45rem 0;border-top:1px solid var(--line);}
-
-  /* ── bio ─────────────────────────────────────────── */
-  .bio h2{max-width:16ch;}
-  .bio p + p{margin-top:1.1rem;}
-  .bio p{color:var(--slate);max-width:56ch;}
-  .sig{margin-top:1.6rem;font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--navy);}
-
-  /* ── process ─────────────────────────────────────── */
-  .steps{margin-top:2.6rem;border-top:1px solid var(--line);}
-  .step{display:grid;grid-template-columns:3.5rem 12rem 1fr;gap:1.4rem;align-items:baseline;
-        padding:1.4rem 0;border-bottom:1px solid var(--line);}
-  @media (max-width:780px){.step{grid-template-columns:2.5rem 1fr;gap:.5rem 1rem;} .step p{grid-column:2;}}
-  .step__n{font-size:.82rem;font-weight:600;color:var(--ever);}
-  .step h3{font-size:1.22rem;}
-  .step p{color:var(--slate);font-size:.99rem;}
-
-  /* ── guarantee ───────────────────────────────────── */
-  .promise{background:var(--ever-soft);border:1px solid #CBE0D6;border-left:4px solid var(--ever);
-           border-radius:var(--r);padding:clamp(1.8rem,4vw,2.6rem);display:grid;
-           grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);}
-  @media (max-width:800px){.promise{grid-template-columns:1fr;}}
-  .promise h2{font-size:clamp(1.6rem,1.3rem + 1.4vw,2.2rem);max-width:16ch;}
-  .promise p{color:#2E4A3E;}
-  .promise p + p{margin-top:1rem;}
-
-  /* ── work ────────────────────────────────────────── */
-  .slot{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
-        padding:1.6rem 1.4rem;min-height:215px;display:flex;flex-direction:column;
-        justify-content:space-between;box-shadow:var(--shadow);}
-  .slot__tag{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);}
-  .slot h3{font-size:1.14rem;margin:.8rem 0 .45rem;}
-  .slot p{font-size:.95rem;color:var(--slate);}
-  .slot__metric{margin-top:1.1rem;font-family:var(--serif);font-weight:700;font-size:1.35rem;color:var(--ever);}
-  .slot__link{display:block;text-decoration:none;font-size:1.1rem;}
-  .slot__link:hover{text-decoration:underline;}
-
-  /* ── pricing ─────────────────────────────────────── */
-  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.8rem;}
-  @media (max-width:880px){.price{grid-template-columns:1fr;}}
-  .tier{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
-        padding:1.8rem 1.5rem;display:flex;flex-direction:column;box-shadow:var(--shadow);}
-  .tier--mid{border-color:var(--ever);border-width:1.5px;}
-  .tier__name{font-size:.74rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--slate-2);}
-  .tier__fig{font-family:var(--serif);font-weight:700;font-size:2.3rem;letter-spacing:-.025em;margin:.7rem 0 .15rem;}
-  .tier__per{font-size:.82rem;color:var(--slate-2);}
-  .tier ul{margin:1.3rem 0 1.7rem;padding:0;list-style:none;flex:1;}
-  .tier li{font-size:.95rem;color:var(--slate);padding:.48rem 0;border-top:1px solid var(--line);}
-
-  /* ── faq ─────────────────────────────────────────── */
-  .faq{margin-top:2.4rem;max-width:760px;border-top:1px solid var(--line);}
-  .faq details{border-bottom:1px solid var(--line);}
-  .faq summary{cursor:pointer;list-style:none;padding:1.15rem 2rem 1.15rem 0;position:relative;
-    font-family:var(--serif);font-size:1.1rem;font-weight:600;}
-  .faq summary::-webkit-details-marker{display:none;}
-  .faq summary::after{content:"+";position:absolute;right:.25rem;top:1rem;
-    font-family:var(--sans);font-weight:400;font-size:1.4rem;color:var(--ever);}
-  .faq details[open] summary::after{content:"–";}
-  .faq p{padding:0 0 1.3rem;color:var(--slate);max-width:62ch;}
-
-  /* .end / .foot and the reduced-motion block live in assets/site.css */
-</style>
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
+<link rel="stylesheet" href="./assets/site.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Lerner Works",
+  "url": "https://lernerworks.com/",
+  "telephone": "+1-949-205-9056",
+  "email": "james@lernerworks.com",
+  "description": "Web design and marketing for small businesses in Boulder County, Colorado. Fixed prices, written scope, one point of contact.",
+  "founder": {"@type": "Person", "name": "James Lerner"},
+  "address": {"@type": "PostalAddress", "addressLocality": "Niwot", "addressRegion": "CO", "addressCountry": "US"},
+  "areaServed": ["Niwot", "Boulder", "Longmont", "Louisville", "Lafayette", "Erie", "Boulder County"],
+  "priceRange": "$$"
+}
+</script>
 </head>
 <body>
 
-<nav class="nav">
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="top" aria-label="Main">
   <div class="wrap nav__in">
-    <a class="brand" href="#top">Lerner Works<small>James Lerner · Boulder County</small></a>
+    <a class="brand" href="./">Lerner Works<small>Web design &amp; marketing · Boulder County</small></a>
     <div class="nav__links">
-      <a class="nav__keep" href="work/">Work</a>
-      <a href="#services">What I do</a>
-      <a href="#about">Who you're hiring</a>
-      <a href="#pricing">Pricing</a>
-      <a class="nav__tel nav__keep" href="tel:+19492059056">(949) 205-9056</a>
+      <a href="./work/">Work</a>
+      <a href="./services/">Services</a>
+      <a href="./about/">About</a>
+      <a href="./contact/">Contact</a>
+      <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
     </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="./work/">Work</a>
+        <a href="./services/">Services</a>
+        <a href="./about/">About</a>
+        <a href="./contact/">Contact</a>
+        <hr />
+        <a href="tel:+19492059056">Call (949) 205-9056</a>
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
   </div>
 </nav>
 
-<header class="hero" id="top">
-  <div class="wrap">
-    <p class="eyebrow">Web design &amp; marketing · Boulder County</p>
-    <h1>Your website should be your best salesperson. Most are a brochure nobody reads.</h1>
-    <p class="hero__sub">I'm James Lerner. I build fast, clear websites for small businesses across Boulder County — then run the marketing that keeps the phone ringing. You work with me directly, start to finish.</p>
-    <div class="hero__cta">
-      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
-      <a class="btn btn--line" href="#calc">See what a quiet phone costs</a>
-    </div>
+<main id="main">
 
-    <div class="assure">
-      <div><span class="tick"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span> Fixed prices, posted below</div>
-      <div><span class="tick"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span> Scope in writing before you pay</div>
-      <div><span class="tick"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span> You own the site and the domain</div>
-      <div><span class="tick"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span> Replies within one business day</div>
+<header class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Web design &amp; marketing · Boulder County</p>
+      <h1>A website that brings in work. Built by the person you actually talk to.</h1>
+      <p class="hero__sub">I'm James Lerner. I design, write and build websites for small businesses in Boulder County, then run the marketing that keeps them working. Fixed prices, a written scope, and one point of contact from the first call to the last change.</p>
+      <div class="hero__cta">
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+        <a class="btn btn--line" href="./work/">See the work</a>
+      </div>
     </div>
+    <aside class="terms" aria-label="Terms of working together">
+      <p class="terms__h">The terms, up front</p>
+      <ul>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span><span>Fixed price, agreed in writing before anything starts<small>One page, one number, one date.</small></span></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span><span>You own the site, the domain and every file<small>Nothing is held hostage if you leave.</small></span></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span><span>One person does the work<small>No account manager, no handoff, no outsourcing.</small></span></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span><span>First design refundable if it isn't right<small>Deposit back in full, no invoice for hours.</small></span></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6.5 4.6,9 10,3"/></svg></span><span>Replies within one business day</span></li>
+      </ul>
+    </aside>
   </div>
 </header>
 
-<!-- SIGNATURE: the calculator. Shows the prospect the cost of doing nothing. -->
-<section class="calc" id="calc">
-  <div class="wrap calc__grid">
-    <div>
-      <p class="eyebrow eyebrow--dark">The math</p>
-      <h2>What a quiet phone costs you.</h2>
-      <p class="calc__lede">Most small businesses don't have a design problem. They have a "nobody finds us, and the ones who do leave in four seconds" problem. Here's roughly what that's worth in a year.</p>
-      <div class="result" style="margin-top:1.9rem;">
-        <div class="result__num" id="out">$0</div>
-        <p class="result__label">Estimated revenue walking past you each year.</p>
-        <p class="result__fine">Rough math on your own numbers, not a promise. We'd pin down the real figures on the call.</p>
+<!-- WORK: three real case studies. Labels are honest — the concept is a
+     concept, this site is this site. Never relabel unpaid work as paid. -->
+<section class="sec sec--white" id="work">
+  <div class="wrap">
+    <div class="sec__head">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Case studies, with the reasoning shown.</h2>
+        <p class="sec__lede">Each one covers what was actually wrong, what I built, the tradeoffs I made, and what can be measured. Independent concepts are labelled as such: I don't present unpaid work as client work.</p>
       </div>
+      <a class="sec__link" href="./work/">All work →</a>
     </div>
-    <div>
-      <div class="field">
-        <div class="field__top"><label class="field__label" for="job">Average job value</label><span class="field__val" id="jobOut">$850</span></div>
-        <input type="range" id="job" min="100" max="8000" step="50" value="850" />
+    <div class="work-grid">
+
+      <a class="wcard" href="./work/aragocor-minerals/">
+        <div class="wcard__img"><img src="./case-studies/aragocor/01-home-hero-thumb.jpg" width="800" height="450" loading="lazy" decoding="async" alt="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Client project · Industrial supplier · 2026</p>
+          <h3>AragoCor Minerals</h3>
+          <p>A marketing site for a mineral supplier selling one product into five technical markets, plus the AI sourcing tool that turns visitors into quote requests.</p>
+          <p class="wcard__out"><strong>5 markets, 1 site</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./work/hm-mechanical/">
+        <div class="wcard__img"><img src="./case-studies/hm-mechanical/04-after-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="H&amp;M Mechanical concept homepage with one-tap service actions" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Independent concept · HVAC · 2026</p>
+          <h3>H&amp;M Mechanical</h3>
+          <p>A two-page rebuild for a Lafayette HVAC company whose mobile site showed three phone numbers and let a visitor tap none of them.</p>
+          <p class="wcard__out"><strong>0 → 1 tap to call</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./work/lernerworks/">
+        <div class="wcard__img"><img src="./case-studies/lernerworks/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Lerner Works homepage" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">This site · 2026</p>
+          <h3>lernerworks.com</h3>
+          <p>The site you're reading, built the way I'd build yours: hand-written pages, self-hosted fonts, no scripts and no third-party requests. Measured, not asserted.</p>
+          <p class="wcard__out"><strong>0 third-party requests</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="approach">
+  <div class="wrap">
+    <p class="eyebrow">How I work</p>
+    <h2>Four things you can hold me to.</h2>
+    <div class="grid2">
+      <div class="principle">
+        <p class="principle__n">01</p>
+        <h3>Diagnosis before design</h3>
+        <p>The first thing I produce is a written account of what is actually costing you customers, with evidence. Sometimes the answer is not a new website, and I'll tell you that on the first call.</p>
       </div>
-      <div class="field">
-        <div class="field__top"><label class="field__label" for="leads">Inquiries you're missing / month</label><span class="field__val" id="leadsOut">8</span></div>
-        <input type="range" id="leads" min="1" max="60" step="1" value="8" />
+      <div class="principle">
+        <p class="principle__n">02</p>
+        <h3>Specific beats polished</h3>
+        <p>Real service names, real numbers, real photographs of real jobs. A page that says exactly what you do and for whom converts better than one that merely looks expensive.</p>
       </div>
-      <div class="field" style="margin-bottom:0;">
-        <div class="field__top"><label class="field__label" for="close">Close rate</label><span class="field__val" id="closeOut">35%</span></div>
-        <input type="range" id="close" min="5" max="90" step="5" value="35" />
+      <div class="principle">
+        <p class="principle__n">03</p>
+        <h3>Fast, plain and yours</h3>
+        <p>Hand-written pages that load quickly on a phone with a weak signal, and no platform holding your content. You get every file, and a short video on how to change things yourself.</p>
       </div>
-      <p class="result__fine" style="margin-top:1.5rem;">Drag the sliders. Most owners guess low on the second one.</p>
+      <div class="principle">
+        <p class="principle__n">04</p>
+        <h3>Measured, not admired</h3>
+        <p>Calls and form submissions are the score, not how the homepage looks. I report them monthly in one page of plain English, and I'd rather be judged on that.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="sec sec--white" id="services">
   <div class="wrap">
-    <p class="eyebrow">What I do</p>
-    <h2>Three jobs, in the order they matter.</h2>
-    <p class="sec__lede">A beautiful site nobody visits is an expensive business card. So the work runs in sequence: get found, convert, follow up.</p>
+    <div class="sec__head">
+      <div>
+        <p class="eyebrow">What I do</p>
+        <h2>Three jobs, in the order they matter.</h2>
+        <p class="sec__lede">A well-designed site nobody visits is an expensive business card. So the work runs in sequence: get found, turn visits into enquiries, then keep customers coming back.</p>
+      </div>
+      <a class="sec__link" href="./services/">Services &amp; pricing →</a>
+    </div>
     <div class="cards">
       <div class="card">
-        <h3>Get found</h3>
-        <p>Show up when someone in Boulder County searches for what you do — on the map, in the results, on their phone at 9pm.</p>
+        <p class="card__k">01 · Get found</p>
+        <h3>Local search</h3>
+        <p>Show up when someone in Boulder County searches for what you do: on the map, in the results, on their phone at nine at night.</p>
         <ul>
-          <li>Google Business Profile setup</li>
+          <li>Google Business Profile, set up properly</li>
           <li>Local SEO and service-area pages</li>
-          <li>Review generation that isn't awkward</li>
-          <li>Google Ads, if the math works</li>
+          <li>A review process that isn't awkward</li>
+          <li>Google Ads, only where the numbers work</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Turn visits into calls</h3>
-        <p>A site that loads in under two seconds, says what you do in five words, and makes booking obvious on a cracked phone screen.</p>
+        <p class="card__k">02 · Convert</p>
+        <h3>Website design &amp; build</h3>
+        <p>A site that loads in under two seconds, says what you do in the first line, and makes calling or booking obvious on a cracked phone screen.</p>
         <ul>
           <li>Design and build, mobile first</li>
-          <li>Copy written for your customer</li>
-          <li>Booking, quote forms, click-to-call</li>
+          <li>Copy written for your customer, by me</li>
+          <li>Booking, quote forms, tap-to-call</li>
           <li>Photography direction</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Bring them back</h3>
-        <p>Most revenue is in the second job, not the first. Steady follow-up that doesn't need you to remember it.</p>
+        <p class="card__k">03 · Retain</p>
+        <h3>Follow-up &amp; marketing</h3>
+        <p>Most of the revenue is in the second job, not the first. Steady follow-up that runs without you having to remember it.</p>
         <ul>
           <li>Email list and seasonal campaigns</li>
           <li>Automated quote follow-up</li>
           <li>Retargeting</li>
-          <li>Monthly report in plain English</li>
+          <li>A one-page monthly report</li>
         </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST: the single highest-value section on this page for a solo operator.
-     It runs on copy alone — the argument is "one person, the one you talk
-     to", and the words make it without a photograph. -->
-<section class="sec" id="about">
-  <div class="wrap bio">
-    <p class="eyebrow">Who you're hiring</p>
-    <h2>One person. The one you talk to.</h2>
-    <p>I'm James Lerner. When you hire me, I'm the person who takes the call, writes the scope, designs the pages, writes the copy, and answers the phone eight months later when something needs changing. There's no account manager, no junior handoff, and no team I'm quietly outsourcing to.</p>
-    <p>That's the trade. I take on a small number of projects at a time, so I can't start six clients next Tuesday. What you get instead is someone who knows your business well enough to make the small judgment calls without a meeting.</p>
-    <p>I work with local businesses because the results are measurable. You know whether the phone rang. I'd rather be judged on that than on how the homepage looks.</p>
-    <p class="sig">— James</p>
-  </div>
-</section>
-
-<section class="sec sec--white" id="process">
-  <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>Five steps. About three weeks.</h2>
-    <div class="steps">
-      <div class="step"><div class="step__n">01</div><h3>Call</h3>
-        <p>Twenty minutes. You tell me what's broken and what a good month looks like. Free, and if you don't need me I'll say so.</p></div>
-      <div class="step"><div class="step__n">02</div><h3>Plan</h3>
-        <p>A one-page scope with a fixed price and a date. Nothing starts until you've read it and said yes in writing.</p></div>
-      <div class="step"><div class="step__n">03</div><h3>Build</h3>
-        <p>Design and copy together, not one after the other. You see it live at the halfway point and again before launch.</p></div>
-      <div class="step"><div class="step__n">04</div><h3>Launch</h3>
-        <p>I handle the domain, hosting, email, and the boring redirect work. You get a short video showing how to update it yourself.</p></div>
-      <div class="step"><div class="step__n">05</div><h3>Measure</h3>
-        <p>Calls, forms, and where they came from — one page a month, no dashboard homework.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="promise">
-      <div>
-        <p class="eyebrow">The guarantee</p>
-        <h2>See the first design before you're committed.</h2>
-      </div>
-      <div>
-        <p>You pay a deposit, I design the homepage, and you look at it. If it isn't right and you don't want to keep going, I refund the deposit in full and you owe nothing. No argument, no invoice for hours spent.</p>
-        <p>I can offer that because I've had the twenty-minute call first. By the time I'm designing, I already know what your customers are looking for. The risk sits with me, which is where it belongs.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK: replace with real client projects as they wrap.
-     Do NOT relabel the concept pieces as paid work. -->
-<section class="sec sec--white" id="work">
-  <div class="wrap">
-    <p class="eyebrow">Recent work</p>
-    <h2>What it looks like in practice.</h2>
-    <p class="sec__lede">Concept rebuilds of real Boulder County businesses, done on my own time, plus a platform I built end to end. Client projects replace these as they finish.</p>
-    <div class="cards">
-      <div class="slot">
-        <div><p class="slot__tag">Unsolicited concept · HVAC</p><h3>H&amp;M Mechanical</h3>
-          <p>Three plain-text phone numbers became one clear mobile service path, backed by a useful three-field request.</p></div>
-        <a class="slot__metric slot__link" href="work/hm-mechanical/">No tap-to-call → 1 tap</a>
-      </div>
-      <div class="slot">
-        <div><p class="slot__tag">Concept · Clinic</p><h3>PROJECT NAME</h3>
-          <p>One line on what was wrong. One line on what you changed.</p></div>
-        <div class="slot__metric">4 clicks to book → 1</div>
-      </div>
-      <div class="slot">
-        <div><p class="slot__tag">Project · Aragocor Minerals</p><h3>AI sourcing platform</h3>
-          <p>Searchable mineral catalog, freight and stowage calculator, and an embeddable quote-request widget.</p></div>
-        <a class="slot__metric slot__link" href="work/aragocor-minerals/">Read the case study →</a>
       </div>
     </div>
   </div>
@@ -330,14 +233,20 @@
 
 <section class="sec" id="pricing">
   <div class="wrap">
-    <p class="eyebrow">Pricing</p>
-    <h2>Posted, so you don't have to ask.</h2>
-    <p class="sec__lede">Fixed price, agreed in writing before anything starts. If your project doesn't fit one of these, I'll quote it the same way — one page, one number.</p>
+    <div class="sec__head">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>Posted, so you don't have to ask.</h2>
+        <p class="sec__lede">Every project is a fixed price, agreed in writing before anything starts. If yours doesn't fit one of these, I quote it the same way: one page, one number.</p>
+      </div>
+      <a class="sec__link" href="./services/#pricing">What each tier includes →</a>
+    </div>
     <div class="price">
       <div class="tier">
         <p class="tier__name">Starter</p>
         <p class="tier__fig">$2,400</p>
         <p class="tier__per">one-time</p>
+        <p class="tier__for">For a business that needs a clear, fast site and a working Google listing.</p>
         <ul>
           <li>Up to 5 pages</li>
           <li>Copy written with you</li>
@@ -348,9 +257,11 @@
         <a class="btn btn--line" href="https://calendly.com/james-lernerworks/30min">Start here</a>
       </div>
       <div class="tier tier--mid">
-        <p class="tier__name">Growth · most common</p>
+        <p class="tier__flag">Most common</p>
+        <p class="tier__name">Growth</p>
         <p class="tier__fig">$4,800</p>
         <p class="tier__per">one-time</p>
+        <p class="tier__for">For a business that wants to be found across the county and keep the leads it earns.</p>
         <ul>
           <li>Everything in Starter</li>
           <li>Service-area pages for local SEO</li>
@@ -363,7 +274,8 @@
       <div class="tier">
         <p class="tier__name">Care &amp; marketing</p>
         <p class="tier__fig">$850</p>
-        <p class="tier__per">per month · cancel anytime</p>
+        <p class="tier__per">per month · cancel any time</p>
+        <p class="tier__for">For a business that wants the site kept up and the marketing run without thinking about it.</p>
         <ul>
           <li>Hosting, updates, backups</li>
           <li>Ongoing SEO and content</li>
@@ -379,81 +291,117 @@
 
 <section class="sec sec--white">
   <div class="wrap">
-    <p class="eyebrow">Straight answers</p>
-    <h2>The questions people ask before they call.</h2>
+    <div class="promise">
+      <div>
+        <p class="eyebrow">The guarantee</p>
+        <h2>See the first design before you're committed.</h2>
+      </div>
+      <div>
+        <p>You pay a deposit, I design the homepage, and you look at it. If it isn't right and you don't want to continue, I refund the deposit in full and you owe nothing. No argument, no invoice for hours spent.</p>
+        <p>I can offer that because the diagnosis comes first. By the time I'm designing, I already know what your customers are looking for. The risk sits with me, which is where it belongs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap split">
+    <div class="prose">
+      <p class="eyebrow">Who you're hiring</p>
+      <h2>One person. The one you talk to.</h2>
+      <p>When you hire me, I'm the person who takes the call, writes the scope, designs the pages, writes the copy, and answers the phone eight months later when something needs changing. There is no account manager, no junior handoff, and no team I'm quietly outsourcing to.</p>
+      <p>That's the trade. I take on a small number of projects at a time, so I can't start six clients next Tuesday. What you get instead is someone who knows your business well enough to make the small judgment calls without a meeting.</p>
+      <p><a class="link" href="./about/">More about how I work →</a></p>
+    </div>
+    <aside class="aside" aria-label="At a glance">
+      <p class="aside__h">At a glance</p>
+      <dl>
+        <div><dt>Based in</dt><dd>Niwot, Boulder County, Colorado</dd></div>
+        <div><dt>Works with</dt><dd>Local service businesses, clinics, trades, and small B2B suppliers</dd></div>
+        <div><dt>Typical build</dt><dd>About three weeks from signed scope to launch</dd></div>
+        <div><dt>Projects at a time</dt><dd>A few, so each one gets attention</dd></div>
+        <div><dt>Response time</dt><dd>Within one business day</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="sec sec--white" id="faq">
+  <div class="wrap">
+    <div class="sec__head">
+      <div>
+        <p class="eyebrow">Straight answers</p>
+        <h2>The questions people ask before they call.</h2>
+      </div>
+      <a class="sec__link" href="./services/#faq">All questions →</a>
+    </div>
     <div class="faq">
       <details open>
         <summary>Who owns the website when we're done?</summary>
-        <p>You do. The domain is registered in your name, the site and all its content are yours, and if you ever want to move it elsewhere I'll hand over everything and help the next person get set up. I don't hold work hostage.</p>
-      </details>
-      <details>
-        <summary>What if I want to cancel the monthly plan?</summary>
-        <p>Email me and it stops at the end of that month. No notice period, no exit fee. The site keeps working — you'd just need somewhere to host it, and I'll help you move it.</p>
-      </details>
-      <details>
-        <summary>Why are you cheaper than an agency and more than my nephew?</summary>
-        <p>An agency has an office, salespeople, and account managers built into the quote. I don't. My nephew equivalent isn't going to write the copy, set up your Google profile, or still be answering emails next spring. You're paying for the middle.</p>
+        <p>You do. The domain is registered in your name, the site and all its content are yours, and if you ever want to move it elsewhere I'll hand over everything and help the next person get set up.</p>
       </details>
       <details>
         <summary>How long until I see results?</summary>
-        <p>The site goes live in two to three weeks. Local search results usually move in six to twelve weeks — that's how long Google takes, and anyone promising faster is guessing. If we run ads, you'll see traffic within days, though it takes a few weeks to tune.</p>
+        <p>The site goes live in two to three weeks. Local search results usually move in six to twelve weeks; that's how long Google takes, and anyone promising faster is guessing. If we run ads, you'll see traffic within days, though tuning takes a few weeks.</p>
       </details>
       <details>
         <summary>What do you need from me?</summary>
-        <p>About three hours total: the first call, a session where I ask about your customers, and one round of feedback on the draft. I write the copy, so you don't have to. If you have photos of real jobs, send them — they beat stock photography every time.</p>
+        <p>About three hours in total: the first call, a session where I ask about your customers, and one round of feedback on the draft. I write the copy, so you don't have to. If you have photos of real jobs, send them; they beat stock photography every time.</p>
       </details>
       <details>
-        <summary>Do you work with businesses outside Boulder County?</summary>
-        <p>Yes, though most of my work is around Boulder, Longmont, and Louisville. If you're further out, everything happens over video calls, which works fine — I'd just want to understand your market before quoting.</p>
+        <summary>How does your pricing compare with an agency?</summary>
+        <p>An agency's quote carries an office, salespeople and account managers. Mine doesn't. What you're paying for is the work itself, done by the person you spoke to, and the fact that I'm still answering emails next spring.</p>
       </details>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer class="end" id="contact">
   <div class="wrap">
     <p class="eyebrow eyebrow--dark">Next step</p>
-    <h2>Twenty minutes, no pitch.</h2>
-    <p>Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
+    <h2>Tell me what your site should be doing.</h2>
+    <p class="end__lede">A twenty-minute call, no pitch. You describe the business and what you wish the website did; I tell you honestly whether I can help, and what it would cost. — James</p>
     <div class="end__cta">
       <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
       <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
     </div>
+
     <div class="foot">
-      <span>© <span id="yr">2026</span> Lerner Works · James Lerner · Based in Niwot, serving Boulder, Longmont, Louisville, Lafayette &amp; Erie</span>
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="./work/">Work</a></li>
+          <li><a href="./services/">Services &amp; pricing</a></li>
+          <li><a href="./about/">About</a></li>
+          <li><a href="./contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="tel:+19492059056">(949) 205-9056</a></li>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot. Boulder, Longmont, Louisville, Lafayette, Erie and the rest of Boulder County. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
       <span><a href="#top">Back to top</a></span>
     </div>
   </div>
 </footer>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  const job=document.getElementById('job'), leads=document.getElementById('leads'), close_=document.getElementById('close');
-  const jobOut=document.getElementById('jobOut'), leadsOut=document.getElementById('leadsOut'), closeOut=document.getElementById('closeOut');
-  const out=document.getElementById('out');
-  const money=n=>'$'+Math.round(n).toLocaleString('en-US');
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let shown=0, raf;
-  function paint(target){
-    if(reduce){out.textContent=money(target);shown=target;return;}
-    cancelAnimationFrame(raf);
-    const start=shown, t0=performance.now(), dur=380;
-    (function step(now){
-      const p=Math.min((now-t0)/dur,1), eased=1-Math.pow(1-p,3);
-      shown=start+(target-start)*eased;
-      out.textContent=money(shown);
-      if(p<1) raf=requestAnimationFrame(step);
-    })(t0);
-  }
-  function update(){
-    jobOut.textContent=money(+job.value);
-    leadsOut.textContent=leads.value;
-    closeOut.textContent=close_.value+'%';
-    paint(+job.value * +leads.value * 12 * (+close_.value/100));
-  }
-  [job,leads,close_].forEach(el=>el.addEventListener('input',update));
-  update();
-</script>
 </body>
 </html>

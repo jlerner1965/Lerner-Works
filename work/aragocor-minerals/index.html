@@ -3,69 +3,109 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<title>AragoCor Minerals — site + AI sourcing tool | Lerner Works</title>
-<meta name="description" content="A full marketing site for a Bahamian aragonite supplier serving five technical markets — plus the AI catalog, freight calculator and RFQ tool behind it." />
+<title>AragoCor Minerals — website and AI sourcing tool | Lerner Works</title>
+<meta name="description" content="Case study: a marketing site for a Bahamian aragonite supplier serving five technical markets, plus the AI catalog, freight calculator and quote-request tool behind it." />
 <link rel="canonical" href="https://lernerworks.com/work/aragocor-minerals/" />
 
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lernerworks.com/work/aragocor-minerals/" />
-<meta property="og:title" content="AragoCor Minerals — site + AI sourcing tool" />
-<meta property="og:description" content="A full marketing site for a Bahamian aragonite supplier serving five technical markets — plus the AI catalog, freight calculator and RFQ tool behind it." />
+<meta property="og:title" content="AragoCor Minerals — website and AI sourcing tool | Lerner Works" />
+<meta property="og:description" content="Case study: a marketing site for a Bahamian aragonite supplier serving five technical markets, plus the AI catalog, freight calculator and quote-request tool behind it." />
 <meta property="og:site_name" content="Lerner Works" />
 <meta property="og:image" content="https://lernerworks.com/case-studies/aragocor/01-home-hero.jpg" />
 <meta property="og:image:width" content="1265" />
 <meta property="og:image:height" content="712" />
 <meta property="og:image:alt" content="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AragoCor Minerals — site + AI sourcing tool" />
-<meta name="twitter:description" content="A full marketing site for a Bahamian aragonite supplier serving five technical markets, plus the AI sourcing tool that turns visitors into quotes." />
+<meta name="twitter:title" content="AragoCor Minerals — website and AI sourcing tool | Lerner Works" />
+<meta name="twitter:description" content="Case study: a marketing site for a Bahamian aragonite supplier serving five technical markets, plus the AI catalog, freight calculator and quote-request tool behind it." />
 <meta name="twitter:image" content="https://lernerworks.com/case-studies/aragocor/01-home-hero.jpg" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314283F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%235FBF97' text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
 <link rel="preload" href="../../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
 <link rel="stylesheet" href="../../assets/site.css" />
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav class="nav">
+<nav class="nav" id="top" aria-label="Main">
   <div class="wrap nav__in">
-    <a class="brand" href="../../">Lerner Works<small>James Lerner · Boulder County</small></a>
+    <a class="brand" href="../../">Lerner Works<small>Web design &amp; marketing · Boulder County</small></a>
     <div class="nav__links">
-      <a class="nav__keep" href="../">Work</a>
-      <a href="../../index.html#services">What I do</a>
-      <a href="../../index.html#about">Who you're hiring</a>
-      <a href="../../index.html#pricing">Pricing</a>
-      <a class="nav__tel nav__keep" href="tel:+19492059056">(949) 205-9056</a>
+      <a href="../../work/" aria-current="page">Work</a>
+      <a href="../../services/">Services</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+      <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
     </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="../../work/" aria-current="page">Work</a>
+        <a href="../../services/">Services</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+        <hr />
+        <a href="tel:+19492059056">Call (949) 205-9056</a>
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
   </div>
 </nav>
 
 <main id="main">
 <article>
 
-  <!-- 1 · title + one-line summary, 2 · services and year -->
   <header class="cs-head">
     <div class="wrap">
       <a class="cs-back" href="../">← All work</a>
-      <p class="eyebrow">Case study</p>
-      <h1>AragoCor Minerals</h1>
-      <p class="cs-summary">A full marketing site for an industrial mineral supplier — and the AI sourcing tool that turns visitors into quotes.</p>
-      <p class="cs-meta">Website design and build · Technical copy · AI tooling · 2026</p>
+      <div class="cs-head__grid">
+        <div>
+          <span class="badge badge--client">Client project</span>
+          <h1>AragoCor Minerals</h1>
+          <p class="cs-summary">A marketing site for an industrial mineral supplier selling one product into five technical markets, and the AI sourcing tool that turns visitors into quote requests.</p>
+        </div>
+        <dl class="cs-facts" aria-label="Project facts">
+          <div><dt>Client</dt><dd>AragoCor Minerals, supplier of Bahamian oolitic aragonite</dd></div>
+          <div><dt>Sector</dt><dd>Industrial minerals, business-to-business</dd></div>
+          <div><dt>Scope</dt><dd>Website design and build, technical copy, AI catalog, freight calculator and quote-request tool</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Status</dt><dd>Site live at <a href="https://aragocorminerals.com" rel="noopener">aragocorminerals.com</a>; sourcing tool in staged rollout</dd></div>
+        </dl>
+      </div>
     </div>
   </header>
 
-  <!-- 3 · lead image. Not lazy, and prioritised — it is the LCP element. -->
+  <!-- Lead image. Not lazy, and prioritised — it is the LCP element. -->
   <div class="cs-lead">
     <div class="wrap">
       <img src="../../case-studies/aragocor/01-home-hero.jpg"
            width="1265" height="712" fetchpriority="high" decoding="async"
            alt="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" />
+    </div>
+  </div>
+
+  <div class="cs-outcomes">
+    <div class="wrap">
+      <p class="eyebrow">At a glance</p>
+      <dl>
+        <div><dd>5 markets</dd><dt>served from one product line, without the site fragmenting into five</dt></div>
+        <div><dd>4 grades</dd><dt>each labelled with the particle sizing a buyer checks first</dt></div>
+        <div><dd>2 answer paths</dd><dt>live AI with an offline engine behind it, so the tool degrades instead of failing</dt></div>
+        <div><dd>1 action</dd><dt>“Request bulk pricing” in the header of every page</dt></div>
+      </dl>
     </div>
   </div>
 
@@ -211,21 +251,53 @@
 
   </div>
 </article>
+
+<div class="wrap cs-next">
+  <a href="../hm-mechanical/"><span><small>Next case study</small><strong>H&amp;M Mechanical</strong></span><span>Read it →</span></a>
+</div>
 </main>
 
-<!-- 10 · CTA -->
-<footer class="end">
+<footer class="end" id="contact">
   <div class="wrap">
     <p class="eyebrow eyebrow--dark">Next step</p>
     <h2>Have a project like this?</h2>
-    <p>Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
+    <p class="end__lede">Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
     <div class="end__cta">
-      <a class="btn btn--go" href="../../index.html#contact">Get in touch</a>
-      <a class="btn btn--onDark" href="../">See other work</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
     </div>
+
     <div class="foot">
-      <span>© 2026 Lerner Works · James Lerner · Based in Niwot, serving Boulder, Longmont, Louisville, Lafayette &amp; Erie</span>
-      <span><a href="../../">Home</a></span>
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="../../work/">Work</a></li>
+          <li><a href="../../services/">Services &amp; pricing</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="tel:+19492059056">(949) 205-9056</a></li>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot. Boulder, Longmont, Louisville, Lafayette, Erie and the rest of Boulder County. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
+      <span><a href="#top">Back to top</a></span>
     </div>
   </div>
 </footer>
