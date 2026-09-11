@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>lernerworks.com — how this site is built, and why | Lerner Works</title>
+<meta name="description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
+<link rel="canonical" href="https://lernerworks.com/work/lernerworks/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lernerworks.com/work/lernerworks/" />
+<meta property="og:title" content="lernerworks.com — how this site is built, and why | Lerner Works" />
+<meta property="og:description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
+<meta property="og:site_name" content="Lerner Works" />
+<meta property="og:image" content="https://lernerworks.com/case-studies/lernerworks/01-home.png" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:image:alt" content="The Lerner Works homepage: headline, the terms of working together, and three case studies" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="lernerworks.com — how this site is built, and why | Lerner Works" />
+<meta name="twitter:description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
+<meta name="twitter:image" content="https://lernerworks.com/case-studies/lernerworks/01-home.png" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314283F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%235FBF97' text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
+<link rel="preload" href="../../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
+<link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="top" aria-label="Main">
+  <div class="wrap nav__in">
+    <a class="brand" href="../../">Lerner Works<small>Web design &amp; marketing · Boulder County</small></a>
+    <div class="nav__links">
+      <a href="../../work/" aria-current="page">Work</a>
+      <a href="../../services/">Services</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+      <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+    </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="../../work/" aria-current="page">Work</a>
+        <a href="../../services/">Services</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+        <hr />
+        <a href="tel:+19492059056">Call (949) 205-9056</a>
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<main id="main">
+<article>
+
+  <header class="cs-head">
+    <div class="wrap">
+      <a class="cs-back" href="../">← All work</a>
+      <div class="cs-head__grid">
+        <div>
+          <span class="badge">This site</span>
+          <h1>lernerworks.com</h1>
+          <p class="cs-summary">The site you're reading, built the way I'd build yours. Every number on this page was measured, and the tooling that measures it is kept alongside the site.</p>
+        </div>
+        <dl class="cs-facts" aria-label="Project facts">
+          <div><dt>Client</dt><dd>Lerner Works, my own practice</dd></div>
+          <div><dt>Sector</dt><dd>Professional services, local</dd></div>
+          <div><dt>Scope</dt><dd>Positioning, structure, copy, design, build, link previews, search groundwork, performance</dd></div>
+          <div><dt>Year</dt><dd>2026, rebuilt September 2026</dd></div>
+          <div><dt>Status</dt><dd>Live. Re-measured after every change.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <div class="cs-lead">
+    <div class="wrap">
+      <img src="../../case-studies/lernerworks/01-home.png"
+           width="1600" height="1000" fetchpriority="high" decoding="async"
+           alt="The Lerner Works homepage at desktop width: headline, the terms of working together, and the start of the case studies" />
+    </div>
+  </div>
+
+  <div class="cs-outcomes">
+    <div class="wrap">
+      <p class="eyebrow">At a glance</p>
+      <dl>
+        <div><dd>0</dd><dt>requests to any third party, on any page: no analytics, no font CDN, no widgets</dt></div>
+        <div><dd>0</dd><dt>lines of JavaScript run in the visitor's browser, including the mobile menu</dt></div>
+        <div><dd>7 requests</dd><dt>to load the home page in full, images included</dt></div>
+        <div><dd>274 KB</dd><dt>for the whole home page, of which 147 KB is the three case-study thumbnails</dt></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap cs-body">
+
+    <h2>The situation</h2>
+    <p>A freelancer's website has one job: make a stranger comfortable enough to book a call. The first version of this site tried to do that with a headline, a "what a quiet phone costs you" calculator and a pricing table, and pushed the actual work to a secondary page.</p>
+    <p>Looked at the way I'd look at a client's site, it had four problems. The proof was hidden: the case studies were the strongest thing on the site and they were three clicks away. A placeholder card reading "PROJECT NAME" was live on the homepage. The calculator asked visitors to guess their own numbers and reported a made-up figure back to them, which is the opposite of credible. And on a phone, the navigation simply hid most of its links rather than offering a menu.</p>
+    <p>The problem in one sentence: the site asserted that I was careful and measurable, but didn't show it.</p>
+
+    <h2>Constraints</h2>
+    <p><strong>No invented proof.</strong> No testimonials I chose myself, no client counts, no logo wall. Independent concept work had to be labelled as such everywhere it appears. If a number couldn't be measured, it couldn't go on the page.</p>
+    <p><strong>No third-party requests.</strong> No analytics script, no font service, no embedded booking widget, no chat bubble. A visitor's browser talks to this site and nothing else. That is a privacy position, but it is also most of what makes the pages fast.</p>
+    <p><strong>No build step.</strong> Plain HTML and one stylesheet, so any page can be edited in a text editor and the site can be hosted anywhere for nothing. The dev tooling that exists (link-preview rendering, image re-encoding, measurement) runs on demand and ships nothing to the visitor.</p>
+
+    <h2>What I built</h2>
+
+    <p><strong>A structure that leads with terms and proof.</strong> The homepage opens with the headline beside the five terms of working together: fixed price in writing, ownership of everything, one person, a refundable first design, and a reply within a business day. The three case studies come next, before the services or the prices. Work, Services, About and Contact each got their own page, so the home page could stop trying to be all of them.</p>
+
+    <figure class="cs-fig cs-fig--phone">
+      <img src="../../case-studies/lernerworks/03-home-mobile.png"
+           width="780" height="1688" loading="lazy" decoding="async"
+           alt="The Lerner Works homepage on a phone, with the Menu button, headline and call-to-action buttons" />
+      <figcaption>On a phone the navigation becomes a Menu button. It is a plain <code>&lt;details&gt;</code> element, so it works with no script at all.</figcaption>
+    </figure>
+
+    <p><strong>One case-study template, the same six questions every time.</strong> Situation, constraints, what I built, decisions and tradeoffs, result, where it stands. Each study opens with a facts panel (client, sector, scope, year, status) and an "at a glance" strip that is limited to things that can be counted. A badge on every study says what kind of work it is: client project, independent concept, or this site.</p>
+
+    <figure class="cs-fig">
+      <img src="../../case-studies/lernerworks/02-work.png"
+           width="1600" height="1000" loading="lazy" decoding="async"
+           alt="The Work page, listing three case studies as cards with a screenshot, a label, a one-line summary and a measured outcome" />
+      <figcaption>The Work index. Each card carries the kind of work it is, one line on the problem, and one outcome that can be counted.</figcaption>
+    </figure>
+
+    <p><strong>Type that is served from here.</strong> Source Serif 4 for headings and Public Sans for everything else, both variable fonts, both self-hosted. Only the Latin subsets are shipped, and the browser fetches the extended-Latin file only if a page actually contains one of those characters. English copy costs 76 KB of font, once; every page after the first reads it from cache.</p>
+
+    <p><strong>Images that reserve their own space.</strong> Every image carries its real pixel dimensions, written by a small script that reads the files rather than trusting what was typed. That is what stops the page jumping as pictures arrive. Screenshots are re-encoded with the bundled browser rather than an image suite, and the cards use 800-pixel thumbnails instead of the full lead image.</p>
+
+    <p><strong>The groundwork search engines look for.</strong> One <code>h1</code> per page and no skipped heading levels. Canonical URLs, a sitemap that matches them character for character, and structured data describing the business. Link-preview cards for social platforms are generated from the site's own type and colour, so a shared link looks like the page it points to.</p>
+
+    <h2>Decisions and tradeoffs</h2>
+
+    <p><strong>No analytics on my own site.</strong> I set up call and form tracking for clients because their enquiries are the score, and I recommend it. Here, the score is whether the call gets booked, and the booking calendar already tells me that. So there is no analytics script, and the cost is that I don't know how many people read this page. I've decided that is a fair trade for a site that makes no requests I'd have to explain in a privacy policy.</p>
+
+    <p><strong>The calculator went.</strong> It was the most interactive thing on the site, and it produced a number nobody could check. Removing it also removed the only JavaScript on the site. The pricing table, which shows real numbers a visitor can act on, stayed and moved up.</p>
+
+    <p><strong>Prices posted, in full.</strong> Most freelancers don't, on the grounds that it invites comparison. It does, and that is the point: a visitor who has read the prices and still books a call is a much better call.</p>
+
+    <p><strong>No content management system.</strong> I am the only person who edits this site, so a CMS would be machinery to maintain for no one's benefit. For a client who needs to change their own text and photos, I make the opposite call, and the services page says so.</p>
+
+    <p><strong>A third case study about the site itself.</strong> I'd rather have three real studies than two and a "coming soon" card. This one has the advantage that every decision can be shown, and every claim can be checked by reading the page you're on.</p>
+
+    <h2>Result</h2>
+    <p>Measured in headless Chromium at a 1,600-pixel viewport with an empty cache, using the script kept in the repository, after the rebuild. "Requests" is everything the page fetches; "external" is any request to a domain other than this one.</p>
+
+    <div class="cs-table">
+      <table>
+        <caption>Fonts are 76 KB on every page and cached after the first. Images account for the difference between pages; the H&amp;M study carries five full-size screenshots as evidence.</caption>
+        <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
+        <tbody>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>274 KB</td></tr>
+          <tr><td>Work</td><td>7</td><td>0</td><td>none</td><td>264 KB</td></tr>
+          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>379 KB</td></tr>
+          <tr><td>H&amp;M Mechanical</td><td>7</td><td>0</td><td>none</td><td>608 KB</td></tr>
+          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>610 KB</td></tr>
+          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>124 KB</td></tr>
+          <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>117 KB</td></tr>
+          <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>115 KB</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Before the rebuild, the home page was 803 KB and the H&amp;M study was 2.9 MB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using thumbnails on the cards cut the home page by two thirds and the H&amp;M page by four fifths, with no change to what a reader sees.</p>
+
+    <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
+
+    <h2>Where it stands</h2>
+    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. The next change to this site will be a client case study replacing one of the independent pieces, once a client project wraps and the client has approved what's published.</p>
+
+  </div>
+</article>
+
+<div class="wrap cs-next">
+  <a href="../aragocor-minerals/"><span><small>Next case study</small><strong>AragoCor Minerals</strong></span><span>Read it →</span></a>
+</div>
+</main>
+
+<footer class="end" id="contact">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark">Next step</p>
+    <h2>Want yours built like this?</h2>
+    <p class="end__lede">Fast, plain, yours, and measured. Tell me what your business does and what you wish the website did. — James</p>
+    <div class="end__cta">
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+    </div>
+
+    <div class="foot">
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="../../work/">Work</a></li>
+          <li><a href="../../services/">Services &amp; pricing</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="tel:+19492059056">(949) 205-9056</a></li>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot, serving Niwot, Boulder, Longmont, Louisville, Lafayette, Erie and the rest of Boulder County. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
+      <span><a href="#top">Back to top</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

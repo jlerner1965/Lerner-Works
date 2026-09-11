@@ -3,104 +3,184 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
 <title>Work — case studies | Lerner Works</title>
-<meta name="description" content="Case studies from Lerner Works: what the problem was, what got built, and what it cost to decide. Web design and marketing for Boulder County businesses." />
+<meta name="description" content="Case studies from Lerner Works: what was wrong, what got built, the tradeoffs, and what can be measured. Web design and marketing for Boulder County businesses." />
 <link rel="canonical" href="https://lernerworks.com/work/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lernerworks.com/work/" />
 <meta property="og:title" content="Work — case studies | Lerner Works" />
-<meta property="og:description" content="Case studies from Lerner Works: what the problem was, what got built, and what it cost to decide." />
+<meta property="og:description" content="Case studies from Lerner Works: what was wrong, what got built, the tradeoffs, and what can be measured. Web design and marketing for Boulder County businesses." />
 <meta property="og:site_name" content="Lerner Works" />
-<meta property="og:image" content="https://lernerworks.com/case-studies/aragocor/01-home-hero.jpg" />
-<meta property="og:image:width" content="1265" />
-<meta property="og:image:height" content="712" />
-<meta property="og:image:alt" content="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" />
+<meta property="og:image" content="https://lernerworks.com/assets/og/work.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Lerner Works — case studies. What was wrong, what got built, and what can be measured." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://lernerworks.com/case-studies/aragocor/01-home-hero.jpg" />
+<meta name="twitter:title" content="Work — case studies | Lerner Works" />
+<meta name="twitter:description" content="Case studies from Lerner Works: what was wrong, what got built, the tradeoffs, and what can be measured. Web design and marketing for Boulder County businesses." />
+<meta name="twitter:image" content="https://lernerworks.com/assets/og/work.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314283F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%235FBF97' text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
 <link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
 <link rel="stylesheet" href="../assets/site.css" />
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav class="nav">
+<nav class="nav" id="top" aria-label="Main">
   <div class="wrap nav__in">
-    <a class="brand" href="../">Lerner Works<small>James Lerner · Boulder County</small></a>
+    <a class="brand" href="../">Lerner Works<small>Web design &amp; marketing · Boulder County</small></a>
     <div class="nav__links">
-      <a class="nav__keep" href="./" aria-current="page">Work</a>
-      <a href="../index.html#services">What I do</a>
-      <a href="../index.html#about">Who you're hiring</a>
-      <a href="../index.html#pricing">Pricing</a>
-      <a class="nav__tel nav__keep" href="tel:+19492059056">(949) 205-9056</a>
+      <a href="../work/" aria-current="page">Work</a>
+      <a href="../services/">Services</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+      <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
     </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="../work/" aria-current="page">Work</a>
+        <a href="../services/">Services</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
+        <hr />
+        <a href="tel:+19492059056">Call (949) 205-9056</a>
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
   </div>
 </nav>
 
 <main id="main">
 
-  <header class="work-head">
+  <header class="page-head">
     <div class="wrap">
       <p class="eyebrow">Work</p>
-      <h1>The problem, the build, and what it cost to decide.</h1>
-      <p>Each of these is written the way I'd explain the project to you on a call: what was actually wrong, what I built, and the tradeoffs I made — including the ones that cost time.</p>
+      <h1>What was wrong, what I built, and what it cost to decide.</h1>
+      <p>Each case study is written the way I'd explain the project on a call: the actual problem, the constraints, the build, the tradeoffs I made, and the parts that can be measured. Independent concepts are labelled as concepts. Nothing here is presented as client work unless it was.</p>
     </div>
   </header>
 
   <div class="wrap">
-    <div class="work-grid">
-
-      <a class="wcard" href="./hm-mechanical/">
-        <div>
-          <p class="wcard__tag">Unsolicited concept · HVAC · 2026</p>
-          <h2>H&amp;M Mechanical</h2>
-          <p>A two-page Boulder County HVAC concept built from a documented mobile conversion problem.</p>
-        </div>
-        <p class="wcard__go">Read the case study →</p>
-      </a>
-
-      <div class="wcard wcard--soon">
-        <div>
-          <p class="wcard__tag">Concept · Clinic</p>
-          <h2>Case study coming soon</h2>
-          <p>A concept rebuild of a local clinic site, focused on cutting the path from search to booked appointment.</p>
-        </div>
-        <p class="wcard__go">In progress</p>
-      </div>
+    <div class="work-grid" style="margin-top:0;padding-block:clamp(2.6rem,6vw,4.2rem) 0;">
 
       <a class="wcard" href="./aragocor-minerals/">
-        <div>
-          <p class="wcard__tag">Project · 2026</p>
+        <div class="wcard__img"><img src="../case-studies/aragocor/01-home-hero-thumb.jpg" width="800" height="450" decoding="async" alt="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Client project · Industrial supplier · 2026</p>
           <h2>AragoCor Minerals</h2>
-          <p>A full marketing site for an industrial mineral supplier — and the AI sourcing tool that turns visitors into quotes.</p>
+          <p>A marketing site for a Bahamian aragonite supplier selling one product into five technical markets, plus the AI catalog, freight calculator and quote-request tool behind it.</p>
+          <p class="wcard__out"><strong>5 markets, 1 site</strong><span>Read the case study →</span></p>
         </div>
-        <p class="wcard__go">Read the case study →</p>
+      </a>
+
+      <a class="wcard" href="./hm-mechanical/">
+        <div class="wcard__img"><img src="../case-studies/hm-mechanical/04-after-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="H&amp;M Mechanical concept homepage with one-tap service actions" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Independent concept · HVAC · 2026</p>
+          <h2>H&amp;M Mechanical</h2>
+          <p>A two-page rebuild for a Lafayette heating and cooling company whose mobile site showed three phone numbers and let a visitor tap none of them. Documented baseline, measured changes.</p>
+          <p class="wcard__out"><strong>0 → 1 tap to call</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./lernerworks/">
+        <div class="wcard__img"><img src="../case-studies/lernerworks/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Lerner Works homepage" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">This site · 2026</p>
+          <h2>lernerworks.com</h2>
+          <p>The site you're reading, built the way I'd build yours: hand-written pages, self-hosted fonts, no JavaScript, no third-party requests. Every claim on the page is measured.</p>
+          <p class="wcard__out"><strong>0 third-party requests</strong><span>Read the case study →</span></p>
+        </div>
       </a>
 
     </div>
   </div>
 
+  <section class="sec">
+    <div class="wrap split">
+      <div class="prose">
+        <p class="eyebrow">How these are written</p>
+        <h2>The same six questions, every time.</h2>
+        <p>A case study is only useful if you can tell what was actually done and what it changed. So each one follows the same structure, and I don't skip the sections that are uncomfortable.</p>
+        <ul>
+          <li><strong>The situation.</strong> What the business does, who it sells to, and what was specifically getting in the way. Not "the site was dated."</li>
+          <li><strong>Constraints.</strong> Budget, time, what couldn't be claimed, what had to keep working.</li>
+          <li><strong>What I built.</strong> The structure, the copy, the conversion path, with screenshots of the real thing.</li>
+          <li><strong>Decisions and tradeoffs.</strong> What I chose not to do, and what each choice cost.</li>
+          <li><strong>Result.</strong> Only what can be counted or measured. Where a number isn't available yet, I say so rather than estimate it.</li>
+          <li><strong>Where it stands.</strong> What's live, what's pending, and what the next step is.</li>
+        </ul>
+        <p>You'll notice there are no testimonials on this site. I'd rather show you the work and the reasoning than a quote I chose myself. If you want to speak to someone I've worked with, ask me on the call and I'll make the introduction.</p>
+      </div>
+      <aside class="aside" aria-label="How work is labelled">
+        <p class="aside__h">How work is labelled</p>
+        <ul>
+          <li><span class="badge badge--client">Client project</span><small>Commissioned and paid for. The client has seen and approved what's published.</small></li>
+          <li><span class="badge">Independent concept</span><small>Done on my own time, without the business's involvement, to show how I'd approach a real problem. Never presented as their site.</small></li>
+          <li><span class="badge">This site</span><small>lernerworks.com itself, since it's the one build I can show every decision on.</small></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
 </main>
 
-<footer class="end">
+<footer class="end" id="contact">
   <div class="wrap">
     <p class="eyebrow eyebrow--dark">Next step</p>
-    <h2>Twenty minutes, no pitch.</h2>
-    <p>Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
+    <h2>Have a project like one of these?</h2>
+    <p class="end__lede">Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
     <div class="end__cta">
       <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
-      <a class="btn btn--onDark" href="../index.html#contact">Other ways to reach me</a>
+      <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
     </div>
+
     <div class="foot">
-      <span>© 2026 Lerner Works · James Lerner · Based in Niwot, serving Boulder, Longmont, Louisville, Lafayette &amp; Erie</span>
-      <span><a href="../">Home</a></span>
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="../work/">Work</a></li>
+          <li><a href="../services/">Services &amp; pricing</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="tel:+19492059056">(949) 205-9056</a></li>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot, serving Niwot, Boulder, Longmont, Louisville, Lafayette, Erie and the rest of Boulder County. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
+      <span><a href="#top">Back to top</a></span>
     </div>
   </div>
 </footer>
