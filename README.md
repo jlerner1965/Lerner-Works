@@ -8,6 +8,7 @@ requests at all.
 ```
 index.html                            home
 work/index.html                       /work/ — case study index
+work/townofniwot/index.html           own project — community guide
 work/aragocor-minerals/index.html     client project
 work/hm-mechanical/index.html         independent concept (labelled as such)
 work/lernerworks/index.html           this site, as a case study
@@ -46,6 +47,11 @@ depends on them.
 - **No invented proof.** No testimonials, client counts or logo walls.
   Concept work is labelled everywhere it appears. Outcomes in the
   "At a glance" strips are limited to things that can be counted.
+- **Screenshots of other sites** are taken from a local build of that
+  site's repository, at 1600×1000 and 390×844 at 2×, and kept under
+  `case-studies/<slug>/`. The Niwot shots came from
+  `jlerner1965/townofniwot.com` at its launch-readiness commit; re-take them
+  if that site's design changes.
 - **Numbers on `/work/lernerworks/` are measured.** If you change anything
   that affects page weight, re-run `tools/measure.js` and update the table.
 
@@ -153,8 +159,9 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
    `tools/optimize-images.js` to get a `-thumb.jpg` for the cards, run it,
    then `python3 tools/set-image-dims.py --write`. Add `loading="lazy"` to
    everything below the lead image by hand.
-5. Add a card to `work/index.html` and to the "Selected work" grid on
-   `index.html` (three cards each; swap out the oldest concept).
+5. Add a card to `work/index.html` (a 2×2 grid, `work-grid--2`) and, if it
+   belongs among the three on the home page, to the "Selected work" grid on
+   `index.html`.
 6. Add a `<url>` entry to `sitemap.xml`. Its `<loc>` must match the page's
    own `<link rel="canonical">` character for character.
 7. Re-run `tools/measure.js` and update the table on `/work/lernerworks/`

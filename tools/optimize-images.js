@@ -27,6 +27,13 @@ const JOBS = [
   // JPEGs are now the sources. Card thumbnails are regenerated from them.
   ['case-studies/aragocor/01-home-hero.jpg',       'case-studies/aragocor/01-home-hero-thumb.jpg',       800],
   ['case-studies/hm-mechanical/04-after-home.jpg', 'case-studies/hm-mechanical/04-after-home-thumb.jpg', 800],
+  // Niwot: photo-heavy captures, so PNG → JPEG at full size, plus the thumb.
+  ['case-studies/townofniwot/01-home.png',        'case-studies/townofniwot/01-home.jpg',        null],
+  ['case-studies/townofniwot/02-eat-shop.png',    'case-studies/townofniwot/02-eat-shop.jpg',    null],
+  ['case-studies/townofniwot/03-election.png',    'case-studies/townofniwot/03-election.jpg',    null],
+  ['case-studies/townofniwot/04-events.png',      'case-studies/townofniwot/04-events.jpg',      null],
+  ['case-studies/townofniwot/05-home-mobile.png', 'case-studies/townofniwot/05-home-mobile.jpg', null],
+  ['case-studies/townofniwot/01-home.png',        'case-studies/townofniwot/01-home-thumb.jpg',  800],
   ['case-studies/lernerworks/01-home.png',         'case-studies/lernerworks/01-home-thumb.jpg',         800],
 ];
 

@@ -14,7 +14,7 @@ const path = require('path');
 const fs = require('fs');
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8765';
-const PAGES = ['/', '/work/', '/work/aragocor-minerals/', '/work/hm-mechanical/', '/work/lernerworks/', '/services/', '/about/', '/contact/'];
+const PAGES = ['/', '/work/', '/work/aragocor-minerals/', '/work/hm-mechanical/', '/work/townofniwot/', '/work/lernerworks/', '/services/', '/about/', '/contact/'];
 const SHOTS = process.argv.includes('--shots');
 
 (async () => {

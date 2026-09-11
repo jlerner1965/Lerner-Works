@@ -222,7 +222,9 @@ strong{font-weight:600;}
 
 /* ── work cards ──────────────────────────────────── */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem;}
-@media (max-width:940px){.work-grid{grid-template-columns:1fr;}}
+/* Four or more studies read better two across. */
+.work-grid--2{grid-template-columns:1fr 1fr;}
+@media (max-width:940px){.work-grid,.work-grid--2{grid-template-columns:1fr;}}
 .wcard{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);
   border-radius:var(--r-lg);overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--shadow);
   transition:border-color .15s ease,transform .12s ease,box-shadow .15s ease;}
