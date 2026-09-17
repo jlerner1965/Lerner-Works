@@ -422,8 +422,9 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-outcomes{background:var(--white);border-bottom:1px solid var(--line);padding-block:clamp(1.6rem,4vw,2.2rem);}
 .cs-outcomes .eyebrow{margin-bottom:.6rem;}
 .cs-outcomes dl{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem 2rem;}
+.cs-outcomes dl>div{display:flex;flex-direction:column;}
 @media (max-width:880px){.cs-outcomes dl{grid-template-columns:1fr 1fr;}}
-.cs-outcomes dd{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,1.1rem + .9vw,1.8rem);letter-spacing:-.015em;line-height:1.15;color:var(--navy);}
+.cs-outcomes dd{order:-1;font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,1.1rem + .9vw,1.8rem);letter-spacing:-.015em;line-height:1.15;color:var(--navy);}
 .cs-outcomes dt{margin-top:.3rem;font-size:.84rem;color:var(--slate);}
 
 /* Body: text held to the measure, figures allowed to run wider. */
