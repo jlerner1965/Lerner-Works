@@ -26,8 +26,20 @@ const CONTACT = {
   telHref: 'tel:+19492059056',
   telText: '(949) 205-9056',
   email: 'james@lernerworks.com',
-  // Must match the Calendly event's real duration; the CTA copy says so out loud.
-  booking: 'https://calendly.com/james-lernerworks/20min',
+  // ── PENDING: flip to /20min once the Calendly event is renamed ──────────
+  // The CTA copy says "Book a 20-minute call" in twelve places, and the event
+  // is still 30 minutes, so the label and the booking are out of step. The fix
+  // is on Calendly's side, not here.
+  //
+  // This points at /30min because that is the URL that answers. /20min 404s
+  // today, and a dead booking link is far worse than a label that overstates
+  // the call by ten minutes — one loses the enquiry, the other mildly
+  // misdescribes it.
+  //
+  // When the event is renamed:  change this line, run `node tools/contact.js
+  // --write`, run `node tools/contact.js --check-live`, commit. That is the
+  // whole job — it rewrites all forty-six links.
+  booking: 'https://calendly.com/james-lernerworks/30min',
 };
 
 // Anything matching the left pattern must read as the right value.
@@ -40,6 +52,7 @@ const RULES = [
 
 const ROOT = path.join(__dirname, '..');
 const WRITE = process.argv.includes('--write');
+const LIVE = process.argv.includes('--check-live');
 
 const walk = (d, out = []) => {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
@@ -50,6 +63,7 @@ const walk = (d, out = []) => {
   return out;
 };
 
+const main = () => {
 const rows = [];
 let wrong = 0;
 for (const f of walk(ROOT)) {
@@ -72,9 +86,30 @@ for (const f of walk(ROOT)) {
     Object.entries(counts).filter(([, n]) => n).map(([k, n]) => `${k}:${n}`).join('  '));
 }
 
-if (!rows.length) { console.log(`\n  ✓ every page agrees with tools/contact.js`); process.exit(0); }
+// A booking link that 404s is the one failure here a reader would actually
+// feel, and it cannot be caught by comparing files to each other.
+const checkLive = async () => {
+  if (!LIVE) return true;
+  try {
+    const r = await fetch(CONTACT.booking, { redirect: 'follow' });
+    if (r.status === 200) { console.log(`\n  ✓ booking link answers 200: ${CONTACT.booking}`); return true; }
+    console.error(`\n  ✗ booking link returned ${r.status}: ${CONTACT.booking}`);
+    return false;
+  } catch (e) {
+    console.error(`\n  ✗ booking link unreachable: ${CONTACT.booking} — ${e.message}`);
+    return false;
+  }
+};
+
+if (!rows.length) {
+  console.log(`\n  ✓ every page agrees with tools/contact.js`);
+  checkLive().then((ok) => process.exit(ok ? 0 : 1));
+  return;
+}
 console.error(`\n  ✗ ${wrong} value(s) disagree with tools/contact.js:`);
 for (const r of rows) console.error(`     ${r.file}  ${r.detail}: found ${r.found}, want ${r.want}`);
 if (WRITE) { console.error('\n  rewritten — re-run without --write to confirm'); process.exit(0); }
 console.error('\n  run: node tools/contact.js --write');
 process.exit(1);
+};
+main();

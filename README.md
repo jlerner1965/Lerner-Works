@@ -93,11 +93,23 @@ To change a number, an address or the booking link: **edit `CONTACT` in that
 file, run `--write`, commit.** One edit and one command. Do not hand-edit the
 pages and hope a grep caught them all — that is the failure this replaces.
 
+```sh
+node tools/contact.js --check-live   # also confirms the booking link answers 200
+```
+
 The booking link is a plain `<a href>` to Calendly, never an embedded widget.
-An embed would be a third-party request, and the site makes none. The CTA copy
-names the call length out loud ("Book a 20-minute call"), so **the link and the
-Calendly event's real duration have to agree** — if the event is renamed, the
-URL in `CONTACT` changes with it.
+An embed would be a third-party request, and the site makes none.
+
+**Open: the CTA copy and the event disagree.** Twelve CTAs say "Book a
+20-minute call" and the Calendly event is still 30 minutes. The fix is on
+Calendly's side. `CONTACT.booking` points at `/30min` because that is the URL
+that answers — `/20min` 404s — and a dead booking link loses the enquiry
+outright, where a label that overstates the call by ten minutes merely
+misdescribes it.
+
+When the event is renamed: change that one line, `node tools/contact.js
+--write`, `node tools/contact.js --check-live`, commit. It rewrites all
+sixty-six links.
 
 ## Open Graph images
 
@@ -299,6 +311,9 @@ thin ones is not.
       current site (`node tools/measure.js --shots`). Re-take them whenever a
       page they show changes, or the case study argues from a stale picture.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
+- [ ] Rename the Calendly event to 20 minutes, then flip `CONTACT.booking` in
+      `tools/contact.js` to `/20min` and run `--write`. Twelve CTAs already
+      say "20-minute"; the event does not.
 - [x] Apex vs `www` settled: everything names `www.lernerworks.com`, the host
       that actually serves. `node tools/check-host.js` re-proves it.
 - [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
