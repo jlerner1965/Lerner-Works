@@ -18,7 +18,7 @@ elizabeth.jpg      480×300
 
 480 px covers the diagram card, which is about 234 CSS px at its widest and so
 468 device px on a 2× screen. All eight together cost less than one of the
-full-size screenshots on the Niwot or H&M studies.
+full-size screenshots on the Niwot study.
 
 ## Re-taking them
 
