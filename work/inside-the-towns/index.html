@@ -12,18 +12,16 @@
 <meta property="og:title" content="Inside the Towns — one codebase, seven town guides | Lerner Works" />
 <meta property="og:description" content="Case study: a network of independent community guides for Colorado Front Range towns. One Astro codebase, one editorial model, seven live town sites and a parent hub — each site locally its own, the whole network maintainable by one person." />
 <meta property="og:site_name" content="Lerner Works" />
-<!-- PLACEHOLDER: swap to case-studies/inside-the-towns/01-hub.jpg once the
-     network screenshot exists, as the other case studies do. Until then the
-     section card stands in, because a real screenshot beats a generated one
-     and a missing one beats an invented one. -->
-<meta property="og:image" content="https://lernerworks.com/assets/og/work.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Lerner Works — case studies. What was wrong, what got built, and what can be measured." />
+<!-- The case studies use their own lead image: a real screenshot of the work
+     beats a generated card. -->
+<meta property="og:image" content="https://lernerworks.com/case-studies/inside-the-towns/01-hub.jpg" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:image:alt" content="The Inside the Towns hub: independent guides to the small towns worth knowing, with 7 guides live across 4 counties." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Inside the Towns — one codebase, seven town guides | Lerner Works" />
 <meta name="twitter:description" content="Case study: a network of independent community guides for Colorado Front Range towns. One Astro codebase, one editorial model, seven live town sites and a parent hub — each site locally its own, the whole network maintainable by one person." />
-<meta name="twitter:image" content="https://lernerworks.com/assets/og/work.png" />
+<meta name="twitter:image" content="https://lernerworks.com/case-studies/inside-the-towns/01-hub.jpg" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
@@ -94,11 +92,9 @@
 
   <div class="cs-lead">
     <div class="wrap">
-      <!-- PLACEHOLDER — screenshot slot. See case-studies/inside-the-towns/README.md -->
-      <div class="cs-slot">
-        <p class="cs-slot__k">Placeholder — lead screenshot</p>
-        <p>The <strong>insidethetowns.com</strong> hub at 1600×1000, taken from a local build. Drop it in as <code>case-studies/inside-the-towns/01-hub.jpg</code> and swap this block for the <code>&lt;img&gt;</code> the other case studies use.</p>
-      </div>
+      <img src="../../case-studies/inside-the-towns/01-hub.jpg"
+           width="1600" height="1000" fetchpriority="high" decoding="async"
+           alt="The Inside the Towns hub: the wordmark over the headline &quot;Independent guides to the small towns worth knowing&quot;, and a strip reading 7 guides live, 4 counties, 72,350 people covered" />
     </div>
   </div>
 
@@ -157,8 +153,8 @@
 
         <li class="cs-net__card" style="--t:#108452;--td:#0C5B39;--tp:#F5F2EA;">
           <div class="cs-net__shot">
-            <!-- PLACEHOLDER — per-town screenshot slot -->
-            <span>Screenshot slot<br />niwot.jpg</span>
+            <img src="../../case-studies/inside-the-towns/niwot.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Niwot home page: the wordmark over a photograph of open grassland with the Front Range behind" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Boulder County</p>
@@ -171,7 +167,8 @@
 
         <li class="cs-net__card" style="--t:#CE4A2C;--td:#8A2D19;--tp:#F5EDE0;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />lyons.jpg</span>
+            <img src="../../case-studies/inside-the-towns/lyons.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Lyons home page: the wordmark over a photograph of the sandstone walls at the canyon mouth" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Boulder County</p>
@@ -184,7 +181,8 @@
 
         <li class="cs-net__card" style="--t:#1587B4;--td:#0D5170;--tp:#F6F3EC;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />berthoud.jpg</span>
+            <img src="../../case-studies/inside-the-towns/berthoud.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Berthoud home page: the wordmark over a photograph of the town" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Larimer County</p>
@@ -197,7 +195,8 @@
 
         <li class="cs-net__card" style="--t:#6257C0;--td:#3B3480;--tp:#F3F1EC;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />erie.jpg</span>
+            <img src="../../case-studies/inside-the-towns/erie.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Erie home page: the wordmark over a photograph of the town" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Weld County</p>
@@ -210,7 +209,8 @@
 
         <li class="cs-net__card" style="--t:#BE3762;--td:#7B1F3C;--tp:#F5F1EE;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />johnstown.jpg</span>
+            <img src="../../case-studies/inside-the-towns/johnstown.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Johnstown home page: the wordmark over a photograph of the town" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Weld County</p>
@@ -223,7 +223,8 @@
 
         <li class="cs-net__card" style="--t:#A67A14;--td:#6C4F0C;--tp:#F7F4EC;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />timnath.jpg</span>
+            <img src="../../case-studies/inside-the-towns/timnath.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Timnath home page: the wordmark over a photograph of the town" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Larimer County</p>
@@ -236,7 +237,8 @@
 
         <li class="cs-net__card" style="--t:#B26E2A;--td:#78491A;--tp:#FAF7F2;">
           <div class="cs-net__shot">
-            <span>Screenshot slot<br />elizabeth.jpg</span>
+            <img src="../../case-studies/inside-the-towns/elizabeth.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Elizabeth home page: the wordmark over a photograph of the prairie on the Palmer Divide" />
           </div>
           <div class="cs-net__body">
             <p class="cs-net__k">Elbert County</p>
@@ -284,6 +286,7 @@
 
     <h2>Result</h2>
     <p>The figures below are counted from the repository on September 18, 2026. They are things that can be counted, not claims about reach.</p>
+    <p>The one reach figure the network does publish is on the hub's own home page: the seven live guides cover <strong>72,350 people across four counties</strong> — Boulder, Larimer, Weld and Elbert — summed from the 2020 census. It is a census figure rather than an audience figure, and the hub labels it as one.</p>
 
     <dl class="cs-metrics">
       <div><dt>Live sites</dt><dd>8 — seven towns and the hub</dd></div>

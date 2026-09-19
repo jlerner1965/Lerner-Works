@@ -22,7 +22,7 @@ assets/fonts/                         self-hosted woff2
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs
 case-studies/<slug>/                  screenshots used by that case study
-case-studies/inside-the-towns/        README only so far — the slots still to fill
+case-studies/inside-the-towns/        hub capture + seven town thumbnails
 concepts/hm-mechanical/               two-page noindex H&M concept
 tools/set-image-dims.py               writes real image sizes into the HTML
 tools/measure.js                      requests / bytes / scripts per page
@@ -49,12 +49,17 @@ depends on them.
 - **No invented proof.** No testimonials, client counts or logo walls.
   Concept work is labelled everywhere it appears. Outcomes in the
   "At a glance" strips are limited to things that can be counted.
-- **Placeholder slots look like placeholders.** `/work/inside-the-towns/`
-  ships with slots for screenshots and traffic numbers that do not exist yet.
-  Each is marked with a `PLACEHOLDER` comment in the source and the dashed
-  `.cs-slot` / `.wcard__slot` treatment on the page, so nothing unfinished can
-  be mistaken for shipped work. `case-studies/inside-the-towns/README.md`
-  lists every one. Grep for `PLACEHOLDER` before launch.
+- **Placeholder slots look like placeholders.** Anything the site does not
+  have yet is marked with a `PLACEHOLDER` comment in the source and the dashed
+  `.cs-slot` treatment on the page, so nothing unfinished can be mistaken for
+  shipped work. One is left: traffic and usage on `/work/inside-the-towns/`.
+  Grep for `PLACEHOLDER` before launch.
+- **Accessibility is checked, not assumed.** Every page passes axe-core at
+  WCAG 2.2 AA at 1280, 860 and 390 px — the concept pages included. Two
+  colour tokens failed that bar and were darkened along their own hues to fix
+  it (`--slate-2` here, `--red` and `--aqua` in the concept); each carries a
+  comment saying what it was and why it moved. Re-run axe after any colour
+  change: one token was worth 325 violations.
 - **Screenshots of other sites** are taken from a local build of that
   site's repository, at 1600×1000 and 390×844 at 2×, and kept under
   `case-studies/<slug>/`. The Niwot shots came from
@@ -209,10 +214,13 @@ Google Search Console.**
 
 - [x] Phone, email and booking link are real on every page.
 - [x] No placeholder cards remain anywhere on the site — except the Inside the
-      Towns slots above, which are deliberate and marked as such.
+      Towns traffic slot above, which is deliberate and marked as such.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
-- [ ] Fill the Inside the Towns placeholder slots — screenshots and traffic.
-      See `case-studies/inside-the-towns/README.md`; grep `PLACEHOLDER`.
+- [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
+      from a local build. See `case-studies/inside-the-towns/README.md`.
+- [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
+- [ ] Fill the Inside the Towns traffic figures — the last `PLACEHOLDER`.
+      Needs a real reporting period; do not estimate.
 - [ ] Send the H&M owner the diagnosis and a private link, per the case
       study's "Where it stands".
 - [ ] After the domain is attached, run PageSpeed on the live URL and, if you

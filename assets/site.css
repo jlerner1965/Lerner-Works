@@ -65,7 +65,15 @@
   --navy-2:#1E3A57;
   --navy-3:#0E1D2E;
   --slate:#4A5B6E;
-  --slate-2:#6B7A8A;
+  /* Secondary label grey. #6B7A8A read as the obvious lighter step down from
+     --slate, but it never cleared AA: 4.40:1 on white, 4.09 on --paper and
+     3.82 on --ever-soft, against a 4.5 bar. It is the only token on the site
+     that failed, and it carries every eyebrow, dt, caption and small label,
+     so one value was worth 325 axe violations. Darkened along its own hue
+     until the darkest ground it sits on clears the bar: 5.20 on white, 4.84
+     on --paper, 4.52 on --ever-soft. --slate stays at 6.49 on paper, so the
+     two-tone hierarchy survives. */
+  --slate-2:#616E7D;
   --paper:#F5F7F8;
   --white:#FFFFFF;
   --ever:#1D6B52;
@@ -590,13 +598,8 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
    in the town's own paper, rather than pretending to be a picture. The
    clipping lives here because the card itself cannot clip. */
 .cs-net .cs-net__shot{aspect-ratio:16/10;background:var(--tp,var(--paper));
-  border-bottom:1px solid var(--line);display:grid;place-items:center;padding:.6rem;
-  border-radius:7px 7px 0 0;overflow:hidden;}
+  border-bottom:1px solid var(--line);border-radius:7px 7px 0 0;overflow:hidden;}
 .cs-net .cs-net__shot img{width:100%;height:100%;object-fit:cover;object-position:top;}
-.cs-net .cs-net__shot span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:.62rem;line-height:1.5;letter-spacing:.04em;color:var(--slate-2);
-  text-align:center;border:1px dashed var(--line-2);border-radius:4px;padding:.4rem .5rem;
-  width:100%;}
 
 .cs-net .cs-net__body{padding:.85rem .95rem 1rem;display:flex;flex-direction:column;flex:1;}
 .cs-net .cs-net__k{margin-top:0;font-size:.6rem;font-weight:600;letter-spacing:.11em;
@@ -638,15 +641,3 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-slot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;
   background:var(--white);border:1px solid var(--line);border-radius:4px;
   padding:.1em .4em;color:var(--navy);}
-
-/* Card thumbnail for the network case study, standing in until a real
-   screenshot exists. The bands are the seven towns' actual accents, in
-   wave order, under the hub's blue — real data rather than a decorative
-   graphic — and the strip underneath says plainly that it is a slot. */
-.wcard__img--net{aspect-ratio:16/10;display:flex;flex-direction:column;
-  border-bottom:1px solid var(--line);background:var(--white);}
-.wcard__net{flex:1;display:flex;border-top:5px solid #2C74CC;}
-.wcard__net span{flex:1;}
-.wcard__slot{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.64rem;
-  letter-spacing:.05em;color:var(--slate-2);background:var(--paper);
-  border-top:1px dashed var(--line-2);padding:.4rem .7rem;text-align:center;}

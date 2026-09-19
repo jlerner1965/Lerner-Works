@@ -161,17 +161,17 @@
     <h2>Result</h2>
     <p>Measured in headless Chromium at a 1,600-pixel viewport with an empty cache, using the script kept in the repository, after the rebuild. "Requests" is everything the page fetches; "external" is any request to a domain other than this one.</p>
 
-    <div class="cs-table">
+    <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
-        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 39 KB and likewise cached. Images account for the rest of the difference — the H&amp;M and Niwot studies carry four or five full-size screenshots each as evidence, and the Inside the Towns study carries none yet, which is why it is the lightest page here.</caption>
+        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Images account for the rest of the difference — the H&amp;M and Niwot studies carry four or five full-size screenshots each as evidence, and the Inside the Towns study carries a hub capture plus seven 480 px town thumbnails, which together cost less than one full-size screenshot.</caption>
         <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
         <tbody>
-          <tr><td>Home</td><td>6</td><td>0</td><td>none</td><td>239 KB</td></tr>
-          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>351 KB</td></tr>
-          <tr><td>Inside the Towns</td><td>4</td><td>0</td><td>none</td><td>145 KB</td></tr>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>278 KB</td></tr>
+          <tr><td>Work</td><td>9</td><td>0</td><td>none</td><td>390 KB</td></tr>
+          <tr><td>Inside the Towns</td><td>5</td><td>0</td><td>none</td><td>255 KB</td></tr>
           <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>387 KB</td></tr>
-          <tr><td>H&amp;M Mechanical</td><td>7</td><td>0</td><td>none</td><td>617 KB</td></tr>
-          <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>546 KB</td></tr>
+          <tr><td>H&amp;M Mechanical</td><td>7</td><td>0</td><td>none</td><td>616 KB</td></tr>
+          <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>545 KB</td></tr>
           <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>743 KB</td></tr>
           <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
           <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>125 KB</td></tr>
@@ -185,7 +185,7 @@
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
     <h2>Where it stands</h2>
-    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. The most recent change was the Inside the Towns case study: it added about 8 KB to the shared stylesheet, which is why every row above moved, and it replaced an image on the home-page card grid with a diagram drawn in CSS, which is why the home page got 67 KB lighter.</p>
+    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. The most recent change was the Inside the Towns case study, which moved every row above: it added about 7 KB to the shared stylesheet, which lands on every page, and swapped the home-page card image for a lighter one, which is why the home page came down 28 KB while carrying the same number of cards.</p>
 
   </div>
 </article>

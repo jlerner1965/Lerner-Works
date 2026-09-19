@@ -27,13 +27,11 @@ const JOBS = [
   // JPEGs are now the sources. Card thumbnails are regenerated from them.
   ['case-studies/aragocor/01-home-hero.jpg',       'case-studies/aragocor/01-home-hero-thumb.jpg',       800],
   ['case-studies/hm-mechanical/04-after-home.jpg', 'case-studies/hm-mechanical/04-after-home-thumb.jpg', 800],
-  // Niwot: photo-heavy captures, so PNG → JPEG at full size, plus the thumb.
-  ['case-studies/townofniwot/01-home.png',        'case-studies/townofniwot/01-home.jpg',        null],
-  ['case-studies/townofniwot/02-eat-shop.png',    'case-studies/townofniwot/02-eat-shop.jpg',    null],
-  ['case-studies/townofniwot/03-election.png',    'case-studies/townofniwot/03-election.jpg',    null],
-  ['case-studies/townofniwot/04-events.png',      'case-studies/townofniwot/04-events.jpg',      null],
-  ['case-studies/townofniwot/05-home-mobile.png', 'case-studies/townofniwot/05-home-mobile.jpg', null],
-  ['case-studies/townofniwot/01-home.png',        'case-studies/townofniwot/01-home-thumb.jpg',  800],
+  // Niwot's PNG captures were converted once and deleted, so the committed
+  // JPEGs are the sources now; only the thumbnail is still derived.
+  ['case-studies/townofniwot/01-home.jpg',        'case-studies/townofniwot/01-home-thumb.jpg',  800],
+  // Inside the Towns: the hub capture, from a local TOWN=hub build.
+  ['case-studies/inside-the-towns/01-hub.jpg',    'case-studies/inside-the-towns/01-hub-thumb.jpg', 800],
   ['case-studies/lernerworks/01-home.png',         'case-studies/lernerworks/01-home-thumb.jpg',         800],
 ];
 
@@ -42,6 +40,12 @@ const JOBS = [
   const page = await browser.newPage();
   await page.goto(BASE + '/');   // same origin as the images, or the canvas is tainted
   for (const [src, out, maxW] of JOBS) {
+    // A source that has been re-encoded and deleted leaves a stale job behind.
+    // Say so and carry on: one dead entry should not stop the other seven.
+    if (!fs.existsSync(path.join(ROOT, src))) {
+      console.log(`${out}  SKIPPED — source missing: ${src}`);
+      continue;
+    }
     const dataUrl = await page.evaluate(async ({ url, maxW }) => {
       const img = new Image();
       img.src = url;
