@@ -204,15 +204,23 @@ The Vercel project itself is configured on Vercel, not in this repo. The only
 thing here is `vercel.json`, and it holds nothing but redirects:
 
 ```
-/work/hm-mechanical/**    → /work/   (301)
-/concepts/hm-mechanical/** → /work/  (301)
+/work/hm-mechanical, /work/hm-mechanical/ and below  → /work/  (308)
+/concepts/ and everything below it                   → /work/  (308)
 ```
 
-Those two were live and the case study was in the sitemap, so removing them
+Those were live and the case study was in the sitemap, so removing them
 without a redirect would have left 404s for anything already linking to them.
 **Add a redirect here whenever a published URL goes away** — that is what the
 file is for, and it is the same thing townofniwot.com does now that it points
 at Inside Niwot.
+
+One trap, learned by shipping it wrong: **a `:path*` source does not match the
+bare trailing slash.** `/work/hm-mechanical/:path*` redirected
+`/work/hm-mechanical` but left `/work/hm-mechanical/` returning 404 — and the
+trailing-slash form is the one that was in the sitemap, so it was the only one
+that actually mattered. List the trailing-slash path explicitly as its own
+source. After changing this file, check both forms on the live site rather
+than assuming.
 
 The `canonical` and `og:` URLs, and every `<loc>` in `sitemap.xml`, are
 written as `https://lernerworks.com/…`. The domain is attached, so they
