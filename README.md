@@ -44,6 +44,25 @@ depends on them.
 - **No JavaScript for visitors.** The mobile menu is a `<details>` element.
   The only `<script>` on the site is the JSON-LD structured data on the
   home page, which is data, not code. `measure.js` counts scripts; 0.
+- **Prices are posted, in full.** The three tiers and the monthly figure are
+  on `/services/` under a heading that says why: "Posted, so you don't have to
+  ask." This is the site's most load-bearing claim, because every other one —
+  no testimonials, labelled work, measured page weights, "will you say no to a
+  project? yes" — is a version of *I tell you the truth before you have to
+  ask.* Going quiet on the first thing a visitor wants to know would be the
+  most conspicuous possible exception to that, sitting next to a page that
+  brags about measuring its own kilobytes. It would cost more credibility than
+  the leads it saved.
+  The escape hatch is the note under the tiers, not a hidden price: anything
+  larger or custom "is quoted separately, the same way: a written scope and one
+  number before anything starts." **Do not replace the figures with "contact
+  for a quote."** Changing the amounts is a business decision for James; hiding
+  them is a decision about what this site is.
+- **The service area is one list.** Niwot, Boulder, Longmont, Louisville,
+  Lafayette, Erie, and the rest of Boulder County — in the footer of every
+  page, the About page's prose, the `areaServed` in the structured data and
+  the services FAQ. A grep for `Longmont` finds every copy; they all say the
+  same five towns or none of them does.
 - **No invented proof.** No testimonials, client counts or logo walls.
   Every project carries a label saying what kind of work it was, and unpaid
   work is never dressed as a commission. Outcomes in the "At a glance" strips
