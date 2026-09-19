@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lerner Works — Web design &amp; marketing for small businesses in Boulder County</title>
 <meta name="description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
-<link rel="canonical" href="https://lernerworks.com/" />
+<link rel="canonical" href="https://www.lernerworks.com/" />
 
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://lernerworks.com/" />
+<meta property="og:url" content="https://www.lernerworks.com/" />
 <meta property="og:title" content="Lerner Works — Web design &amp; marketing for small businesses in Boulder County" />
 <meta property="og:description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
 <meta property="og:site_name" content="Lerner Works" />
-<meta property="og:image" content="https://lernerworks.com/assets/og/home.png" />
+<meta property="og:image" content="https://www.lernerworks.com/assets/og/home.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Lerner Works — web design and marketing in Boulder County. A website that brings in work, built by the person you actually talk to." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Lerner Works — Web design &amp; marketing for small businesses in Boulder County" />
 <meta name="twitter:description" content="James Lerner designs, writes and builds websites for small businesses in Boulder County, then runs the marketing that keeps them working. Fixed prices, written scope, one point of contact. Based in Niwot." />
-<meta name="twitter:image" content="https://lernerworks.com/assets/og/home.png" />
+<meta name="twitter:image" content="https://www.lernerworks.com/assets/og/home.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
@@ -33,19 +33,34 @@
 <!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
      component on the site. Pages carry no CSS of their own. -->
 <link rel="stylesheet" href="./assets/site.css" />
+<!-- Structured data describing the business. Data, not code: it is the only
+     <script> on the site and it runs nothing.
+
+     Every value here has to be true somewhere a reader can see it. "url" is
+     this page's canonical, "telephone" and "email" are the ones in the footer
+     (tools/contact.js owns those), and "areaServed" lists exactly the towns
+     the footer names, in the same order. If the footer's service area
+     changes, this changes with it.
+
+     There is deliberately no aggregateRating, no review, and no priceRange.
+     The first two would be invented proof. priceRange said "$$", which is a
+     band that appears nowhere on the site and means nothing in particular;
+     the real prices are posted in full on /services/, and a vague hint is
+     strictly worse than the numbers. A numeric range would be wrong too —
+     the builds are one-time and the care plan is monthly, so one range
+     cannot describe both honestly. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Lerner Works",
-  "url": "https://lernerworks.com/",
+  "url": "https://www.lernerworks.com/",
   "telephone": "+1-949-205-9056",
   "email": "james@lernerworks.com",
   "description": "Web design and marketing for small businesses in Boulder County, Colorado. Fixed prices, written scope, one point of contact.",
   "founder": {"@type": "Person", "name": "James Lerner"},
   "address": {"@type": "PostalAddress", "addressLocality": "Niwot", "addressRegion": "CO", "addressCountry": "US"},
-  "areaServed": ["Niwot", "Boulder", "Longmont", "Louisville", "Lafayette", "Erie", "Boulder County"],
-  "priceRange": "$$"
+  "areaServed": ["Niwot", "Boulder", "Longmont", "Louisville", "Lafayette", "Erie", "Boulder County"]
 }
 </script>
 </head>
@@ -133,7 +148,7 @@
       <a class="wcard" href="./work/townofniwot/">
         <div class="wcard__img"><img src="./case-studies/townofniwot/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The TownofNiwot.com homepage with the NIWOT wordmark and a photograph of Second Avenue" /></div>
         <div class="wcard__body">
-          <p class="wcard__tag">Own project · Community guide · 2026</p>
+          <p class="wcard__tag">Own project · Community guide · 2026 · Now redirects</p>
           <h3>TownofNiwot.com</h3>
           <p>A nine-page guide for a place with no town hall, carrying a sourced directory, an organizer-confirmed calendar and neutral voter information for a live election. The guide Inside the Towns grew out of.</p>
           <p class="wcard__out"><strong>63 dated listings, 78 tests</strong><span>Read the case study →</span></p>
@@ -252,7 +267,7 @@
           <li>Copy written with you</li>
           <li>Booking or quote form</li>
           <li>Google Business Profile set up</li>
-          <li>Live in about two weeks</li>
+          <li>Live in two to three weeks</li>
         </ul>
         <a class="btn btn--line" href="https://calendly.com/james-lernerworks/30min">Start here</a>
       </div>
@@ -318,7 +333,7 @@
       <dl>
         <div><dt>Based in</dt><dd>Niwot, Boulder County, Colorado</dd></div>
         <div><dt>Works with</dt><dd>Local service businesses, clinics, trades, and small B2B suppliers</dd></div>
-        <div><dt>Typical build</dt><dd>About three weeks from signed scope to launch</dd></div>
+        <div><dt>Typical build</dt><dd>Two to three weeks from signed scope to launch</dd></div>
         <div><dt>Projects at a time</dt><dd>A few, so each one gets attention</dd></div>
         <div><dt>Response time</dt><dd>Within one business day</dd></div>
       </dl>

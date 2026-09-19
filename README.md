@@ -22,8 +22,13 @@ assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs
 case-studies/<slug>/                  screenshots used by that case study
 case-studies/inside-the-towns/        hub capture + seven town thumbnails
+areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
+                                      unwritten; see "Service-area pages"
 tools/set-image-dims.py               writes real image sizes into the HTML
-tools/measure.js                      requests / bytes / scripts per page
+tools/measure.js                      requests / bytes / scripts per page,
+                                      and --table emits the markup for them
+tools/check-host.js                   proves the site names exactly one host
+tools/contact.js                      single source for phone, email, booking
 tools/optimize-images.js              screenshot → JPEG, card thumbnails
 robots.txt · sitemap.xml
 ```
@@ -73,6 +78,39 @@ relative prefix (`./`, `../`, `../../`) and the `aria-current` link. When
 you change one, change all of them — a grep for `class="nav"` finds every
 copy.
 
+## Phone, email and the booking link
+
+These three appear about 180 times across the nine pages. There is no build
+step and no includes, so there is no partial to edit — `tools/contact.js` is
+the single source instead. The values live in one object at the top of it:
+
+```sh
+node tools/contact.js            # check every page agrees; exits 1 if not
+node tools/contact.js --write    # rewrite every page to match
+```
+
+To change a number, an address or the booking link: **edit `CONTACT` in that
+file, run `--write`, commit.** One edit and one command. Do not hand-edit the
+pages and hope a grep caught them all — that is the failure this replaces.
+
+```sh
+node tools/contact.js --check-live   # also confirms the booking link answers 200
+```
+
+The booking link is a plain `<a href>` to Calendly, never an embedded widget.
+An embed would be a third-party request, and the site makes none.
+
+**Open: the CTA copy and the event disagree.** Twelve CTAs say "Book a
+20-minute call" and the Calendly event is still 30 minutes. The fix is on
+Calendly's side. `CONTACT.booking` points at `/30min` because that is the URL
+that answers — `/20min` 404s — and a dead booking link loses the enquiry
+outright, where a label that overstates the call by ten minutes merely
+misdescribes it.
+
+When the event is renamed: change that one line, `node tools/contact.js
+--write`, `node tools/contact.js --check-live`, commit. It rewrites all
+sixty-six links.
+
 ## Open Graph images
 
 Link previews for the five section pages are typographic cards built from
@@ -101,7 +139,14 @@ step and no packages.
 python3 -m http.server 8765 &
 node tools/measure.js             # table: requests, external, scripts, KB
 node tools/measure.js --shots     # also re-takes the lernerworks screenshots
+node tools/measure.js --table     # emits the exact markup the case study uses
 ```
+
+**Use `--table`.** The figures on `/work/lernerworks/` are pasted from it, not
+typed. They used to be typed in two places and drifted: the home page is
+307.48 KB, which one hand rounded to 306 and the other to 307, and both
+readings were defensible enough that the disagreement went unnoticed. One run,
+one rounding rule, one paste.
 
 It loads every public page in headless Chromium at 1600 px with a cold
 cache and prints what a visitor's browser would fetch. The table on
@@ -222,16 +267,40 @@ that actually mattered. List the trailing-slash path explicitly as its own
 source. After changing this file, check both forms on the live site rather
 than assuming.
 
-The `canonical` and `og:` URLs, and every `<loc>` in `sitemap.xml`, are
-written as `https://lernerworks.com/…`. The domain is attached, so they
-resolve — but the apex currently 308s to `www.lernerworks.com`, which means
-every canonical points at a URL that redirects rather than at the one that
-serves. It works, and Google follows it, but the two should agree. Pick one:
-either make the apex the host Vercel serves (a project setting, nothing here
-changes), or rewrite the URLs in this repo to `www.`. Do not leave it split.
+**The canonical host is `www.lernerworks.com`.** Every `canonical`, `og:url`,
+`og:image`, `twitter:image`, every `<loc>` in `sitemap.xml` and the `Sitemap:`
+line in `robots.txt` name it, and the apex 308s to it. They agree character
+for character; `tools/check-host.js` proves it.
 
-Everything else is relative, so the site also works from a local
-`python3 -m http.server`.
+It went that way round rather than the other because the redirect direction is
+**not in this repo**. `vercel.json` carries no host rule — the apex→www 308 is
+a Vercel project domain setting. Overriding it here with a `has: host` rule
+would fight the domain-level redirect and risk a loop, so the URLs moved to
+match the host instead of the other way about. To flip it later, change the
+primary domain in Vercel first, then re-run the rewrite.
+
+Internal links are all relative and name no host at all, so the site still
+works from a local `python3 -m http.server` and would survive the flip.
+
+## Service-area pages
+
+`areas/boulder/`, `areas/longmont/`, `areas/louisville/`, `areas/lafayette/`
+and `areas/erie/` are **scaffolded and unwritten**. Each carries
+`noindex,nofollow`, appears in no sitemap, no menu and no link, and shows four
+visible `BRIEF SLOT` blocks instead of copy.
+
+They exist because the Growth tier sells "service-area pages for local search".
+They are empty because the obvious way to build five of them — one template
+with the town name swapped — is a doorway-page pattern, which Google treats as
+one, and which would contradict every other claim on this site. Each page has
+to say something true about that town that is not true of the other four.
+
+**To ship one:** fill all four slots with real local copy, delete the
+`noindex`, write a real `<title>` and description, then add it to
+`sitemap.xml`, to the footer's service-area line and to any internal links,
+and re-run `node tools/check-host.js` and `node tools/measure.js --table`.
+Ship them one at a time; four good pages and one empty one is fine, five
+thin ones is not.
 
 ## Before launch
 
@@ -242,10 +311,11 @@ Everything else is relative, so the site also works from a local
       current site (`node tools/measure.js --shots`). Re-take them whenever a
       page they show changes, or the case study argues from a stale picture.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
-- [ ] Settle apex vs `www`. The canonicals say `lernerworks.com`; Vercel
-      serves `www.lernerworks.com` and redirects the apex to it, so every
-      canonical and every sitemap `<loc>` points at a redirect. See
-      "How this is published".
+- [ ] Rename the Calendly event to 20 minutes, then flip `CONTACT.booking` in
+      `tools/contact.js` to `/20min` and run `--write`. Twelve CTAs already
+      say "20-minute"; the event does not.
+- [x] Apex vs `www` settled: everything names `www.lernerworks.com`, the host
+      that actually serves. `node tools/check-host.js` re-proves it.
 - [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
       from a local build. See `case-studies/inside-the-towns/README.md`.
 - [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
