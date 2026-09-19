@@ -68,13 +68,6 @@ network actually runs, with the date range and the source stated, the way
 else on that page can be counted from the repository, and an unsourced traffic
 figure would be the only claim on it a reader cannot check.
 
-## 5. The Black Hawk domain
-
-The scaling section names Black Hawk as a held domain but does not give the
-domain, because it is not in the `insidethetowns` repo the way
-`carbonvalleyguide.com` is (`PLAN.md`, wave 8). Set the exact domain there, or
-drop the mention.
-
 ## After filling any of these
 
 ```sh
