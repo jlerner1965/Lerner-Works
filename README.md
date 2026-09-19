@@ -193,20 +193,37 @@ before-and-after case study ever returns.
   purpose — they read as headings but are not, so the outline stays clean.
 - **The hero h1 and the OG card say the same thing.** See Open Graph above.
 
-## Publish with GitHub Pages (free)
+## How this is published
 
-1. Merge into `main`.
-2. On GitHub: **Settings → Pages → Source: Deploy from a branch**, pick
-   `main` and `/ (root)`, then save.
-3. The site goes live at `https://jlerner1965.github.io/Lerner-Works/`, or
-   at the custom domain once it is attached on the same settings page.
+The site is live at **lernerworks.com** on **Vercel**, deploying from `main`.
+Merging to `main` is the deploy; there is no build step, so Vercel serves the
+files as they are in the repo. `www.lernerworks.com` is the canonical host and
+the apex redirects to it.
+
+The Vercel project itself is configured on Vercel, not in this repo. The only
+thing here is `vercel.json`, and it holds nothing but redirects:
+
+```
+/work/hm-mechanical/**    → /work/   (301)
+/concepts/hm-mechanical/** → /work/  (301)
+```
+
+Those two were live and the case study was in the sitemap, so removing them
+without a redirect would have left 404s for anything already linking to them.
+**Add a redirect here whenever a published URL goes away** — that is what the
+file is for, and it is the same thing townofniwot.com does now that it points
+at Inside Niwot.
 
 The `canonical` and `og:` URLs, and every `<loc>` in `sitemap.xml`, are
-written as `https://lernerworks.com/…`. They are absolute by necessity and
-are wrong until the custom domain is attached. Everything else is relative,
-so the site works on either host. `robots.txt` and `sitemap.xml` only take
-effect at a domain root. **Attach the domain before submitting anything to
-Google Search Console.**
+written as `https://lernerworks.com/…`. The domain is attached, so they
+resolve — but the apex currently 308s to `www.lernerworks.com`, which means
+every canonical points at a URL that redirects rather than at the one that
+serves. It works, and Google follows it, but the two should agree. Pick one:
+either make the apex the host Vercel serves (a project setting, nothing here
+changes), or rewrite the URLs in this repo to `www.`. Do not leave it split.
+
+Everything else is relative, so the site also works from a local
+`python3 -m http.server`.
 
 ## Before launch
 
@@ -217,10 +234,14 @@ Google Search Console.**
       current site (`node tools/measure.js --shots`). Re-take them whenever a
       page they show changes, or the case study argues from a stale picture.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
+- [ ] Settle apex vs `www`. The canonicals say `lernerworks.com`; Vercel
+      serves `www.lernerworks.com` and redirects the apex to it, so every
+      canonical and every sitemap `<loc>` points at a redirect. See
+      "How this is published".
 - [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
       from a local build. See `case-studies/inside-the-towns/README.md`.
 - [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
 - [ ] Fill the Inside the Towns traffic figures — the last `PLACEHOLDER`.
       Needs a real reporting period; do not estimate.
-- [ ] After the domain is attached, run PageSpeed on the live URL and, if you
-      quote it anywhere, quote it with the date.
+- [ ] Run PageSpeed on https://www.lernerworks.com/ after this deploys and, if
+      you quote it anywhere, quote it with the date.
