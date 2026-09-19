@@ -7,17 +7,27 @@
       "permanent": true
     },
     {
+      "source": "/work/hm-mechanical/",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
       "source": "/work/hm-mechanical/:path*",
       "destination": "/work/",
       "permanent": true
     },
     {
-      "source": "/concepts/hm-mechanical",
+      "source": "/concepts/:path*",
       "destination": "/work/",
       "permanent": true
     },
     {
-      "source": "/concepts/hm-mechanical/:path*",
+      "source": "/concepts/hm-mechanical/",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/concepts/hm-mechanical/service/",
       "destination": "/work/",
       "permanent": true
     }
