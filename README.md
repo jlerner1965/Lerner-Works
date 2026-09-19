@@ -8,7 +8,8 @@ requests at all.
 ```
 index.html                            home
 work/index.html                       /work/ — case study index
-work/townofniwot/index.html           own project — community guide
+work/inside-the-towns/index.html      own project — the seven-town network
+work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
 work/hm-mechanical/index.html         independent concept (labelled as such)
 work/lernerworks/index.html           this site, as a case study
@@ -21,6 +22,7 @@ assets/fonts/                         self-hosted woff2
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs
 case-studies/<slug>/                  screenshots used by that case study
+case-studies/inside-the-towns/        README only so far — the slots still to fill
 concepts/hm-mechanical/               two-page noindex H&M concept
 tools/set-image-dims.py               writes real image sizes into the HTML
 tools/measure.js                      requests / bytes / scripts per page
@@ -47,11 +49,19 @@ depends on them.
 - **No invented proof.** No testimonials, client counts or logo walls.
   Concept work is labelled everywhere it appears. Outcomes in the
   "At a glance" strips are limited to things that can be counted.
+- **Placeholder slots look like placeholders.** `/work/inside-the-towns/`
+  ships with slots for screenshots and traffic numbers that do not exist yet.
+  Each is marked with a `PLACEHOLDER` comment in the source and the dashed
+  `.cs-slot` / `.wcard__slot` treatment on the page, so nothing unfinished can
+  be mistaken for shipped work. `case-studies/inside-the-towns/README.md`
+  lists every one. Grep for `PLACEHOLDER` before launch.
 - **Screenshots of other sites** are taken from a local build of that
   site's repository, at 1600×1000 and 390×844 at 2×, and kept under
   `case-studies/<slug>/`. The Niwot shots came from
-  `jlerner1965/townofniwot.com` at its launch-readiness commit; re-take them
-  if that site's design changes.
+  `jlerner1965/townofniwot.com` at its launch-readiness commit and are kept as
+  the record of the site as it launched — townofniwot.com now 301s to
+  insideniwot.com, so they cannot be re-taken from the live domain. Inside the
+  Towns screenshots come from a local build of `jlerner1965/insidethetowns`.
 - **Numbers on `/work/lernerworks/` are measured.** If you change anything
   that affects page weight, re-run `tools/measure.js` and update the table.
 
@@ -198,8 +208,11 @@ Google Search Console.**
 ## Before launch
 
 - [x] Phone, email and booking link are real on every page.
-- [x] No placeholder cards remain anywhere on the site.
+- [x] No placeholder cards remain anywhere on the site — except the Inside the
+      Towns slots above, which are deliberate and marked as such.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
+- [ ] Fill the Inside the Towns placeholder slots — screenshots and traffic.
+      See `case-studies/inside-the-towns/README.md`; grep `PLACEHOLDER`.
 - [ ] Send the H&M owner the diagnosis and a private link, per the case
       study's "Where it stands".
 - [ ] After the domain is attached, run PageSpeed on the live URL and, if you
