@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inside the Towns — one codebase, seven town guides | Lerner Works</title>
+<meta name="description" content="Case study: a network of independent community guides for Colorado Front Range towns. One Astro codebase, one editorial model, seven live town sites and a parent hub — each site locally its own, the whole network maintainable by one person." />
+<link rel="canonical" href="https://lernerworks.com/work/inside-the-towns/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lernerworks.com/work/inside-the-towns/" />
+<meta property="og:title" content="Inside the Towns — one codebase, seven town guides | Lerner Works" />
+<meta property="og:description" content="Case study: a network of independent community guides for Colorado Front Range towns. One Astro codebase, one editorial model, seven live town sites and a parent hub — each site locally its own, the whole network maintainable by one person." />
+<meta property="og:site_name" content="Lerner Works" />
+<!-- The case studies use their own lead image: a real screenshot of the work
+     beats a generated card. -->
+<meta property="og:image" content="https://lernerworks.com/case-studies/inside-the-towns/01-hub.jpg" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:image:alt" content="The Inside the Towns hub: independent guides to the small towns worth knowing, with 7 guides live across 4 counties." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Inside the Towns — one codebase, seven town guides | Lerner Works" />
+<meta name="twitter:description" content="Case study: a network of independent community guides for Colorado Front Range towns. One Astro codebase, one editorial model, seven live town sites and a parent hub — each site locally its own, the whole network maintainable by one person." />
+<meta name="twitter:image" content="https://lernerworks.com/case-studies/inside-the-towns/01-hub.jpg" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
+<link rel="preload" href="../../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
+<link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="top" aria-label="Main">
+  <div class="wrap nav__in">
+    <a class="brand" href="../../">Lerner Works<small>Web design &amp; marketing · Boulder County</small></a>
+    <div class="nav__links">
+      <a href="../../work/" aria-current="page">Work</a>
+      <a href="../../services/">Services</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+      <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+    </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="../../work/" aria-current="page">Work</a>
+        <a href="../../services/">Services</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+        <hr />
+        <a href="tel:+19492059056">Call (949) 205-9056</a>
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<main id="main">
+<article>
+
+  <header class="cs-head">
+    <div class="wrap">
+      <a class="cs-back" href="../">← All work</a>
+      <div class="cs-head__grid">
+        <div>
+          <span class="badge">Own project</span>
+          <h1>Inside the Towns</h1>
+          <p class="cs-summary">One codebase, one editorial model, seven Colorado towns. Each guide reads as if it were built for that town alone; the whole network is run by one person.</p>
+        </div>
+        <dl class="cs-facts" aria-label="Project facts">
+          <div><dt>Owner</dt><dd>Lerner Works. I publish and edit every site in the network myself. None of them is a town government, a chamber of commerce or a campaign.</dd></div>
+          <div><dt>Sector</dt><dd>Community and visitor information, Colorado Front Range</dd></div>
+          <div><dt>Scope</dt><dd>Network strategy, content model, shared design system, the Astro build, per-town research and editorial, deployment, the weekly maintenance tooling</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Status</dt><dd>Seven town sites and the hub live at <a href="https://insidethetowns.com" rel="noopener">insidethetowns.com</a>; figures below read from the repository on September 18, 2026</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <div class="cs-lead">
+    <div class="wrap">
+      <img src="../../case-studies/inside-the-towns/01-hub.jpg"
+           width="1600" height="1000" fetchpriority="high" decoding="async"
+           alt="The Inside the Towns hub: the wordmark over the headline &quot;Independent guides to the small towns worth knowing&quot;, and a strip reading 7 guides live, 4 counties, 72,350 people covered" />
+    </div>
+  </div>
+
+  <div class="cs-outcomes">
+    <div class="wrap">
+      <p class="eyebrow">At a glance</p>
+      <dl>
+        <div><dt>eight sites — seven towns and the hub — built and deployed from one repository</dt><dd>1 codebase</dd></div>
+        <div><dt>place and event records across the seven towns, each one a file in the repo</dt><dd>240 + 577</dd></div>
+        <div><dt>components and two layouts shared by every site; no town is special-cased in any of them</dt><dd>23 shared</dd></div>
+        <div><dt>colour pairs proved against WCAG AA by a script that CI runs on every push</dt><dd>8 palettes</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap cs-body">
+
+    <h2>The situation</h2>
+    <p>A growing Front Range town has a strange information gap. Ask where to eat on a Tuesday, what is on this weekend, which trail starts where, or what it is actually like to move there, and there is no single place to look. The official town site, where there is one, is built for permits and council agendas — that is its job, and it does not pretend otherwise. A chamber directory lists members. Facebook groups know the answer but will not tell you twice. The rest is a scatter of aggregator pages that were last true in 2019.</p>
+    <p>I had already built one answer to this for a single town. <a class="link" href="../townofniwot/">TownofNiwot.com</a> was a nine-page independent guide to Niwot: a directory where every row carried a source and a date, a calendar with no scraper, and neutral coverage of a live incorporation election. It worked. Then the obvious question arrived, and it was not "what else should this site do." It was: <em>Niwot is not the only town like this.</em></p>
+    <p>Lyons, Berthoud, Erie, Johnstown, Timnath, Elizabeth. Same gap, different town. Between the 2010 and 2020 censuses Timnath grew 938 percent, Berthoud 102, Johnstown 75, Erie 66 — while Lyons grew 9 and Niwot 7. Two very different problems sit under one format: towns arriving faster than their own information, and towns whose information nobody has bothered to gather.</p>
+    <p>The problem in one sentence: seven towns each need a site that feels like it was made for them, and one person has to be able to run all seven.</p>
+
+    <h2>Constraints</h2>
+    <p><strong>One repository, no forks.</strong> The moment a town's difference lives in code rather than configuration, there are seven codebases wearing a trench coat and a fix has to be applied seven times. Town differences live in a config file and a content folder; nothing in a component may name a town, a colour or a domain.</p>
+    <p><strong>The sites must not look like a template.</strong> A reader in Lyons should not be able to tell that the same code serves Timnath. Shared structure, shared type, shared rhythm — distinct colour and distinct photography, per town.</p>
+    <p><strong>A new town under an hour.</strong> If adding the eighth town is a project, the network stops at seven. Scaffolding has to be a command.</p>
+    <p><strong>A weekly content update must be a content edit.</strong> Not a deploy someone has to think about, and not a code change.</p>
+    <p><strong>No invented local knowledge.</strong> Same rule the Niwot guide ran on: every event cites the organiser's own page, every image is logged with its licence, and anything that cannot be checked is left out or marked rather than guessed.</p>
+
+    <h2>What I built</h2>
+
+    <p><strong>One chassis, selected at build time.</strong> The whole network is a single Astro project. A <code>TOWN</code> environment variable picks which site is being built — <code>TOWN=lyons npm run build</code> — and the config loader fails loudly if it is unset or names a town that does not exist, because a build with the wrong town is worse than no build. Eight Vercel projects point at the same repository, one per domain, each with its own <code>TOWN</code>. One push rebuilds all of them.</p>
+
+    <p><strong>Town differences live in exactly two places.</strong> A config file in <code>src/config/towns/</code> carries the domain, the tagline, the county, the census figures, the school district, the commute notes, the official links to link out to, and the three colours. A content folder in <code>content/&lt;town&gt;/</code> carries the events, places, articles, pages and images. Twenty-three components and two layouts are shared by all eight sites, and not one of them knows a town's name.</p>
+
+    <p><strong>Two colours per town, doing different jobs.</strong> Each town config carries a bright <code>accent</code> that is only ever a fill, a rule or a mark; a darker <code>accentDark</code> that words are set in; and a paper tint the whole site sits on. Splitting the bright one from the readable one is what let the accents get genuinely saturated: only the dark one has to clear 4.5:1, so nothing constrains the bright one beyond staying visible.</p>
+
+    <!-- ── THE KEY VISUAL ───────────────────────────────────────────
+         The hub over the seven towns that branch from it, each card
+         in that town's real palette, read from its config file.
+         Responsive and script-free: see the NETWORK DIAGRAM block in
+         assets/site.css for how the connecting rails are drawn.
+         ─────────────────────────────────────────────────────────── -->
+    <figure class="cs-net">
+      <div class="cs-net__hub" style="--t:#2C74CC;--td:#1B4A86;--tp:#F4F3EF;">
+        <p class="cs-net__k">Parent hub</p>
+        <h3>Inside the Towns</h3>
+        <p><a class="link" href="https://insidethetowns.com" rel="noopener">insidethetowns.com</a></p>
+        <p>Every town's weekend in one place, a seven-town comparison for people deciding where to move, and the front door for the next town added.</p>
+      </div>
+
+      <div class="cs-net__stem" aria-hidden="true"></div>
+
+      <ul class="cs-net__towns">
+
+        <li class="cs-net__card" style="--t:#108452;--td:#0C5B39;--tp:#F5F2EA;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/niwot.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Niwot home page: the wordmark over a photograph of open grassland with the Front Range behind" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Boulder County</p>
+            <h4><a href="https://insideniwot.com" rel="noopener">Inside Niwot</a></h4>
+            <p class="cs-net__dom">insideniwot.com</p>
+            <p class="cs-net__meta">4,306 people. Unincorporated — no town hall, and a vote on that in 2026. <strong>+7%</strong> since 2010.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#108452</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#CE4A2C;--td:#8A2D19;--tp:#F5EDE0;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/lyons.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Lyons home page: the wordmark over a photograph of the sandstone walls at the canyon mouth" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Boulder County</p>
+            <h4><a href="https://insidelyons.com" rel="noopener">Inside Lyons</a></h4>
+            <p class="cs-net__dom">insidelyons.com</p>
+            <p class="cs-net__meta">2,209 people. The canyon mouth: sandstone, the river, the music, a town that rebuilt after 2013. <strong>+9%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#CE4A2C</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#1587B4;--td:#0D5170;--tp:#F6F3EC;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/berthoud.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Berthoud home page: the wordmark over a photograph of the town" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Larimer County</p>
+            <h4><a href="https://insideberthoud.com" rel="noopener">Inside Berthoud</a></h4>
+            <p class="cs-net__dom">insideberthoud.com</p>
+            <p class="cs-net__meta">10,332 people. The Garden Spot: a real Main Street and the lakes, short of Fort Collins prices. <strong>+102%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#1587B4</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#6257C0;--td:#3B3480;--tp:#F3F1EC;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/erie.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Erie home page: the wordmark over a photograph of the town" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Weld County</p>
+            <h4><a href="https://insideerie.com" rel="noopener">Inside Erie</a></h4>
+            <p class="cs-net__dom">insideerie.com</p>
+            <p class="cs-net__meta">30,038 people. A coal town that became a commuter town, with a downtown that caught up. <strong>+66%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#6257C0</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#BE3762;--td:#7B1F3C;--tp:#F5F1EE;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/johnstown.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Johnstown home page: the wordmark over a photograph of the town" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Weld County</p>
+            <h4><a href="https://insidejohnstown.com" rel="noopener">Inside Johnstown</a></h4>
+            <p class="cs-net__dom">insidejohnstown.com</p>
+            <p class="cs-net__meta">17,303 people. Sugar-beet town at the I-25 interchange, filling the gap to Greeley. <strong>+75%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#BE3762</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#A67A14;--td:#6C4F0C;--tp:#F7F4EC;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/timnath.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Timnath home page: the wordmark over a photograph of the town" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Larimer County</p>
+            <h4><a href="https://insidetimnath.com" rel="noopener">Inside Timnath</a></h4>
+            <p class="cs-net__dom">insidetimnath.com</p>
+            <p class="cs-net__meta">6,487 people. A farm village of 600 that became a town of 6,000, mostly since the Costco. <strong>+938%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#A67A14</span></p>
+          </div>
+        </li>
+
+        <li class="cs-net__card" style="--t:#B26E2A;--td:#78491A;--tp:#FAF7F2;">
+          <div class="cs-net__shot">
+            <img src="../../case-studies/inside-the-towns/elizabeth.jpg" width="480" height="300"
+                 loading="lazy" decoding="async" alt="The Inside Elizabeth home page: the wordmark over a photograph of the prairie on the Palmer Divide" />
+          </div>
+          <div class="cs-net__body">
+            <p class="cs-net__k">Elbert County</p>
+            <h4><a href="https://insideelizabeth.com" rel="noopener">Inside Elizabeth</a></h4>
+            <p class="cs-net__dom">insideelizabeth.com</p>
+            <p class="cs-net__meta">1,675 people. Prairie and ponderosa on the Palmer Divide, sold five acres at a time. <strong>+23%</strong>.</p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#B26E2A</span></p>
+          </div>
+        </li>
+
+      </ul>
+
+      <figcaption>Every site in the network, with the accent, dark accent and paper each one actually ships. The three swatches on each card are read straight from that town's config file; the hex is the bright accent. Population is the 2020 census, and the percentage is census-to-census growth from 2010 — the same basis for all seven, so the column is comparable rather than merely impressive.</figcaption>
+    </figure>
+
+    <p><strong>One amber holds it together.</strong> Seven sites with seven unrelated colour schemes do not read as a network. A single warm amber, <code>#F0A62E</code>, appears in the same three places on every site — the rule across the top of every page, the footer eyebrows, the "our pick" marks — and is never used as text. That one shared mark is most of what makes eight different palettes read as one family.</p>
+
+    <p><strong>A hue per category, so a list reads as a list of kinds.</strong> Each event category and place type carries two values: a bright dot for marks, and a dark ink for when the category is set as words. Place types borrow the event hues by what the place is for, rather than inventing nine more. Twenty upcoming events read as twenty kinds of thing rather than twenty grey rows.</p>
+
+    <p><strong>The colour system is proved, not asserted.</strong> <code>npm run check-colors</code> reads the real town configs and the real palette module — so it cannot drift from what renders — and checks every accent at 3:1 on its own paper, every dark accent at 4.5:1 both on paper and under white, the amber at 3:1 on every band, and every category colour against all eight papers and white. CI runs it on every push. It is what made brightening the whole palette safe to attempt: the first pass put Timnath's ochre at 2.60:1, and the script caught it before anyone saw it.</p>
+
+    <p><strong>A weekly session, not a weekly build.</strong> <code>npm run weekly</code> prints, per town, the events whose last date falls inside the next seven days, the ones already past, the towns with fewer than five upcoming, the places with no photograph, and the listings not re-checked in ninety days. The week's events go into a CSV; <code>npm run import-events</code> validates every row against the schema and writes the files, with a <code>--dry-run</code> that is meant to be read. Then <code>npm run validate</code>, commit, push — and Vercel rebuilds all eight sites.</p>
+
+    <p><strong>Three layers that keep "upcoming" true between deploys.</strong> A static build is correct on deploy day and quietly wrong a week later. So: a scheduled rebuild fires a deploy hook per project, daily and again on Thursday afternoon when people start looking at the weekend; every event carries the day it falls on and anything past is dropped in the reader's browser, so a stale build shows fewer events rather than wrong ones; and the hub's weekend page bakes three weeks and picks the weekend from the reader's clock. The layers exist because the first one has a specific failure mode worth designing around — GitHub disables a scheduled workflow by itself after sixty days without a push, silently, in exactly the quiet winter when nobody would notice.</p>
+
+    <h2>Decisions and tradeoffs</h2>
+
+    <p><strong>Config and content, never a fork.</strong> The rule that nothing in a component may hard-code a town name, colour or domain is the single decision the whole network rests on. It costs something real: every town-specific idea has to be generalised into a field on the config before it can ship anywhere, which is slower than special-casing one site. What it buys is that a fix written once is a fix everywhere, and that the eighth town inherits seven towns' worth of work for free.</p>
+
+    <p><strong>Dark mode, built and then removed the same day.</strong> It worked. I took it out anyway: I do not want these sites turning dark on a reader's phone without being asked. Two things from it were worth keeping and stayed — the text colour split out from the band fill as its own token, because those two pull in opposite directions the moment anything changes; and the derived tints mixing in plain sRGB rather than oklab, so the contrast checker can reproduce them exactly. The exercise paid for itself on the way through, catching a rule at 1.45:1, which is not a rule, it is nothing.</p>
+
+    <p><strong>Twenty-one comparison pages were not generated.</strong> Seven towns make twenty-one pairs, and twenty-one pages built from one table with no argument in them is thin content — a search engine that decides that about one page tends to decide it about the set. A pair gets a page when somebody has actually written it. The list is a file, and Erie against Johnstown is the only one so far.</p>
+
+    <p><strong>A column that is not drawn until it can be.</strong> Median home price is a field on every town config, and the comparison page renders the column the moment every live town has a price, a date <em>and</em> a named source — all three or none. A price with a gap invites the reader to read the gap as "cheap", and an undated one goes on looking authoritative for two years after it stops being true.</p>
+
+    <p><strong>The newsletter ships dark.</strong> The signup block renders nothing at all until a provider is configured on the hub — not a disabled form, not a "coming soon" input, nothing. A form that takes an address and drops it is worse than no form, and the provider account is the one part of this that cannot live in the repository.</p>
+
+    <p><strong>Growth is census-to-census, and says so.</strong> The brief wanted five-year growth. The state demography office publishes annual estimates, which would be the right source, but serves them from interactive lookups rather than a file — so there was no way to get a consistent figure for seven towns. The decennial census is authoritative and identical in basis across all seven. It is a weaker number, honestly labelled, instead of a stronger one nobody could check.</p>
+
+    <h2>How the network scales</h2>
+    <p>Adding a town is not a build. <code>npm run new-town elizabeth "Elizabeth"</code> writes the config file, appends the registry entry, creates the content folder with one sample event, place, article and moving-here page, generates a favicon, drops in a placeholder hero, and prints what to do next. What remains is the part that cannot be automated and should not be: the research. Reading the town, finding the places, confirming the events against organisers' own pages, and sourcing photographs with a licence attached.</p>
+    <p>That is the real shape of the cost curve. The first town cost a site. The seventh cost a week of local research and a colour. The eighth will cost the same week — and nothing else, because the chassis, the editorial rules, the contrast checker, the weekly tooling and the deployment pattern are already built and already maintained.</p>
+    <p><strong>The next one is a domain rather than a plan.</strong> <code>carbonvalleyguide.com</code> covers Frederick, Firestone and Dacono, and is wave eight in the build plan. It is also the first site in the network that is three towns rather than one, which is a content-model question the chassis has not been asked yet: the config gives a site one name and one set of official links, and three towns means three town governments to link out to.</p>
+    <p>It is not described as live anywhere on any of the sites, and will not be until it is.</p>
+
+    <h2>Result</h2>
+    <p>The figures below are counted from the repository on September 18, 2026. They are things that can be counted, not claims about reach.</p>
+    <p>The one reach figure the network does publish is on the hub's own home page: the seven live guides cover <strong>72,350 people across four counties</strong> — Boulder, Larimer, Weld and Elbert — summed from the 2020 census. It is a census figure rather than an audience figure, and the hub labels it as one.</p>
+
+    <dl class="cs-metrics">
+      <div><dt>Live sites</dt><dd>8 — seven towns and the hub</dd></div>
+      <div><dt>Codebases</dt><dd>1</dd></div>
+      <div><dt>Shared components</dt><dd>23 components, 2 layouts</dd></div>
+      <div><dt>Place records</dt><dd>240 across seven towns</dd></div>
+      <div><dt>Event records</dt><dd>577 across seven towns</dd></div>
+      <div><dt>Routes</dt><dd>13 per town site, 9 on the hub, 4 shared</dd></div>
+      <div><dt>Palettes checked</dt><dd>8, against WCAG AA, in CI</dd></div>
+      <div><dt>Per-town code</dt><dd>1 config file, 1 content folder</dd></div>
+      <div><dt>Feeds per town</dt><dd>2 RSS and 1 iCalendar</dd></div>
+    </dl>
+
+    <!-- PLACEHOLDER — traffic and usage. Fill these in from the analytics the
+         network actually runs, with the date and the source, the way the
+         lernerworks.com case study quotes its own measurements. Do not
+         estimate: an unsourced traffic number is the one claim on this page
+         a reader cannot check. -->
+    <div class="cs-slot">
+      <p class="cs-slot__k">Placeholder — traffic and usage</p>
+      <p>Sessions, top towns and newsletter signups go here once there is a reporting period worth quoting, each with the date range and the source it was read from.</p>
+    </div>
+
+    <h2>Where it stands</h2>
+    <p>Seven town sites and the hub are live, one Vercel project per domain, all deploying from the same repository. The network runs on a weekly editorial session rather than a release cycle: gather the week's events, validate, push, and all eight rebuild.</p>
+    <p><a class="link" href="../townofniwot/">TownofNiwot.com</a>, where this started, now redirects to Inside Niwot. Every old section URL maps to its new page and everything else goes to the home page, so nothing that was ever linked is lost. The old case study stays published because the work in it is the foundation this network is built on — the sourcing rules, the dated records, the refusal to guess — and because a redirect is worth explaining rather than quietly performing.</p>
+    <p>What is open is the honest part: the newsletter stays dark until a provider is configured and one real signup, correction and unsubscribe have been seen to work; the median-home-price column stays undrawn until all seven towns have a sourced, dated figure; 139 businesses still have no photograph and are being asked one at a time; and Carbon Valley is a domain, not a site, until there is research behind it.</p>
+
+  </div>
+</article>
+
+<div class="wrap cs-next">
+  <a href="../townofniwot/"><span><small>Next case study</small><strong>TownofNiwot.com</strong></span><span>Read it →</span></a>
+</div>
+</main>
+
+<footer class="end" id="contact">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark">Next step</p>
+    <h2>Have more than one site to run?</h2>
+    <p class="end__lede">Several locations, several brands, or one site you already can't keep current — tell me what you're maintaining and who has to maintain it. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
+    <div class="end__cta">
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
+      <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+    </div>
+
+    <div class="foot">
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="../../work/">Work</a></li>
+          <li><a href="../../services/">Services &amp; pricing</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="tel:+19492059056">(949) 205-9056</a></li>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot, serving Niwot, Boulder, Longmont, Louisville, Lafayette, Erie and the rest of Boulder County. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
+      <span><a href="#top">Back to top</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

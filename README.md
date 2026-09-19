@@ -8,9 +8,9 @@ requests at all.
 ```
 index.html                            home
 work/index.html                       /work/ — case study index
-work/townofniwot/index.html           own project — community guide
+work/inside-the-towns/index.html      own project — the seven-town network
+work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
-work/hm-mechanical/index.html         independent concept (labelled as such)
 work/lernerworks/index.html           this site, as a case study
 services/index.html                   services, process, guarantee, pricing, FAQ
 about/index.html                      who you're hiring, how I work, what I won't do
@@ -21,17 +21,12 @@ assets/fonts/                         self-hosted woff2
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs
 case-studies/<slug>/                  screenshots used by that case study
-concepts/hm-mechanical/               two-page noindex H&M concept
+case-studies/inside-the-towns/        hub capture + seven town thumbnails
 tools/set-image-dims.py               writes real image sizes into the HTML
 tools/measure.js                      requests / bytes / scripts per page
 tools/optimize-images.js              screenshot → JPEG, card thumbnails
 robots.txt · sitemap.xml
 ```
-
-The H&M concept is intentionally excluded from the sitemap and carries a
-`noindex,nofollow,noarchive` robots directive on both pages. Its public case
-study is indexable, is labelled "Independent concept" in the card, the badge,
-the facts panel and a disclosure note, and must stay that way.
 
 ## Principles the site is built on
 
@@ -45,13 +40,26 @@ depends on them.
   The only `<script>` on the site is the JSON-LD structured data on the
   home page, which is data, not code. `measure.js` counts scripts; 0.
 - **No invented proof.** No testimonials, client counts or logo walls.
-  Concept work is labelled everywhere it appears. Outcomes in the
-  "At a glance" strips are limited to things that can be counted.
+  Every project carries a label saying what kind of work it was, and unpaid
+  work is never dressed as a commission. Outcomes in the "At a glance" strips
+  are limited to things that can be counted.
+- **Placeholder slots look like placeholders.** Anything the site does not
+  have yet is marked with a `PLACEHOLDER` comment in the source and the dashed
+  `.cs-slot` treatment on the page, so nothing unfinished can be mistaken for
+  shipped work. One is left: traffic and usage on `/work/inside-the-towns/`.
+  Grep for `PLACEHOLDER` before launch.
+- **Accessibility is checked, not assumed.** Every page passes axe-core at
+  WCAG 2.2 AA at 1280, 860 and 390 px. One colour token failed that bar —
+  `--slate-2` — and was darkened along its own hue to fix it; it carries a
+  comment saying what it was and why it moved. Re-run axe after any colour
+  change: that one token was worth 325 violations.
 - **Screenshots of other sites** are taken from a local build of that
   site's repository, at 1600×1000 and 390×844 at 2×, and kept under
   `case-studies/<slug>/`. The Niwot shots came from
-  `jlerner1965/townofniwot.com` at its launch-readiness commit; re-take them
-  if that site's design changes.
+  `jlerner1965/townofniwot.com` at its launch-readiness commit and are kept as
+  the record of the site as it launched — townofniwot.com now 301s to
+  insideniwot.com, so they cannot be re-taken from the live domain. Inside the
+  Towns screenshots come from a local build of `jlerner1965/insidethetowns`.
 - **Numbers on `/work/lernerworks/` are measured.** If you change anything
   that affects page weight, re-run `tools/measure.js` and update the table.
 
@@ -104,9 +112,9 @@ cache and prints what a visitor's browser would fetch. The table on
 Screenshots only, no stock photography. Two scripts keep them honest:
 
 - `tools/optimize-images.js` re-encodes with the bundled Chromium, so
-  nothing needs installing. The H&M PNG captures were converted to JPEG
-  once (the 1.7 MB desktop "before" became 270 KB) and the PNGs deleted.
-  It also regenerates the 800 px `-thumb.jpg` files the cards use.
+  nothing needs installing. Captures are converted to JPEG once and the PNGs
+  deleted, so the committed JPEGs are the sources. It also regenerates the
+  800 px `-thumb.jpg` files the cards use.
 - `tools/set-image-dims.py --write` reads every image and writes the real
   pixel dimensions into the `<img>` tags and the `og:image` meta. Those
   attributes are what reserve space before the file downloads. Run it after
@@ -150,8 +158,10 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
    The situation → Constraints → What I built → Decisions and tradeoffs →
    Result → Where it stands → next case study → CTA.
 2. Pick the badge honestly: `badge badge--client` for commissioned work the
-   client has approved for publication, plain `badge` with "Independent
-   concept" otherwise. Add the disclosure `.note` for concepts.
+   client has approved for publication, plain `badge` with "Own project" for
+   something you publish and run yourself. If a case study is ever unpaid work
+   done without the business's involvement, it is an "Independent concept",
+   says so everywhere it appears, and carries a disclosure `.note`.
 3. Update `<title>`, `<meta name="description">`, `<link rel="canonical">`
    and the `og:` / `twitter:` tags. The OG image is the lead image, as an
    absolute URL.
@@ -167,7 +177,10 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
 7. Re-run `tools/measure.js` and update the table on `/work/lernerworks/`
    if the home page weight changed.
 
-No page-specific CSS should be needed; the `.cs-*` classes cover it.
+No page-specific CSS should be needed; the `.cs-*` classes cover it. The one
+exception is `.cs-compare`, the side-by-side before/after pair, which was
+removed with the H&M study that was its only user — it is in the history if a
+before-and-after case study ever returns.
 
 ### Things worth not breaking
 
@@ -180,27 +193,55 @@ No page-specific CSS should be needed; the `.cs-*` classes cover it.
   purpose — they read as headings but are not, so the outline stays clean.
 - **The hero h1 and the OG card say the same thing.** See Open Graph above.
 
-## Publish with GitHub Pages (free)
+## How this is published
 
-1. Merge into `main`.
-2. On GitHub: **Settings → Pages → Source: Deploy from a branch**, pick
-   `main` and `/ (root)`, then save.
-3. The site goes live at `https://jlerner1965.github.io/Lerner-Works/`, or
-   at the custom domain once it is attached on the same settings page.
+The site is live at **lernerworks.com** on **Vercel**, deploying from `main`.
+Merging to `main` is the deploy; there is no build step, so Vercel serves the
+files as they are in the repo. `www.lernerworks.com` is the canonical host and
+the apex redirects to it.
+
+The Vercel project itself is configured on Vercel, not in this repo. The only
+thing here is `vercel.json`, and it holds nothing but redirects:
+
+```
+/work/hm-mechanical/**    → /work/   (301)
+/concepts/hm-mechanical/** → /work/  (301)
+```
+
+Those two were live and the case study was in the sitemap, so removing them
+without a redirect would have left 404s for anything already linking to them.
+**Add a redirect here whenever a published URL goes away** — that is what the
+file is for, and it is the same thing townofniwot.com does now that it points
+at Inside Niwot.
 
 The `canonical` and `og:` URLs, and every `<loc>` in `sitemap.xml`, are
-written as `https://lernerworks.com/…`. They are absolute by necessity and
-are wrong until the custom domain is attached. Everything else is relative,
-so the site works on either host. `robots.txt` and `sitemap.xml` only take
-effect at a domain root. **Attach the domain before submitting anything to
-Google Search Console.**
+written as `https://lernerworks.com/…`. The domain is attached, so they
+resolve — but the apex currently 308s to `www.lernerworks.com`, which means
+every canonical points at a URL that redirects rather than at the one that
+serves. It works, and Google follows it, but the two should agree. Pick one:
+either make the apex the host Vercel serves (a project setting, nothing here
+changes), or rewrite the URLs in this repo to `www.`. Do not leave it split.
+
+Everything else is relative, so the site also works from a local
+`python3 -m http.server`.
 
 ## Before launch
 
 - [x] Phone, email and booking link are real on every page.
-- [x] No placeholder cards remain anywhere on the site.
+- [x] No placeholder cards remain anywhere on the site — except the Inside the
+      Towns traffic slot below, which is deliberate and marked as such.
+- [x] Screenshots of this site on `/work/lernerworks/` re-taken against the
+      current site (`node tools/measure.js --shots`). Re-take them whenever a
+      page they show changes, or the case study argues from a stale picture.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
-- [ ] Send the H&M owner the diagnosis and a private link, per the case
-      study's "Where it stands".
-- [ ] After the domain is attached, run PageSpeed on the live URL and, if you
-      quote it anywhere, quote it with the date.
+- [ ] Settle apex vs `www`. The canonicals say `lernerworks.com`; Vercel
+      serves `www.lernerworks.com` and redirects the apex to it, so every
+      canonical and every sitemap `<loc>` points at a redirect. See
+      "How this is published".
+- [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
+      from a local build. See `case-studies/inside-the-towns/README.md`.
+- [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
+- [ ] Fill the Inside the Towns traffic figures — the last `PLACEHOLDER`.
+      Needs a real reporting period; do not estimate.
+- [ ] Run PageSpeed on https://www.lernerworks.com/ after this deploys and, if
+      you quote it anywhere, quote it with the date.

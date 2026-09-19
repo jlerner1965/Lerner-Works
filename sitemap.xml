@@ -3,16 +3,15 @@
   Every indexable page on the site. Add a <url> entry when you add a page
   or a case study. Keep <loc> matching the page's own <link rel="canonical">
   exactly — a mismatch is worse than no sitemap at all.
-  The H&M concept under /concepts/ is noindex and deliberately absent.
   <changefreq> and <priority> are omitted on purpose; Google ignores them.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://lernerworks.com/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://lernerworks.com/work/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://lernerworks.com/work/aragocor-minerals/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://lernerworks.com/work/hm-mechanical/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://lernerworks.com/work/townofniwot/</loc><lastmod>2026-09-11</lastmod></url>
-  <url><loc>https://lernerworks.com/work/lernerworks/</loc><lastmod>2026-09-11</lastmod></url>
+  <url><loc>https://lernerworks.com/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://lernerworks.com/work/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://lernerworks.com/work/inside-the-towns/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://lernerworks.com/work/aragocor-minerals/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://lernerworks.com/work/townofniwot/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://lernerworks.com/work/lernerworks/</loc><lastmod>2026-09-19</lastmod></url>
   <url><loc>https://lernerworks.com/services/</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://lernerworks.com/about/</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://lernerworks.com/contact/</loc><lastmod>2026-09-11</lastmod></url>

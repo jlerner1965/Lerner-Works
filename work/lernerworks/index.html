@@ -116,7 +116,7 @@
     <p>The problem in one sentence: the site asserted that I was careful and measurable, but didn't show it.</p>
 
     <h2>Constraints</h2>
-    <p><strong>No invented proof.</strong> No testimonials I chose myself, no client counts, no logo wall. Independent concept work had to be labelled as such everywhere it appears. If a number couldn't be measured, it couldn't go on the page.</p>
+    <p><strong>No invented proof.</strong> No testimonials I chose myself, no client counts, no logo wall. Every project carries a label saying what kind of work it was, and unpaid work is never dressed as a commission. If a number couldn't be measured, it couldn't go on the page.</p>
     <p><strong>No third-party requests.</strong> No analytics script, no font service, no embedded booking widget, no chat bubble. A visitor's browser talks to this site and nothing else. That is a privacy position, but it is also most of what makes the pages fast.</p>
     <p><strong>No build step.</strong> Plain HTML and one stylesheet, so any page can be edited in a text editor and the site can be hosted anywhere for nothing. The dev tooling that exists (link-preview rendering, image re-encoding, measurement) runs on demand and ships nothing to the visitor.</p>
 
@@ -134,7 +134,7 @@
     <p><strong>One case-study template, the same six questions every time.</strong> Situation, constraints, what I built, decisions and tradeoffs, result, where it stands. Each study opens with a facts panel (client, sector, scope, year, status) and an "at a glance" strip that is limited to things that can be counted. A badge on every study says what kind of work it is: client project, independent concept, or this site.</p>
 
     <figure class="cs-fig">
-      <img src="../../case-studies/lernerworks/02-work.png"
+      <img src="../../case-studies/lernerworks/02-work.jpg"
            width="1600" height="1000" loading="lazy" decoding="async"
            alt="The Work page, listing the case studies as cards with a screenshot, a label, a one-line summary and a measured outcome" />
       <figcaption>The Work index. Each card carries the kind of work it is, one line on the problem, and one outcome that can be counted.</figcaption>
@@ -161,36 +161,36 @@
     <h2>Result</h2>
     <p>Measured in headless Chromium at a 1,600-pixel viewport with an empty cache, using the script kept in the repository, after the rebuild. "Requests" is everything the page fetches; "external" is any request to a domain other than this one.</p>
 
-    <div class="cs-table">
+    <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
-        <caption>Fonts are 76 KB on every page and cached after the first. Images account for the difference between pages; the H&amp;M and Niwot studies carry four or five full-size screenshots each as evidence.</caption>
+        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Screenshots of this site are re-taken by <code>tools/measure.js --shots</code>, so the pictures on this page are of the site as it currently is. Images account for the rest of the difference — the Niwot study carries five full-size screenshots as evidence, and the Inside the Towns study carries a hub capture plus seven 480 px town thumbnails, which together cost less than one full-size screenshot.</caption>
         <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
         <tbody>
-          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>306 KB</td></tr>
-          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>341 KB</td></tr>
-          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>379 KB</td></tr>
-          <tr><td>H&amp;M Mechanical</td><td>7</td><td>0</td><td>none</td><td>608 KB</td></tr>
-          <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>536 KB</td></tr>
-          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>735 KB</td></tr>
-          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>124 KB</td></tr>
-          <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>117 KB</td></tr>
-          <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>115 KB</td></tr>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>305 KB</td></tr>
+          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>340 KB</td></tr>
+          <tr><td>Inside the Towns</td><td>5</td><td>0</td><td>none</td><td>255 KB</td></tr>
+          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>386 KB</td></tr>
+          <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>545 KB</td></tr>
+          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>513 KB</td></tr>
+          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
+          <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>124 KB</td></tr>
+          <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>122 KB</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p>Before the rebuild, the home page was 803 KB and the H&amp;M study was 2.9 MB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using thumbnails on the cards cut the home page by more than half and the H&amp;M page by four fifths, with no change to what a reader sees.</p>
+    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture cut it by two thirds, with no change to what a reader sees. The same two moves are why the heaviest page on the site is now the Niwot case study, which carries five full-size screenshots as evidence, rather than the home page or this one.</p>
 
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
     <h2>Where it stands</h2>
-    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. The next change to this site will be a client case study replacing one of the independent pieces, once a client project wraps and the client has approved what's published.</p>
+    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site.</p>
 
   </div>
 </article>
 
 <div class="wrap cs-next">
-  <a href="../townofniwot/"><span><small>Next case study</small><strong>TownofNiwot.com</strong></span><span>Read it →</span></a>
+  <a href="../inside-the-towns/"><span><small>Next case study</small><strong>Inside the Towns</strong></span><span>Read it →</span></a>
 </div>
 </main>
 

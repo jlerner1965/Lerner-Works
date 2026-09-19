@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/work/hm-mechanical",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/work/hm-mechanical/:path*",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/concepts/hm-mechanical",
+      "destination": "/work/",
+      "permanent": true
+    },
+    {
+      "source": "/concepts/hm-mechanical/:path*",
+      "destination": "/work/",
+      "permanent": true
+    }
+  ]
+}
