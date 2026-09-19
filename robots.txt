@@ -4,4 +4,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lernerworks.com/sitemap.xml
+Sitemap: https://www.lernerworks.com/sitemap.xml

@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>lernerworks.com — how this site is built, and why | Lerner Works</title>
 <meta name="description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
-<link rel="canonical" href="https://lernerworks.com/work/lernerworks/" />
+<link rel="canonical" href="https://www.lernerworks.com/work/lernerworks/" />
 
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lernerworks.com/work/lernerworks/" />
+<meta property="og:url" content="https://www.lernerworks.com/work/lernerworks/" />
 <meta property="og:title" content="lernerworks.com — how this site is built, and why | Lerner Works" />
 <meta property="og:description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
 <meta property="og:site_name" content="Lerner Works" />
-<meta property="og:image" content="https://lernerworks.com/case-studies/lernerworks/01-home.png" />
+<meta property="og:image" content="https://www.lernerworks.com/case-studies/lernerworks/01-home.png" />
 <meta property="og:image:width" content="1600" />
 <meta property="og:image:height" content="1000" />
 <meta property="og:image:alt" content="The Lerner Works homepage: headline, the terms of working together, and three case studies" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="lernerworks.com — how this site is built, and why | Lerner Works" />
 <meta name="twitter:description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
-<meta name="twitter:image" content="https://lernerworks.com/case-studies/lernerworks/01-home.png" />
+<meta name="twitter:image" content="https://www.lernerworks.com/case-studies/lernerworks/01-home.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
 
@@ -47,7 +47,7 @@
       <a href="../../about/">About</a>
       <a href="../../contact/">Contact</a>
       <a class="nav__tel" href="tel:+19492059056">(949) 205-9056</a>
-      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/20min">Book a call</a>
     </div>
     <details class="menu">
       <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
@@ -59,7 +59,7 @@
         <hr />
         <a href="tel:+19492059056">Call (949) 205-9056</a>
         <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
-        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/20min">Book a call</a>
       </div>
     </details>
   </div>
@@ -103,7 +103,7 @@
         <div><dt>requests to any third party, on any page: no analytics, no font CDN, no widgets</dt><dd>0</dd></div>
         <div><dt>lines of JavaScript run in the visitor's browser, including the mobile menu</dt><dd>0</dd></div>
         <div><dt>to load the home page in full, images included</dt><dd>7 requests</dd></div>
-        <div><dt>for the whole home page, of which 179 KB is the three case-study thumbnails</dt><dd>306 KB</dd></div>
+        <div><dt>for the whole home page, of which 172 KB is the three case-study thumbnails</dt><dd>307 KB</dd></div>
       </dl>
     </div>
   </div>
@@ -131,7 +131,7 @@
       <figcaption>On a phone the navigation becomes a Menu button. It is a plain <code>&lt;details&gt;</code> element, so it works with no script at all.</figcaption>
     </figure>
 
-    <p><strong>One case-study template, the same six questions every time.</strong> Situation, constraints, what I built, decisions and tradeoffs, result, where it stands. Each study opens with a facts panel (client, sector, scope, year, status) and an "at a glance" strip that is limited to things that can be counted. A badge on every study says what kind of work it is: client project, independent concept, or this site.</p>
+    <p><strong>One case-study template, the same six questions every time.</strong> Situation, constraints, what I built, decisions and tradeoffs, result, where it stands. Each study opens with a facts panel (client, sector, scope, year, status) and an "at a glance" strip that is limited to things that can be counted. A badge on every study says what kind of work it is: client project, own project, or this site.</p>
 
     <figure class="cs-fig">
       <img src="../../case-studies/lernerworks/02-work.jpg"
@@ -161,6 +161,8 @@
     <h2>Result</h2>
     <p>Measured in headless Chromium at a 1,600-pixel viewport with an empty cache, using the script kept in the repository, after the rebuild. "Requests" is everything the page fetches; "external" is any request to a domain other than this one.</p>
 
+    <p>Both figures in the strip at the top of this page and every row below are printed by <code>tools/measure.js --table</code> as markup, and pasted in. They used to be typed twice: the home page is 306.54 KB, which got rounded to 306 in one place and 307 in the other, and both readings were defensible enough that the disagreement sat there. One run, one rounding rule, one paste.</p>
+
     <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
         <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Screenshots of this site are re-taken by <code>tools/measure.js --shots</code>, so the pictures on this page are of the site as it currently is. Images account for the rest of the difference — the AragoCor study is the heaviest because its three captures are whole sections rather than viewport slices — the applications grid alone is 1,306 px tall — and the Inside the Towns study carries a hub capture plus seven 480 px town thumbnails, which together cost less than one full-size screenshot.</caption>
@@ -171,15 +173,15 @@
           <tr><td>Inside the Towns</td><td>5</td><td>0</td><td>none</td><td>255 KB</td></tr>
           <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>642 KB</td></tr>
           <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>545 KB</td></tr>
-          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>513 KB</td></tr>
-          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
+          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>514 KB</td></tr>
+          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>131 KB</td></tr>
           <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>124 KB</td></tr>
           <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>122 KB</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture cut it by two thirds, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
+    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture took it to 307 KB, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
 
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
@@ -200,7 +202,7 @@
     <h2>Want yours built like this?</h2>
     <p class="end__lede">Fast, plain, yours, and measured. Tell me what your business does and what you wish the website did. — James</p>
     <div class="end__cta">
-      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/20min">Book a 20-minute call</a>
       <a class="btn btn--onDark" href="tel:+19492059056">(949) 205-9056</a>
       <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
     </div>
@@ -224,7 +226,7 @@
         <ul>
           <li><a href="tel:+19492059056">(949) 205-9056</a></li>
           <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
-          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/20min">Book a call</a></li>
         </ul>
       </div>
       <div>
