@@ -163,13 +163,13 @@
 
     <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
-        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Screenshots of this site are re-taken by <code>tools/measure.js --shots</code>, so the pictures on this page are of the site as it currently is. Images account for the rest of the difference — the Niwot study carries five full-size screenshots as evidence, and the Inside the Towns study carries a hub capture plus seven 480 px town thumbnails, which together cost less than one full-size screenshot.</caption>
+        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 19, 2026. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Screenshots of this site are re-taken by <code>tools/measure.js --shots</code>, so the pictures on this page are of the site as it currently is. Images account for the rest of the difference — the AragoCor study is the heaviest because its three captures are whole sections rather than viewport slices — the applications grid alone is 1,306 px tall — and the Inside the Towns study carries a hub capture plus seven 480 px town thumbnails, which together cost less than one full-size screenshot.</caption>
         <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
         <tbody>
-          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>305 KB</td></tr>
-          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>340 KB</td></tr>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>307 KB</td></tr>
+          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>341 KB</td></tr>
           <tr><td>Inside the Towns</td><td>5</td><td>0</td><td>none</td><td>255 KB</td></tr>
-          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>386 KB</td></tr>
+          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>642 KB</td></tr>
           <tr><td>TownofNiwot.com</td><td>6</td><td>0</td><td>none</td><td>545 KB</td></tr>
           <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>513 KB</td></tr>
           <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
@@ -179,12 +179,12 @@
       </table>
     </div>
 
-    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture cut it by two thirds, with no change to what a reader sees. The same two moves are why the heaviest page on the site is now the Niwot case study, which carries five full-size screenshots as evidence, rather than the home page or this one.</p>
+    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture cut it by two thirds, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
 
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
     <h2>Where it stands</h2>
-    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site.</p>
+    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site. The AragoCor study has since taken that place, and deliberately: its screenshots were viewport slices that cut through a card row, and capturing each section whole costs bytes that a sliced picture was only pretending to save.</p>
 
   </div>
 </article>
