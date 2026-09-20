@@ -21,13 +21,14 @@ const path = require('path');
 const fs = require('fs');
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8765';
-const PAGES = ['/', '/work/', '/work/inside-the-towns/', '/work/aragocor-minerals/', '/work/townofniwot/', '/work/lernerworks/', '/services/', '/about/', '/contact/'];
+const PAGES = ['/', '/boulder-county-web-design/', '/work/', '/work/inside-the-towns/', '/work/aragocor-minerals/', '/work/townofniwot/', '/work/lernerworks/', '/services/', '/about/', '/contact/'];
 const SHOTS = process.argv.includes('--shots');
 const TABLE = process.argv.includes('--table');
 
 // What each measured path is called on /work/lernerworks/.
 const LABELS = {
   '/': 'Home',
+  '/boulder-county-web-design/': 'Boulder County web design',
   '/work/': 'Work',
   '/work/inside-the-towns/': 'Inside the Towns',
   '/work/aragocor-minerals/': 'AragoCor Minerals',

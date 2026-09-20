@@ -13,6 +13,7 @@ work/townofniwot/index.html           own project — community guide (now redir
 work/aragocor-minerals/index.html     client project
 work/lernerworks/index.html           this site, as a case study
 services/index.html                   services, process, guarantee, pricing, FAQ
+boulder-county-web-design/index.html  primary local-search service page
 about/index.html                      who you're hiring, how I work, what I won't do
 contact/index.html                    three ways to reach James
 assets/site.css                       @font-face, tokens, nav, every component,
@@ -92,14 +93,14 @@ depends on them.
 `assets/site.css` is the single source of truth for colour, type and every
 component. Pages carry no CSS of their own.
 
-The nav and footer are identical across all eight pages except for the
+The nav and footer are identical across all ten public pages except for the
 relative prefix (`./`, `../`, `../../`) and the `aria-current` link. When
 you change one, change all of them — a grep for `class="nav"` finds every
 copy.
 
 ## Phone, email and the booking link
 
-These three appear about 180 times across the nine pages. There is no build
+These three appear throughout all ten public pages. There is no build
 step and no includes, so there is no partial to edit — `tools/contact.js` is
 the single source instead. The values live in one object at the top of it:
 
