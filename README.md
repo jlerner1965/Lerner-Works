@@ -12,7 +12,7 @@ work/inside-the-towns/index.html      own project — the seven-town network
 work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
 work/lernerworks/index.html           this site, as a case study
-services/index.html                   services, process, guarantee, pricing, FAQ
+services/index.html                   services, process, pricing, guarantee, FAQ
 boulder-county-web-design/index.html  primary local-search service page
 about/index.html                      who you're hiring, how I work, what I won't do
 contact/index.html                    three ways to reach James
@@ -59,6 +59,13 @@ depends on them.
   number before anything starts." **Do not replace the figures with "contact
   for a quote."** Changing the amounts is a business decision for James; hiding
   them is a decision about what this site is.
+  If the complaint is that people balk at the figure, the answer goes next to
+  it rather than instead of it. Sticker shock is a risk-and-cashflow objection,
+  and the site already answers both: the refundable first design now sits in
+  the section directly below the tiers on `/services/` as well as on the home
+  page, and the terms under each one-time figure read "half to start, half at
+  launch". `From $2,400` is not that answer — it reads as a floor, which is the
+  fix for anchoring too low, the opposite problem.
 - **The service area is one list.** Niwot, Boulder, Longmont, Louisville,
   Lafayette, Erie, and the rest of Boulder County — in the footer of every
   page, the About page's prose, the `areaServed` in the structured data and
@@ -74,7 +81,13 @@ depends on them.
   shipped work. One is left: traffic and usage on `/work/inside-the-towns/`.
   Grep for `PLACEHOLDER` before launch.
 - **Accessibility is checked, not assumed.** Every page passes axe-core at
-  WCAG 2.2 AA at 1280, 860 and 390 px. One colour token failed that bar —
+  WCAG 2.2 AA at 1280, 860 and 390 px. **An inline link inside a sentence
+  needs a cue that is not colour** (WCAG 1.4.1) — the footer's service-area
+  link inherited `.foot a{text-decoration:none}` from the link lists around
+  it and put one violation on all ten pages at once. Undecorated is fine in
+  a list, where every item is a link and there is nothing to tell apart;
+  `.foot p a` is underlined for that reason. Check any new prose link the
+  same way. One colour token failed that bar —
   `--slate-2` — and was darkened along its own hue to fix it; it carries a
   comment saying what it was and why it moved. Re-run axe after any colour
   change: that one token was worth 325 violations.
@@ -171,6 +184,22 @@ one rounding rule, one paste.
 It loads every public page in headless Chromium at 1600 px with a cold
 cache and prints what a visitor's browser would fetch. The table on
 `/work/lernerworks/` is copied from this output; keep them in step.
+
+**It scrolls each page to the bottom before recording, and that is load
+bearing.** Everything below a case study's lead image carries
+`loading="lazy"`, and `set-image-dims.py` writes real heights in, so a
+browser parked at the top never comes near those files. Nothing in the
+markup has to change for this to bite — the pages only have to grow tall
+enough — and when it did, four rows silently lost their screenshots and the
+strip claiming "in full, images included" became a claim about the first
+screen. Waiting on `networkidle` after the scroll is not enough either; it
+fires while the lazy fetches are still in flight, which counted one of
+AragoCor's two extra images and none of Niwot's three. The script waits for
+every `document.images` entry to report `complete`.
+
+A useful property of the result: the "This page" row measures the page the
+table lives on, so pasting a new table changes that row. Paste, re-run, and
+correct that one figure until it holds still.
 
 ## Images
 
