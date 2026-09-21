@@ -12,7 +12,7 @@ work/inside-the-towns/index.html      own project — the seven-town network
 work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
 work/lernerworks/index.html           this site, as a case study
-services/index.html                   services, process, guarantee, pricing, FAQ
+services/index.html                   services, process, pricing, guarantee, FAQ
 boulder-county-web-design/index.html  primary local-search service page
 about/index.html                      who you're hiring, how I work, what I won't do
 contact/index.html                    three ways to reach James
@@ -59,6 +59,13 @@ depends on them.
   number before anything starts." **Do not replace the figures with "contact
   for a quote."** Changing the amounts is a business decision for James; hiding
   them is a decision about what this site is.
+  If the complaint is that people balk at the figure, the answer goes next to
+  it rather than instead of it. Sticker shock is a risk-and-cashflow objection,
+  and the site already answers both: the refundable first design now sits in
+  the section directly below the tiers on `/services/` as well as on the home
+  page, and the terms under each one-time figure read "half to start, half at
+  launch". `From $2,400` is not that answer — it reads as a floor, which is the
+  fix for anchoring too low, the opposite problem.
 - **The service area is one list.** Niwot, Boulder, Longmont, Louisville,
   Lafayette, Erie, and the rest of Boulder County — in the footer of every
   page, the About page's prose, the `areaServed` in the structured data and
