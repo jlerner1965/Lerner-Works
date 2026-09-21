@@ -387,6 +387,11 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .foot li{padding-block:.28rem;}
 .foot a{color:rgba(255,255,255,.8);text-decoration:none;}
 .foot a:hover{color:var(--ever-light);}
+/* Undecorated is fine for the link lists — a list of links reads as one. The
+   service-area sentence carries the site's only inline prose link in the
+   footer, and colour alone is not an allowed cue for it (WCAG 1.4.1). It is
+   the single `.foot p a` on every page; the lists are all `.foot li a`. */
+.foot p a{text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px;}
 .foot__bar{border-top:1px solid var(--line-dark);margin-top:2.4rem;padding-block:1.3rem;
   display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;font-size:.8rem;color:rgba(255,255,255,.5);}
 .foot__bar a{color:rgba(255,255,255,.66);text-decoration:none;}

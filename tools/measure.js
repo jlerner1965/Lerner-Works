@@ -56,6 +56,26 @@ const kb = (bytes) => Math.round(bytes / 1024);
       reqs.push({ url: req.url(), type: req.resourceType(), status: r.status(), size });
     });
     await page.goto(BASE + p, { waitUntil: 'networkidle' });
+    // Walk the whole page before recording. Everything below the lead image
+    // carries loading="lazy", and set-image-dims.py writes real heights in, so
+    // a browser parked at the top never comes near them — which would make
+    // "in full, images included" a claim about the first screen. This is how
+    // the case-study rows silently lost their screenshots: nothing changed in
+    // the markup, the pages just got tall enough for the threshold to bite.
+    // Scroll back to the top afterwards; --shots captures the viewport.
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += window.innerHeight) {
+        window.scrollTo(0, y);
+        await new Promise((r) => requestAnimationFrame(() => setTimeout(r, 60)));
+      }
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    // networkidle alone races the lazy fetches the scroll just kicked off —
+    // it fired after one of AragoCor's two and neither of Niwot's three.
+    // Wait on the images themselves, which is the condition actually meant.
+    await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 30000 });
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.evaluate(() => document.fonts.ready);
     const scripts = await page.evaluate(() => document.querySelectorAll('script:not([type="application/ld+json"])').length);
     const external = reqs.filter(r => !r.url.startsWith(BASE));
