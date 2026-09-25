@@ -38,7 +38,7 @@ const CONTACT = {
   //
   // When the event is renamed:  change this line, run `node tools/contact.js
   // --write`, run `node tools/contact.js --check-live`, commit. That is the
-  // whole job — it rewrites all forty-six links.
+  // whole job — it rewrites every booking link on every page.
   booking: 'https://calendly.com/james-lernerworks/30min',
 };
 

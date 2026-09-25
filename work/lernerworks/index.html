@@ -103,7 +103,7 @@
         <div><dt>requests to any third party, on any page: no analytics, no font CDN, no widgets</dt><dd>0</dd></div>
         <div><dt>lines of JavaScript run in the visitor's browser, including the mobile menu</dt><dd>0</dd></div>
         <div><dt>to load the home page in full, images included</dt><dd>7 requests</dd></div>
-        <div><dt>for the whole home page, of which 172 KB is the three case-study thumbnails</dt><dd>308 KB</dd></div>
+        <div><dt>for the whole home page, of which 172 KB is the three case-study thumbnails</dt><dd>309 KB</dd></div>
       </dl>
     </div>
   </div>
@@ -122,7 +122,7 @@
 
     <h2>What I built</h2>
 
-    <p><strong>A structure that leads with terms and proof.</strong> The homepage opens with the headline beside the five terms of working together: fixed price in writing, ownership of everything, one person, a refundable first design, and a reply within a business day. The three case studies come next, before the services or the prices. Work, Services, About and Contact each got their own page, so the home page could stop trying to be all of them.</p>
+    <p><strong>A structure that leads with terms and proof.</strong> The homepage opens with the headline beside the five terms of working together: fixed price in writing, ownership of everything, one person, a refundable first design, and a reply within a business day. The three case studies come next, before the services. Work, Services, About and Contact each got their own page, so the home page could stop trying to be all of them.</p>
 
     <figure class="cs-fig cs-fig--phone">
       <img src="../../case-studies/lernerworks/03-home-mobile.png"
@@ -150,9 +150,9 @@
 
     <p><strong>No analytics on my own site.</strong> I set up call and form tracking for clients because their enquiries are the score, and I recommend it. Here, the score is whether the call gets booked, and the booking calendar already tells me that. So there is no analytics script, and the cost is that I don't know how many people read this page. I've decided that is a fair trade for a site that makes no requests I'd have to explain in a privacy policy.</p>
 
-    <p><strong>The calculator went.</strong> It was the most interactive thing on the site, and it produced a number nobody could check. Removing it also removed the only JavaScript on the site. The pricing table, which shows real numbers a visitor can act on, stayed and moved up.</p>
+    <p><strong>The calculator went.</strong> It was the most interactive thing on the site, and it produced a number nobody could check. Removing it also removed the only JavaScript on the site.</p>
 
-    <p><strong>Prices posted, in full.</strong> Most freelancers don't, on the grounds that it invites comparison. It does, and that is the point: a visitor who has read the prices and still books a call is a much better call.</p>
+    <p><strong>No price table.</strong> The three packages are described by what is in them, not by a figure. The number for a project arrives on the one-page scope after the first call, with a date beside it, and the first design is refundable if it isn't right. The trade is that a visitor who wants a price before they book has to make the call, and the call is twenty minutes and free.</p>
 
     <p><strong>No content management system.</strong> I am the only person who edits this site, so a CMS would be machinery to maintain for no one's benefit. For a client who needs to change their own text and photos, I make the opposite call, and the services page says so.</p>
 
@@ -165,24 +165,24 @@
 
     <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
-        <caption>Updated from the repository measurements on September 21, 2026, using the same request and byte-count rules as <code>tools/measure.js</code>, which now scrolls each page before recording so the lazy-loaded screenshots below the fold are counted rather than missed. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Images account for the rest of the difference — the TownofNiwot study is the heaviest because it carries four full-size captures; the AragoCor study follows with three taken as whole sections rather than viewport slices, the applications grid alone being 1,306 px tall; and the seven 480 px town thumbnails on the Inside the Towns study together cost less than one full-size capture.</caption>
+        <caption>Updated from the repository measurements on September 25, 2026, using the same request and byte-count rules as <code>tools/measure.js</code>, which now scrolls each page before recording so the lazy-loaded screenshots below the fold are counted rather than missed. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Images account for the rest of the difference — the TownofNiwot study is the heaviest because it carries four full-size captures; the AragoCor study follows with three taken as whole sections rather than viewport slices, the applications grid alone being 1,306 px tall; and the seven 480 px town thumbnails on the Inside the Towns study together cost less than one full-size capture.</caption>
         <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
         <tbody>
-          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>308 KB</td></tr>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>309 KB</td></tr>
           <tr><td>Boulder County web design</td><td>4</td><td>0</td><td>none</td><td>131 KB</td></tr>
           <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>342 KB</td></tr>
           <tr><td>Inside the Towns</td><td>12</td><td>0</td><td>none</td><td>436 KB</td></tr>
           <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>642 KB</td></tr>
-          <tr><td>TownofNiwot.com</td><td>8</td><td>0</td><td>none</td><td>914 KB</td></tr>
+          <tr><td>TownofNiwot.com</td><td>8</td><td>0</td><td>none</td><td>915 KB</td></tr>
           <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>515 KB</td></tr>
-          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
+          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>133 KB</td></tr>
           <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>125 KB</td></tr>
           <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>123 KB</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture took it to 308 KB, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
+    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture took it to 309 KB, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
 
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
@@ -217,7 +217,7 @@
         <p class="foot__h">Site</p>
         <ul>
           <li><a href="../../work/">Work</a></li>
-          <li><a href="../../services/">Services &amp; pricing</a></li>
+          <li><a href="../../services/">Services</a></li>
           <li><a href="../../about/">About</a></li>
           <li><a href="../../contact/">Contact</a></li>
         </ul>

@@ -305,6 +305,10 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .tier__name{font-size:.74rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--slate-2);}
 .tier__fig{font-family:var(--serif);font-weight:700;font-size:2.3rem;letter-spacing:-.025em;margin:.7rem 0 .15rem;}
 .tier__per{font-size:.82rem;color:var(--slate-2);}
+/* No figure is posted (README: "Prices are not posted"), so the terms line
+   follows the name directly and takes the gap the figure used to leave.
+   .tier__fig above stays defined for the day the figures come back. */
+.tier__name + .tier__per{margin-top:.6rem;}
 .tier__for{margin-top:.9rem;font-size:.93rem;color:var(--slate);}
 .tier ul{margin:1.3rem 0 1.7rem;list-style:none;flex:1;}
 .tier li{font-size:.94rem;color:var(--slate);padding:.48rem 0;border-top:1px solid var(--line);}
