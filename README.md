@@ -25,12 +25,19 @@ case-studies/<slug>/                  screenshots used by that case study
 case-studies/inside-the-towns/        hub capture + seven town thumbnails
 areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
                                       unwritten; see "Service-area pages"
+tools/check.js                        PRE-FLIGHT: every file-level check in
+                                      one command — run it before a deploy
+tools/audit.js                        the browser checks: axe at three widths
+                                      and the content-security policy, per page
+tools/chrome.js                       single source for the nav and footer
+tools/contact.js                      single source for phone, email, booking
 tools/set-image-dims.py               writes real image sizes into the HTML
 tools/measure.js                      requests / bytes / scripts per page,
                                       and --table emits the markup for them
 tools/check-host.js                   proves the site names exactly one host
-tools/contact.js                      single source for phone, email, booking
 tools/optimize-images.js              screenshot → JPEG, card thumbnails
+vercel.json                           redirects for retired URLs, and the
+                                      security headers (see "Headers")
 robots.txt · sitemap.xml
 ```
 
@@ -43,8 +50,19 @@ depends on them.
   booking widget. Calendly is a plain link. `tools/measure.js` reports the
   "external" count per page; it must stay 0.
 - **No JavaScript for visitors.** The mobile menu is a `<details>` element.
-  The only `<script>` on the site is the JSON-LD structured data on the
-  home page, which is data, not code. `measure.js` counts scripts; 0.
+  The only `<script>` elements on the site are JSON-LD structured data — on
+  the home page, the Boulder County page and the four case studies — which is
+  data, not code. `measure.js` counts scripts; 0. `check.js` fails on any
+  `<script>` that is not JSON-LD.
+- **No inline styles, and a policy that enforces both.** Every rule is in
+  `assets/site.css`; no page carries a `<style>` block or a `style=""`
+  attribute (the network diagram's per-town colours are classes for exactly
+  this reason). `vercel.json` sends a content-security policy that allows the
+  site's own stylesheet, fonts and images and nothing else — no scripts from
+  anywhere, no inline styles, no frames, no form posts — so "no third-party
+  requests" is enforced by the browser, not just promised. `audit.js` serves
+  the site with that policy on and fails on a single violation. See
+  "Headers" below before changing it.
 - **Prices are posted, in full.** The three tiers and the monthly figure are
   on `/services/` under a heading that says why: "Posted, so you don't have to
   ask." This is the site's most load-bearing claim, because every other one —
@@ -74,15 +92,35 @@ depends on them.
 - **No invented proof.** No testimonials, client counts or logo walls.
   Every project carries a label saying what kind of work it was, and unpaid
   work is never dressed as a commission. Outcomes in the "At a glance" strips
-  are limited to things that can be counted.
+  are limited to things that can be counted. The "Counted, not claimed" strip
+  under the home-page hero follows the same rule: every figure links to the
+  case study that measures it, and none stands alone. "10 live sites" is the
+  seven town guides and their hub, AragoCor, and this site — if one of them
+  goes away, the number and the list on `/work/` change the same day.
+- **Fresh figures carry their date.** The Inside the Towns study quotes counts
+  from the network's repository and says which commit it read; the AragoCor
+  and Niwot studies say when the live site was last checked. When a count
+  moves (it did: 23 components became 28 in nine days), change the number
+  *and* the date, and re-read the "Result" paragraph that explains the
+  difference. Vercel Web Analytics is on every page of the towns network but
+  is not switched on in the Vercel dashboard for any of the eight projects
+  (checked September 29, 2026 — the API answers "Web Analytics not found"),
+  which is why the traffic slot on that study is still a placeholder. It is a
+  dashboard click to enable; then wait for a period worth quoting.
 - **Placeholder slots look like placeholders.** Anything the site does not
   have yet is marked with a `PLACEHOLDER` comment in the source and the dashed
   `.cs-slot` treatment on the page, so nothing unfinished can be mistaken for
   shipped work. One is left: traffic and usage on `/work/inside-the-towns/`.
   Grep for `PLACEHOLDER` before launch.
 - **Accessibility is checked, not assumed.** Every page passes axe-core at
-  WCAG 2.2 AA at 1280, 860 and 390 px. **An inline link inside a sentence
-  needs a cue that is not colour** (WCAG 1.4.1) — the footer's service-area
+  WCAG 2.2 AA at 1280, 860 and 390 px — `node tools/audit.js` is the check,
+  and it also runs at 390 px with the mobile menu open, because that is the
+  one state a visitor creates. The first run with the menu open caught a bug
+  the closed-menu runs had never seen: `.menu__panel a` out-specified
+  `.btn--go` and painted the panel's "Book a call" navy on green. It is the
+  same trap `.nav__links a:not(.btn)` guards against, and the same fix.
+
+  **An inline link inside a sentence needs a cue that is not colour** (WCAG 1.4.1) — the footer's service-area
   link inherited `.foot a{text-decoration:none}` from the link lists around
   it and put one violation on all ten pages at once. Undecorated is fine in
   a list, where every item is a link and there is nothing to tell apart;
@@ -106,10 +144,22 @@ depends on them.
 `assets/site.css` is the single source of truth for colour, type and every
 component. Pages carry no CSS of their own.
 
-The nav and footer are identical across all ten public pages except for the
-relative prefix (`./`, `../`, `../../`) and the `aria-current` link. When
-you change one, change all of them — a grep for `class="nav"` finds every
-copy.
+The nav and the footer grid are identical across every page except for the
+relative prefix (`./`, `../`, `../../`) and the `aria-current` link, and
+**`tools/chrome.js` owns them**. The two templates live in that file; it
+renders them for each page's depth and section and either checks that every
+page carries exactly that markup or rewrites it:
+
+```sh
+node tools/chrome.js            # check every page agrees; exits 1 if not
+node tools/chrome.js --write    # rewrite the nav and footer grid to match
+```
+
+To change the nav or the footer grid: **edit the template in `chrome.js`,
+run `--write`, commit.** Do not hand-edit fifteen copies. It found six
+drifted footers the first time it ran. What it does not own is the "Next
+step" heading and lede above the footer grid — those are written per page on
+purpose — and anything inside `<main>`.
 
 ## Phone, email and the booking link
 
@@ -125,6 +175,14 @@ node tools/contact.js --write    # rewrite every page to match
 To change a number, an address or the booking link: **edit `CONTACT` in that
 file, run `--write`, commit.** One edit and one command. Do not hand-edit the
 pages and hope a grep caught them all — that is the failure this replaces.
+`chrome.js` reads the same object, so the nav and footer follow it.
+
+The "Email a brief" button on `/contact/` is a `mailto:` link with a subject
+and a five-line body already filled in — no form, no backend, no third-party
+request. `contact.js` rewrites the address inside it like any other; the
+query string after the address is left alone. Keep the prompts in the body in
+step with the numbered list beside the button, which exists for mail clients
+that ignore the body.
 
 ```sh
 node tools/contact.js --check-live   # also confirms the booking link answers 200
@@ -143,6 +201,40 @@ misdescribes it.
 When the event is renamed: change that one line, `node tools/contact.js
 --write`, `node tools/contact.js --check-live`, commit. It rewrites all
 sixty-six links.
+
+## Before a deploy
+
+Two commands. The first needs nothing installed; the second needs Playwright
+and axe-core.
+
+```sh
+node tools/check.js                            # everything that can be checked from the files
+NODE_PATH=/opt/node22/lib/node_modules node tools/audit.js   # the browser checks
+```
+
+`check.js` runs the existing checks (contact details, one host, shared chrome,
+image dimensions) and then proves: every internal link and fragment resolves;
+one `h1` per page and no skipped heading level; alt text and real dimensions
+on every image; a title, description and canonical on every page, titles and
+descriptions unique across the indexable pages; every JSON-LD block parses; no
+`<script>` that is not JSON-LD and no inline style anywhere; noindex pages
+out of the sitemap and every `lastmod` a real, past date. It lists every
+`PLACEHOLDER` mark and unwritten scaffold so nothing unfinished ships
+unnoticed, and warns on titles and descriptions long enough for a search
+result to cut. Exit 1 on any failure.
+
+`audit.js` serves the repository itself with the headers from `vercel.json`
+and, for every page in the sitemap: loads it under the real content-security
+policy and fails on any violation, console error or failed request; then runs
+axe-core at WCAG 2.2 AA at 1280, 860 and 390 px, and once more at 390 with the
+mobile menu open. axe is injected over the policy (`bypassCSP`), which is the
+only way to run a script on a page that forbids them. It takes about a minute.
+
+```sh
+npm install -g playwright axe-core && npx playwright install chromium   # once
+```
+
+Both are dev-only. The site itself still has no build step and no packages.
 
 ## Open Graph images
 
@@ -250,7 +342,11 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
 1. Replace the copy. The section order is the template: badge, title and
    one-line summary → facts panel → lead image → "At a glance" outcomes →
    The situation → Constraints → What I built → Decisions and tradeoffs →
-   Result → Where it stands → next case study → CTA.
+   Result → Where it stands → "What this means for your project" → next
+   case study → CTA. The last of those is the `.cs-carry` panel: three things
+   the reader's own project would inherit from the decisions above, and one
+   link to `/services/`. It is the study's only sales copy; keep it specific
+   to that study, never a generic "hire me".
 2. Pick the badge honestly: `badge badge--client` for commissioned work the
    client has approved for publication, plain `badge` with "Own project" for
    something you publish and run yourself. If a case study is ever unpaid work
@@ -258,18 +354,26 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
    says so everywhere it appears, and carries a disclosure `.note`.
 3. Update `<title>`, `<meta name="description">`, `<link rel="canonical">`
    and the `og:` / `twitter:` tags. The OG image is the lead image, as an
-   absolute URL.
+   absolute URL. Keep the title under about 70 characters and the description
+   under about 160; `check.js` warns past that. Update the JSON-LD block in
+   the head too — the `Article` (headline, description, image, dates) and the
+   last `BreadcrumbList` item — and give `datePublished` the day the study
+   first went live.
 4. Put images in `case-studies/<slug>/`. Add the lead image to
    `tools/optimize-images.js` to get a `-thumb.jpg` for the cards, run it,
    then `python3 tools/set-image-dims.py --write`. Add `loading="lazy"` to
    everything below the lead image by hand.
 5. Add a card to `work/index.html` (a 2×2 grid, `work-grid--2`) and, if it
    belongs among the three on the home page, to the "Selected work" grid on
-   `index.html`.
+   `index.html`. If the site is live, add its domain to the "All of it is
+   live" list under the grid on `/work/` and correct the count in that
+   paragraph and in the "10 live sites" figure on the home page.
 6. Add a `<url>` entry to `sitemap.xml`. Its `<loc>` must match the page's
    own `<link rel="canonical">` character for character.
 7. Re-run `tools/measure.js` and update the table on `/work/lernerworks/`
    if the home page weight changed.
+8. `node tools/chrome.js` (the copied page already carries the chrome, so
+   this only confirms it), then `node tools/check.js` and `node tools/audit.js`.
 
 No page-specific CSS should be needed; the `.cs-*` classes cover it. The one
 exception is `.cs-compare`, the side-by-side before/after pair, which was
@@ -294,8 +398,9 @@ Merging to `main` is the deploy; there is no build step, so Vercel serves the
 files as they are in the repo. `www.lernerworks.com` is the canonical host and
 the apex redirects to it.
 
-The Vercel project itself is configured on Vercel, not in this repo. The only
-thing here is `vercel.json`, and it holds nothing but redirects:
+The Vercel project itself is configured on Vercel, not in this repo. What is
+here is `vercel.json`, which holds the redirects for retired URLs and the
+response headers (next section). The redirects:
 
 ```
 /work/hm-mechanical, /work/hm-mechanical/ and below  → /work/  (308)
@@ -315,6 +420,44 @@ trailing-slash form is the one that was in the sitemap, so it was the only one
 that actually mattered. List the trailing-slash path explicitly as its own
 source. After changing this file, check both forms on the live site rather
 than assuming.
+
+### Headers
+
+Every response carries five headers, set in `vercel.json` under
+`"source": "/(.*)"`:
+
+```
+Content-Security-Policy: default-src 'none'; style-src 'self'; font-src 'self';
+                         img-src 'self' data:; form-action 'none';
+                         frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+X-Content-Type-Options:  nosniff
+X-Frame-Options:         DENY
+Referrer-Policy:         strict-origin-when-cross-origin
+Permissions-Policy:      camera=(), microphone=(), geolocation=(), payment=(), usb=(), …
+```
+
+The policy is the site's constraints written as a rule the browser enforces:
+no scripts from anywhere (there are none; JSON-LD blocks are data and are not
+subject to `script-src`), no inline styles (there are none — see the
+principle above), fonts, styles and images only from this host, plus `data:`
+for the SVG favicon. `form-action 'none'` because there is no form; `mailto:`
+links are not forms. It is not `'unsafe-inline'` anywhere, and it should not
+become so: the day a page needs a `style=""` attribute, the answer is a class
+in `site.css`, and `check.js` fails the build until it is one.
+
+**Test it before you ship a change to it.** `node tools/audit.js` reads the
+headers from `vercel.json`, serves the site with them, and fails on a single
+`securitypolicyviolation`, so a policy that would blank the site cannot get
+to `main` unnoticed. It also checks that the stylesheet actually applied,
+because a page that fell back to browser defaults would still "load". HSTS
+is deliberately not set here: Vercel manages TLS for the domain, and a wrong
+`max-age` on a header the browser caches for a year is the one kind of
+mistake a deploy cannot take back. Look at the live response headers before
+adding one, so it is added rather than duplicated.
+
+The dev-only `assets/og/card.html` carries an inline script for rendering the
+link-preview cards. It is `noindex`, it is opened from a local server without
+these headers, and the live host would refuse it — which is correct.
 
 **The canonical host is `www.lernerworks.com`.** Every `canonical`, `og:url`,
 `og:image`, `twitter:image`, every `<loc>` in `sitemap.xml` and the `Sitemap:`
@@ -359,6 +502,9 @@ thin ones is not.
 - [x] Screenshots of this site on `/work/lernerworks/` re-taken against the
       current site (`node tools/measure.js --shots`). Re-take them whenever a
       page they show changes, or the case study argues from a stale picture.
+      (`--shots` scrolls back to the top instantly before capturing; the site's
+      smooth scrolling once handed it a hero-less home page mid-animation.)
+- [x] `node tools/check.js` and `node tools/audit.js` both pass.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
 - [ ] Rename the Calendly event to 20 minutes, then flip `CONTACT.booking` in
       `tools/contact.js` to `/20min` and run `--write`. Twelve CTAs already
@@ -369,6 +515,9 @@ thin ones is not.
       from a local build. See `case-studies/inside-the-towns/README.md`.
 - [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
 - [ ] Fill the Inside the Towns traffic figures — the last `PLACEHOLDER`.
-      Needs a real reporting period; do not estimate.
+      Needs a real reporting period; do not estimate. First enable Web
+      Analytics on the eight `inside*` projects in the Vercel dashboard — the
+      script is already on every page, but the dashboard side is off, so
+      there is nothing to read yet.
 - [ ] Run PageSpeed on https://www.lernerworks.com/ after this deploys and, if
       you quote it anywhere, quote it with the date.

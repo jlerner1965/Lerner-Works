@@ -112,4 +112,7 @@ if (WRITE) { console.error('\n  rewritten — re-run without --write to confirm'
 console.error('\n  run: node tools/contact.js --write');
 process.exit(1);
 };
-main();
+// tools/chrome.js reads CONTACT to render the nav and footer; only run the
+// check when this file is the one being executed.
+module.exports = { CONTACT };
+if (require.main === module) main();

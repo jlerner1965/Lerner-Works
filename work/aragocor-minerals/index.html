@@ -33,6 +33,38 @@
 <!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
      component on the site. Pages carry no CSS of their own. -->
 <link rel="stylesheet" href="../../assets/site.css" />
+
+<!-- Structured data for the case study. Data, not code: it runs nothing, and
+     the content-security policy would refuse it if it tried. Every value here
+     is on the page a reader can see. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.lernerworks.com/work/aragocor-minerals/#article",
+      "headline": "AragoCor Minerals — website and AI sourcing tool",
+      "description": "Case study: a marketing site for a Bahamian aragonite supplier serving five technical markets, plus the AI catalog, freight calculator and quote-request tool behind it.",
+      "url": "https://www.lernerworks.com/work/aragocor-minerals/",
+      "mainEntityOfPage": "https://www.lernerworks.com/work/aragocor-minerals/",
+      "image": "https://www.lernerworks.com/case-studies/aragocor/01-home-hero.jpg",
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-09-29",
+      "author": {"@type": "Person", "name": "James Lerner", "url": "https://www.lernerworks.com/about/"},
+      "publisher": {"@type": "ProfessionalService", "@id": "https://www.lernerworks.com/#business", "name": "Lerner Works", "url": "https://www.lernerworks.com/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Lerner Works", "item": "https://www.lernerworks.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://www.lernerworks.com/work/"},
+        {"@type": "ListItem", "position": 3, "name": "AragoCor Minerals", "item": "https://www.lernerworks.com/work/aragocor-minerals/"}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -82,7 +114,7 @@
           <div><dt>Sector</dt><dd>Industrial minerals, business-to-business</dd></div>
           <div><dt>Scope</dt><dd>Website design and build, technical copy, AI catalog, freight calculator and quote-request tool</dd></div>
           <div><dt>Year</dt><dd>2026</dd></div>
-          <div><dt>Status</dt><dd>Site live at <a href="https://aragocorminerals.com" rel="noopener">aragocorminerals.com</a>; sourcing tool in staged rollout</dd></div>
+          <div><dt>Status</dt><dd>Site live at <a href="https://aragocorminerals.com" rel="noopener">aragocorminerals.com</a>; sourcing tool in staged rollout on its own URL. Checked September 29, 2026.</dd></div>
         </dl>
       </div>
     </div>
@@ -245,9 +277,35 @@
       <figcaption>Both answer paths end in the same place. Sales opens an RFQ that already carries what the buyer asked and what the calculator returned, so the first human reply can be a quote.</figcaption>
     </figure>
 
+    <!-- 8b · Result: only what can be counted on the live site. The
+         client's enquiry and conversion figures are theirs and stay off
+         this page; say so rather than hint at them. -->
+    <h2>Result</h2>
+    <p>What can be counted on the live site, checked on September 29, 2026. Enquiries and conversions are tracked — the site was instrumented from launch — but those are the client's figures, and they are not published here.</p>
+
+    <dl class="cs-metrics">
+      <div><dt>Markets sold into in bulk</dt><dd>5, from one product line</dd></div>
+      <div><dt>Application areas listed</dt><dd>11</dd></div>
+      <div><dt>Product grades</dt><dd>4, each with its particle sizing</dd></div>
+      <div><dt>Primary action</dt><dd>1 — "Request bulk pricing", in the header of every page</dd></div>
+      <div><dt>Sourcing tool</dt><dd>Catalog search, freight calculator, RFQ capture</dd></div>
+      <div><dt>Answer paths</dt><dd>2 — a live model, an offline engine behind it</dd></div>
+    </dl>
+
     <!-- 9 · Where it stands -->
     <h2>Where it stands</h2>
-    <p>The site is live at aragocorminerals.com, instrumented from launch with privacy-friendly analytics and conversion events on the quote path — so the question of what's working is answered with data rather than opinion. The sourcing tool is running on its own URL in staged rollout, with freight logic being validated against real inquiries ahead of embedding it on the main site.</p>
+    <p>The site is live at aragocorminerals.com, instrumented from launch with privacy-friendly analytics and conversion events on the quote path — so the question of what's working is answered with data rather than opinion. The sourcing tool is running on its own URL in staged rollout, with freight logic being validated against real inquiries ahead of embedding it on the main site; as of September 29, 2026 the main site carries no widget, which is the standalone-first decision above holding rather than slipping.</p>
+
+    <div class="cs-carry">
+      <h2>What this means for your project</h2>
+      <p>Most local businesses are not selling one mineral into five industries. The problem underneath is common, though: one business, several kinds of customer, and a site that has to be specific to each of them without becoming five sites.</p>
+      <ul>
+        <li><strong>One page per kind of customer</strong>, each written in that customer's own terms, so a visitor lands somewhere that already sounds like their problem.</li>
+        <li><strong>The numbers in the copy.</strong> Prices, sizes, lead times, the towns you serve. The specifics that make a skeptical reader trust a page are the ones most sites leave out.</li>
+        <li><strong>One action, everywhere.</strong> Whatever your equivalent of "Request bulk pricing" is, it sits in the header of every page and nothing else competes with it.</li>
+      </ul>
+      <a class="btn btn--go" href="../../services/">See what a build includes</a>
+    </div>
 
   </div>
 </article>
