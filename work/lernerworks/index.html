@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://www.lernerworks.com/case-studies/lernerworks/01-home.png" />
 <meta property="og:image:width" content="1600" />
 <meta property="og:image:height" content="1000" />
-<meta property="og:image:alt" content="The Lerner Works homepage: headline, the terms of working together, and three case studies" />
+<meta property="og:image:alt" content="The Lerner Works homepage: headline, the terms of working together, and the strip of counted figures under them" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="lernerworks.com — how this site is built, and why | Lerner Works" />
 <meta name="twitter:description" content="Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository." />
@@ -33,6 +33,38 @@
 <!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
      component on the site. Pages carry no CSS of their own. -->
 <link rel="stylesheet" href="../../assets/site.css" />
+
+<!-- Structured data for the case study. Data, not code: it runs nothing, and
+     the content-security policy would refuse it if it tried. Every value here
+     is on the page a reader can see. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.lernerworks.com/work/lernerworks/#article",
+      "headline": "lernerworks.com — how this site is built, and why",
+      "description": "Case study: the Lerner Works site itself. Hand-written HTML, self-hosted fonts, no JavaScript, no third-party requests, and every number on the page measured with tooling kept in the repository.",
+      "url": "https://www.lernerworks.com/work/lernerworks/",
+      "mainEntityOfPage": "https://www.lernerworks.com/work/lernerworks/",
+      "image": "https://www.lernerworks.com/case-studies/lernerworks/01-home.png",
+      "datePublished": "2026-09-11",
+      "dateModified": "2026-09-29",
+      "author": {"@type": "Person", "name": "James Lerner", "url": "https://www.lernerworks.com/about/"},
+      "publisher": {"@type": "ProfessionalService", "@id": "https://www.lernerworks.com/#business", "name": "Lerner Works", "url": "https://www.lernerworks.com/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Lerner Works", "item": "https://www.lernerworks.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://www.lernerworks.com/work/"},
+        {"@type": "ListItem", "position": 3, "name": "lernerworks.com", "item": "https://www.lernerworks.com/work/lernerworks/"}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -80,7 +112,7 @@
         <dl class="cs-facts" aria-label="Project facts">
           <div><dt>Client</dt><dd>Lerner Works, my own practice</dd></div>
           <div><dt>Sector</dt><dd>Professional services, local</dd></div>
-          <div><dt>Scope</dt><dd>Positioning, structure, copy, design, build, link previews, search groundwork, performance</dd></div>
+          <div><dt>Scope</dt><dd>Positioning, structure, copy, design, build, link previews, search groundwork, performance, security headers, the tooling that checks all of it</dd></div>
           <div><dt>Year</dt><dd>2026, rebuilt September 2026</dd></div>
           <div><dt>Status</dt><dd>Live. Re-measured after every change.</dd></div>
         </dl>
@@ -92,7 +124,7 @@
     <div class="wrap">
       <img src="../../case-studies/lernerworks/01-home.png"
            width="1600" height="1000" fetchpriority="high" decoding="async"
-           alt="The Lerner Works homepage at desktop width: headline, the terms of working together, and the start of the case studies" />
+           alt="The Lerner Works homepage at desktop width: headline, the terms of working together, and the strip of counted figures under them" />
     </div>
   </div>
 
@@ -103,7 +135,7 @@
         <div><dt>requests to any third party, on any page: no analytics, no font CDN, no widgets</dt><dd>0</dd></div>
         <div><dt>lines of JavaScript run in the visitor's browser, including the mobile menu</dt><dd>0</dd></div>
         <div><dt>to load the home page in full, images included</dt><dd>7 requests</dd></div>
-        <div><dt>for the whole home page, of which 172 KB is the three case-study thumbnails</dt><dd>308 KB</dd></div>
+        <div><dt>for the whole home page, of which 172 KB is the three case-study thumbnails</dt><dd>314 KB</dd></div>
       </dl>
     </div>
   </div>
@@ -144,7 +176,11 @@
 
     <p><strong>Images that reserve their own space.</strong> Every image carries its real pixel dimensions, written by a small script that reads the files rather than trusting what was typed. That is what stops the page jumping as pictures arrive. Screenshots are re-encoded with the bundled browser rather than an image suite, and the cards use 800-pixel thumbnails instead of the full lead image.</p>
 
-    <p><strong>The groundwork search engines look for.</strong> One <code>h1</code> per page and no skipped heading levels. Canonical URLs, a sitemap that matches them character for character, and structured data describing the business. Link-preview cards for social platforms are generated from the site's own type and colour, so a shared link looks like the page it points to.</p>
+    <p><strong>The groundwork search engines look for.</strong> One <code>h1</code> per page and no skipped heading levels. Canonical URLs, a sitemap that matches them character for character, and structured data describing the business and each case study. Link-preview cards for social platforms are generated from the site's own type and colour, so a shared link looks like the page it points to.</p>
+
+    <p><strong>A security policy that allows almost nothing.</strong> Every response carries a content-security policy that permits the site's own stylesheet, fonts and images and nothing else: no scripts from anywhere, no inline styles, no frames, no form posts. It is the "no third-party requests" claim enforced by the browser rather than promised by the page, and it is tested the same way, by serving the site with the policy on and checking every page for a single violation.</p>
+
+    <p><strong>Checks that run before every deploy.</strong> The nav and footer on every page are rendered from one source by a script that either confirms every copy matches or rewrites it; the phone number, email and booking link are kept the same way. A second script checks every internal link and fragment, every heading level, every image's alt text and dimensions, every title and description for presence and uniqueness, and the sitemap against the pages. A third loads every page in a browser under the real security headers and runs an accessibility audit at three widths, with the mobile menu open and closed. All three live in the repository next to the pages they check.</p>
 
     <h2>Decisions and tradeoffs</h2>
 
@@ -165,29 +201,42 @@
 
     <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
-        <caption>Updated from the repository measurements on September 21, 2026, using the same request and byte-count rules as <code>tools/measure.js</code>, which now scrolls each page before recording so the lazy-loaded screenshots below the fold are counted rather than missed. Fonts are 76 KB on every page and cached after the first; the stylesheet is 38 KB and likewise cached. Images account for the rest of the difference — the TownofNiwot study is the heaviest because it carries four full-size captures; the AragoCor study follows with three taken as whole sections rather than viewport slices, the applications grid alone being 1,306 px tall; and the seven 480 px town thumbnails on the Inside the Towns study together cost less than one full-size capture.</caption>
+        <caption>Regenerated in one run of <code>tools/measure.js</code> on September 29, 2026. The script scrolls each page before recording, so the lazy-loaded screenshots below the fold are counted rather than missed. Fonts are 76 KB on every page and cached after the first; the stylesheet is 43 KB and likewise cached. Images account for the rest of the difference — the TownofNiwot study is the heaviest because it carries four full-size captures; the AragoCor study follows with three taken as whole sections rather than viewport slices, the applications grid alone being 1,306 px tall; and the seven 480 px town thumbnails on the Inside the Towns study together cost less than one full-size capture.</caption>
         <thead><tr><th scope="col">Page</th><th scope="col">Requests</th><th scope="col">External</th><th scope="col">JavaScript</th><th scope="col">Total</th></tr></thead>
         <tbody>
-          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>308 KB</td></tr>
-          <tr><td>Boulder County web design</td><td>4</td><td>0</td><td>none</td><td>131 KB</td></tr>
-          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>342 KB</td></tr>
-          <tr><td>Inside the Towns</td><td>12</td><td>0</td><td>none</td><td>436 KB</td></tr>
-          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>642 KB</td></tr>
-          <tr><td>TownofNiwot.com</td><td>8</td><td>0</td><td>none</td><td>914 KB</td></tr>
-          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>515 KB</td></tr>
-          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>132 KB</td></tr>
-          <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>125 KB</td></tr>
-          <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>123 KB</td></tr>
+          <tr><td>Home</td><td>7</td><td>0</td><td>none</td><td>314 KB</td></tr>
+          <tr><td>Boulder County web design</td><td>4</td><td>0</td><td>none</td><td>136 KB</td></tr>
+          <tr><td>Work</td><td>8</td><td>0</td><td>none</td><td>348 KB</td></tr>
+          <tr><td>Inside the Towns</td><td>12</td><td>0</td><td>none</td><td>445 KB</td></tr>
+          <tr><td>AragoCor Minerals</td><td>7</td><td>0</td><td>none</td><td>651 KB</td></tr>
+          <tr><td>TownofNiwot.com</td><td>8</td><td>0</td><td>none</td><td>922 KB</td></tr>
+          <tr><td>This page</td><td>7</td><td>0</td><td>none</td><td>528 KB</td></tr>
+          <tr><td>Services</td><td>4</td><td>0</td><td>none</td><td>137 KB</td></tr>
+          <tr><td>About</td><td>4</td><td>0</td><td>none</td><td>129 KB</td></tr>
+          <tr><td>Contact</td><td>4</td><td>0</td><td>none</td><td>130 KB</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture took it to 308 KB, with no change to what a reader sees. The same two moves are why the heaviest pages on the site are now case studies carrying screenshots as evidence, rather than the home page or this one.</p>
+    <p>Before the rebuild, the home page was 803 KB, almost all of it screenshots saved as PNG. Re-encoding them as JPEG and using an 800 px thumbnail on the cards rather than the full-size capture took it to 308 KB, with no change to what a reader sees; it is 314 KB now, the difference being the strip of counted figures under the hero and the stylesheet that draws it. The same two moves are why the heaviest pages on the site are case studies carrying screenshots as evidence, rather than the home page.</p>
 
     <p>What is not measured here: PageSpeed scores, because they need a public URL and a moment in time, and real-visitor timings, because there is no analytics. When I quote a PageSpeed figure elsewhere on this site, it is from a dated screenshot.</p>
 
+    <p>What is checked rather than measured: every page passes axe-core at WCAG 2.2 AA at 1,280, 860 and 390 pixels, and loads under the content-security policy above without a single violation. Both are one command, <code>tools/audit.js</code>, run before every deploy.</p>
+
     <h2>Where it stands</h2>
-    <p>Live, and re-measured after every change with the same script, so the table above can be regenerated rather than trusted. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site. The case studies carrying full-size captures have since taken that place — TownofNiwot with four, AragoCor with three — and in AragoCor’s case deliberately: its screenshots were viewport slices that cut through a card row, and capturing each section whole costs bytes that a sliced picture was only pretending to save. Regenerating it this time caught a third: the script was reading the pages without scrolling them, so every screenshot marked <code>loading="lazy"</code> went uncounted and four rows quietly understated themselves. Nothing in the markup had changed; the pages had simply grown tall enough for the browser to stop fetching below the fold. The script now walks each page to the bottom and waits for the images before it records.</p>
+    <p>Live, re-measured after every change with the same script, and now checked before every deploy by the three scripts above, so the table can be regenerated rather than trusted and a broken link cannot ship. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site. The case studies carrying full-size captures have since taken that place — TownofNiwot with four, AragoCor with three — and in AragoCor’s case deliberately: its screenshots were viewport slices that cut through a card row, and capturing each section whole costs bytes that a sliced picture was only pretending to save. Regenerating it this time caught a third: the script was reading the pages without scrolling them, so every screenshot marked <code>loading="lazy"</code> went uncounted and four rows quietly understated themselves. Nothing in the markup had changed; the pages had simply grown tall enough for the browser to stop fetching below the fold. The script now walks each page to the bottom and waits for the images before it records. And this time a fourth: the site's own smooth scrolling animated the walk back to the top, and the screenshot beat it, so the capture of the home page started at the second section with no hero in it. The script now scrolls back instantly, and the picture above is the one a visitor sees.</p>
+
+    <div class="cs-carry">
+      <h2>What this means for your project</h2>
+      <p>This is the site I would build for you, under the same rules: it says what it does in the first line, it loads fast on a weak signal, and every claim on it can be checked.</p>
+      <ul>
+        <li><strong>Fast because it is plain.</strong> Hand-written pages, self-hosted fonts, no framework and no scripts, so a whole page is a handful of requests and loads on a cracked phone at the back of a job site.</li>
+        <li><strong>Yours, in full.</strong> Files a text editor can open, hosted anywhere for next to nothing, with no platform between you and your own site.</li>
+        <li><strong>Measured, not admired.</strong> The tooling that produced the table above ships with the site, and it would ship with yours, so what "fast" means is a number rather than an adjective.</li>
+      </ul>
+      <a class="btn btn--go" href="../../services/">See what a build includes</a>
+    </div>
 
   </div>
 </article>

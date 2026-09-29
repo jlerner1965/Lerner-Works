@@ -56,6 +56,13 @@ const kb = (bytes) => Math.round(bytes / 1024);
       reqs.push({ url: req.url(), type: req.resourceType(), status: r.status(), size });
     });
     await page.goto(BASE + p, { waitUntil: 'networkidle' });
+    // Switch the site's smooth scrolling off on the dev browser's copy of the
+    // page before touching the scroll position at all. Every scrollTo below
+    // is otherwise an animation, and the animations queue: --shots once
+    // captured the home page with no hero in it, and a trace showed scrollY
+    // still moving 1.3 s after an "instant" scrollTo(0, 0) had been issued.
+    // Nothing here ships.
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
     // Walk the whole page before recording. Everything below the lead image
     // carries loading="lazy", and set-image-dims.py writes real heights in, so
     // a browser parked at the top never comes near them — which would make
@@ -76,6 +83,8 @@ const kb = (bytes) => Math.round(bytes / 1024);
     await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 30000 });
     await page.waitForLoadState('networkidle');
     await page.evaluate(() => window.scrollTo(0, 0));
+    // And prove it, rather than assume it: the screenshot is only right at 0.
+    await page.waitForFunction(() => window.scrollY === 0, null, { timeout: 5000 });
     await page.evaluate(() => document.fonts.ready);
     const scripts = await page.evaluate(() => document.querySelectorAll('script:not([type="application/ld+json"])').length);
     const external = reqs.filter(r => !r.url.startsWith(BASE));

@@ -1,8 +1,9 @@
 /* ─────────────────────────────────────────────────────────────
    Lerner Works — shared foundation
    Tokens, base type, nav, buttons, footer, and the reusable
-   case-study template. Page-specific CSS stays inline in the
-   page that needs it, in a <style> AFTER this file loads.
+   case-study template. Every rule on the site is in this one
+   file: pages carry no <style> block and no style attribute,
+   and the content-security policy in vercel.json refuses both.
    ───────────────────────────────────────────────────────────── */
 
 /* ── webfonts, self-hosted ───────────────────────────
@@ -159,9 +160,12 @@ strong{font-weight:600;}
 .menu__panel{position:absolute;right:0;top:calc(100% + .6rem);min-width:230px;background:var(--white);
   border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-up);padding:.5rem;
   display:flex;flex-direction:column;}
-.menu__panel a{display:block;padding:.7rem .85rem;border-radius:var(--r);text-decoration:none;
+/* :not(.btn) here too — the same trap as .nav__links: two classes out-specify
+   .btn--go and paint the panel's "Book a call" navy-on-green, which axe only
+   sees with the menu open. tools/audit.js opens it. */
+.menu__panel a:not(.btn){display:block;padding:.7rem .85rem;border-radius:var(--r);text-decoration:none;
   font-size:.96rem;font-weight:500;color:var(--navy);}
-.menu__panel a:hover{background:var(--paper);}
+.menu__panel a:not(.btn):hover{background:var(--paper);}
 .menu__panel a[aria-current="page"]{font-weight:600;color:var(--ever);}
 .menu__panel .btn{margin:.4rem .35rem .2rem;text-align:center;}
 .menu__panel hr{border:0;border-top:1px solid var(--line);margin:.4rem .35rem;}
@@ -636,3 +640,75 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-slot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;
   background:var(--white);border:1px solid var(--line);border-radius:4px;
   padding:.1em .4em;color:var(--navy);}
+
+/* ═══════════════════════════════════════════════════
+   PROOF STRIP — home page
+   Four figures under the hero, each one counted on a
+   page the reader can go to. The link in every label
+   is the page that measures it, so the number never
+   stands alone. The link is underlined because colour
+   is not a cue on its own inside a sentence (WCAG 1.4.1).
+   ═══════════════════════════════════════════════════ */
+.proof{background:var(--paper);border-bottom:1px solid var(--line);padding-block:clamp(1.8rem,4vw,2.6rem);}
+.proof .eyebrow{margin-bottom:.2rem;}
+.proof .stats{margin-top:1.1rem;}
+.stat{display:flex;flex-direction:column;}
+.stat dd{order:-1;}
+.stat dt a{color:var(--ever);font-weight:600;text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px;}
+.stat dt a:hover{color:var(--ever-dark);}
+@media (max-width:520px){.stats{grid-template-columns:1fr;}}
+
+/* ── live-site list (work index) ─────────────────── */
+.live{margin-top:clamp(2.2rem,5vw,3.2rem);padding-top:1.6rem;border-top:1px solid var(--line);}
+.live__h{font-size:.74rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-2);margin-bottom:.4rem;}
+.live__lede{color:var(--slate);max-width:var(--measure);}
+.live ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+/* A list of links reads as one: no underline needed here, same as the footer lists. */
+.live li a{display:inline-block;font-size:.88rem;font-weight:500;color:var(--navy);text-decoration:none;
+  padding:.42rem .85rem;border:1px solid var(--line-2);border-radius:999px;background:var(--white);}
+.live li a:hover{border-color:var(--ever);color:var(--ever);}
+.live li span{display:inline-block;font-size:.88rem;font-weight:500;color:var(--slate-2);
+  padding:.42rem .85rem;border:1px dashed var(--line-2);border-radius:999px;}
+
+/* Page-level spacing variants, so no page needs a style attribute. The
+   content-security policy allows no inline styles at all (see vercel.json). */
+.work-grid--page{margin-top:0;padding-block:clamp(2.6rem,6vw,4.2rem) 0;}
+.ways--page{margin-top:0;}
+
+/* ── what carries over (case studies) ────────────────
+   The last block in every study: what the reader's own
+   project would inherit from the decisions above, and
+   the one link that follows. It is the study's only
+   sales copy, and it stays specific to that study. */
+.cs-carry{margin-top:clamp(2.6rem,6vw,3.6rem);max-width:56rem;background:var(--ever-soft);border:1px solid #CBE0D6;
+  border-left:4px solid var(--ever);border-radius:var(--r-lg);padding:clamp(1.5rem,4vw,2.2rem);}
+.cs-body .cs-carry h2{margin-top:0;font-size:clamp(1.35rem,1.15rem + 1vw,1.75rem);}
+.cs-body .cs-carry p{color:#2E4A3E;max-width:var(--measure);}
+.cs-body .cs-carry ul{margin-top:1rem;padding-left:1.2rem;color:#2E4A3E;max-width:var(--measure);}
+.cs-body .cs-carry li{font-size:1rem;}
+.cs-body .cs-carry li + li{margin-top:.6rem;}
+.cs-body .cs-carry strong{color:var(--navy);}
+.cs-body .cs-carry .btn{margin-top:1.4rem;}
+
+/* ── the written brief (contact) ─────────────────── */
+.brief{list-style:none;counter-reset:brief;}
+.brief li{counter-increment:brief;padding-block:.65rem;border-top:1px solid var(--line);font-size:.95rem;color:var(--navy);
+  display:grid;grid-template-columns:1.7rem 1fr;gap:.5rem;}
+.brief li::before{content:counter(brief,decimal-leading-zero);font-size:.78rem;font-weight:600;color:var(--ever);padding-top:.15rem;}
+.brief li small{display:block;color:var(--slate-2);font-size:.84rem;margin-top:.1rem;}
+
+/* ── town palettes for the network diagram ───────────
+   Each card's three colours as a class rather than a
+   style attribute, so the content-security policy can
+   refuse inline styles outright. The values are the
+   ones in each town's config file in the network repo;
+   when a town's colours change, change them here too. */
+.cs-net__hub{--t:#2C74CC;--td:#1B4A86;--tp:#F4F3EF;}
+.cs-net__card--niwot{--t:#108452;--td:#0C5B39;--tp:#F5F2EA;}
+.cs-net__card--lyons{--t:#CE4A2C;--td:#8A2D19;--tp:#F5EDE0;}
+.cs-net__card--berthoud{--t:#1587B4;--td:#0D5170;--tp:#F6F3EC;}
+.cs-net__card--erie{--t:#6257C0;--td:#3B3480;--tp:#F3F1EC;}
+.cs-net__card--johnstown{--t:#BE3762;--td:#7B1F3C;--tp:#F5F1EE;}
+.cs-net__card--timnath{--t:#A67A14;--td:#6C4F0C;--tp:#F7F4EC;}
+.cs-net__card--elizabeth{--t:#B26E2A;--td:#78491A;--tp:#FAF7F2;}
+.brief a{color:var(--navy);text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px;}
