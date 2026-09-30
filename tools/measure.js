@@ -120,13 +120,15 @@ const kb = (bytes) => Math.round(bytes / 1024);
 
   console.log('\n─── paste into the "At a glance" strip on /work/lernerworks/ ───\n');
   console.log(`        <div><dt>to load the home page in full, images included</dt><dd>${home.requests} requests</dd></div>`);
-  console.log(`        <div><dt>for the whole home page, of which ${kb(homeImages)} KB is the three case-study thumbnails</dt><dd>${kb(home.bytes)} KB</dd></div>`);
+  console.log(`        <div><dt>for the whole home page, of which ${kb(homeImages)} KB is images: the three case-study thumbnails and my photo</dt><dd>${kb(home.bytes)} KB</dd></div>`);
 
   console.log('\n─── paste into the results table ───\n');
   for (const r of rows) {
     const label = LABELS[r.page] || r.page;
     console.log(`          <tr><td>${label}</td><td>${r.requests}</td><td>${r.external}</td><td>${r.scripts ? r.scripts : 'none'}</td><td>${kb(r.bytes)} KB</td></tr>`);
   }
+  console.log(`\n─── paste into the "Counted, not claimed" strip on the home page ───\n`);
+  console.log(`      <div class="stat"><dt>for this whole homepage, lighter than one photo from your phone. <a href="./work/lernerworks/">How it's measured</a></dt><dd>${kb(home.bytes)} KB</dd></div>`);
   console.log(`\n─── and the caption date ───\n\n  Regenerated in one run of tools/measure.js on ${today}.`);
   console.log(`\n  fonts ${kb(rows[0].byType.font || 0)} KB · stylesheet ${kb(rows[0].byType.stylesheet || 0)} KB · home exactly ${home.bytes} B = ${(home.bytes / 1024).toFixed(2)} KB`);
 })();
