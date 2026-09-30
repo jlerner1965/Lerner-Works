@@ -22,6 +22,7 @@
 <meta name="twitter:image" content="https://www.lernerworks.com/assets/og/work.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 
 <!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
      connection to set up and no CSS-then-font request chain. These two
@@ -78,27 +79,6 @@
   <div class="wrap">
     <div class="work-grid work-grid--2 work-grid--page">
 
-      <a class="wcard" href="./inside-the-towns/">
-        <div class="wcard__img"><img src="../case-studies/inside-the-towns/01-hub-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Inside the Towns hub: independent guides to the small towns worth knowing, with seven guides live" /></div>
-        <div class="wcard__body">
-          <p class="wcard__tag">Own project · Network of community guides · 2026</p>
-          <h2>Inside the Towns</h2>
-          <p>Seven independent guides to Colorado Front Range towns and the hub above them, built from one Astro codebase. Each site carries its own colour, photography and local research; none of them is special-cased in any component.</p>
-          <p class="wcard__out"><strong>1 codebase, 8 sites</strong><span>Read the case study →</span></p>
-        </div>
-      </a>
-
-      <a class="wcard" href="./townofniwot/">
-        <div class="wcard__img"><img src="../case-studies/townofniwot/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The TownofNiwot.com homepage with the NIWOT wordmark and a photograph of Second Avenue" /></div>
-        <div class="wcard__body">
-          <p class="wcard__tag">Own project · Community guide · 2026 · Now redirects to Inside Niwot</p>
-          <h2>TownofNiwot.com</h2>
-          <p>A nine-page independent guide for a place with no town hall: a directory where every row is sourced and dated, a calendar with no scraper, and neutral voter information for the November 2026 incorporation election, held to a stricter standard than the rest. The single-town guide that Inside the Towns grew out of; it now redirects to Inside Niwot.</p>
-          <p class="wcard__out"><strong>63 dated listings, 78 tests</strong><span>Read the case study →</span></p>
-        </div>
-      </a>
-
-
       <a class="wcard" href="./aragocor-minerals/">
         <div class="wcard__img"><img src="../case-studies/aragocor/01-home-hero-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" /></div>
         <div class="wcard__body">
@@ -109,6 +89,16 @@
         </div>
       </a>
 
+      <a class="wcard" href="./inside-the-towns/">
+        <div class="wcard__img"><img src="../case-studies/inside-the-towns/01-hub-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Inside the Towns hub: independent guides to the small towns worth knowing, with seven guides live" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Own project · Network of community guides · 2026</p>
+          <h2>Inside the Towns</h2>
+          <p>Seven independent guides to Colorado Front Range towns and the hub above them, built from one Astro codebase. Each site carries its own color, photography and local research; none of them is special-cased in any component.</p>
+          <p class="wcard__out"><strong>1 codebase, 8 sites</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
       <a class="wcard" href="./lernerworks/">
         <div class="wcard__img"><img src="../case-studies/lernerworks/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Lerner Works homepage" /></div>
         <div class="wcard__body">
@@ -116,6 +106,16 @@
           <h2>lernerworks.com</h2>
           <p>The site you're reading, built the way I'd build yours: hand-written pages, self-hosted fonts, no JavaScript, no third-party requests. Every claim on the page is measured.</p>
           <p class="wcard__out"><strong>0 third-party requests</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./townofniwot/">
+        <div class="wcard__img"><img src="../case-studies/townofniwot/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The TownofNiwot.com homepage with the NIWOT wordmark and a photograph of Second Avenue" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Own project · Community guide · 2026 · Now redirects to Inside Niwot</p>
+          <h2>TownofNiwot.com</h2>
+          <p>A nine-page independent guide for a place with no town hall: a directory where every row is sourced and dated, a calendar with no scraper, and neutral voter information for the November 2026 incorporation election, held to a stricter standard than the rest. The single-town guide that Inside the Towns grew out of; it now redirects to Inside Niwot.</p>
+          <p class="wcard__out"><strong>63 dated listings, 78 tests</strong><span>Read the case study →</span></p>
         </div>
       </a>
 
@@ -158,8 +158,8 @@
         </ul>
         <p>You'll notice there are no testimonials on this site. I'd rather show you the work and the reasoning than a quote I chose myself. If you want to speak to someone I've worked with, ask me on the call and I'll make the introduction.</p>
       </div>
-      <aside class="aside" aria-label="How work is labelled">
-        <p class="aside__h">How work is labelled</p>
+      <aside class="aside" aria-label="How work is labeled">
+        <p class="aside__h">How work is labeled</p>
         <ul>
           <li><span class="badge badge--client">Client project</span><small>Commissioned and paid for. The client has seen and approved what's published.</small></li>
           <li><span class="badge">Own project</span><small>A site I publish and run myself. Live, in public, and mine to answer for; not commissioned by anyone.</small></li>

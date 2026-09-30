@@ -24,6 +24,7 @@
 <meta name="twitter:image" content="https://www.lernerworks.com/case-studies/inside-the-towns/01-hub.jpg" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
 
 <!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
      connection to set up and no CSS-then-font request chain. These two
@@ -52,7 +53,7 @@
       "mainEntityOfPage": "https://www.lernerworks.com/work/inside-the-towns/",
       "image": "https://www.lernerworks.com/case-studies/inside-the-towns/01-hub.jpg",
       "datePublished": "2026-09-19",
-      "dateModified": "2026-09-29",
+      "dateModified": "2026-09-30",
       "author": {"@type": "Person", "name": "James Lerner", "url": "https://www.lernerworks.com/about/"},
       "publisher": {"@type": "ProfessionalService", "@id": "https://www.lernerworks.com/#business", "name": "Lerner Works", "url": "https://www.lernerworks.com/"}
     },
@@ -110,6 +111,14 @@
           <span class="badge">Own project</span>
           <h1>Inside the Towns</h1>
           <p class="cs-summary">One codebase, one editorial model, seven Colorado towns. Each guide reads as if it were built for that town alone; the whole network is run by one person.</p>
+          <div class="cs-short">
+            <h2>In short</h2>
+            <ul>
+              <li><strong>The problem.</strong> Growing Front Range towns have no single place to find what's on, where to eat or what living there is like, and one person had to run seven.</li>
+              <li><strong>What I built.</strong> Seven town guides and a hub from one system, each with its own look and local research, kept current in one weekly session.</li>
+              <li><strong>What it means for you.</strong> Several locations or brands can run from one site, and a weekly update is a quick edit, not a rebuild.</li>
+            </ul>
+          </div>
         </div>
         <dl class="cs-facts" aria-label="Project facts">
           <div><dt>Owner</dt><dd>Lerner Works. I publish and edit every site in the network myself. None of them is a town government, a chamber of commerce or a campaign.</dd></div>
@@ -136,8 +145,8 @@
       <dl>
         <div><dt>eight sites — seven towns and the hub — built and deployed from one repository</dt><dd>1 codebase</dd></div>
         <div><dt>place and event records across the seven towns, each one a file in the repo</dt><dd>240 + 575</dd></div>
-        <div><dt>components and two layouts shared by every site; no town is special-cased in any of them</dt><dd>28 shared</dd></div>
-        <div><dt>colour pairs proved against WCAG AA by a script that CI runs on every push</dt><dd>8 palettes</dd></div>
+        <div><dt>people across the seven towns covered, by the 2020 census</dt><dd>72,350</dd></div>
+        <div><dt>a week keeps all eight sites current: gather the events, validate, push</dt><dd>1 session</dd></div>
       </dl>
     </div>
   </div>
@@ -151,19 +160,13 @@
     <p>The problem in one sentence: seven towns each need a site that feels like it was made for them, and one person has to be able to run all seven.</p>
 
     <h2>Constraints</h2>
-    <p><strong>One repository, no forks.</strong> The moment a town's difference lives in code rather than configuration, there are seven codebases wearing a trench coat and a fix has to be applied seven times. Town differences live in a config file and a content folder; nothing in a component may name a town, a colour or a domain.</p>
-    <p><strong>The sites must not look like a template.</strong> A reader in Lyons should not be able to tell that the same code serves Timnath. Shared structure, shared type, shared rhythm — distinct colour and distinct photography, per town.</p>
+    <p><strong>One repository, no forks.</strong> The moment a town's difference lives in code rather than configuration, there are seven codebases wearing a trench coat and a fix has to be applied seven times. Town differences live in a config file and a content folder; nothing in a component may name a town, a color or a domain.</p>
+    <p><strong>The sites must not look like a template.</strong> A reader in Lyons should not be able to tell that the same code serves Timnath. Shared structure, shared type, shared rhythm — distinct color and distinct photography, per town.</p>
     <p><strong>A new town under an hour.</strong> If adding the eighth town is a project, the network stops at seven. Scaffolding has to be a command.</p>
     <p><strong>A weekly content update must be a content edit.</strong> Not a deploy someone has to think about, and not a code change.</p>
-    <p><strong>No invented local knowledge.</strong> Same rule the Niwot guide ran on: every event cites the organiser's own page, every image is logged with its licence, and anything that cannot be checked is left out or marked rather than guessed.</p>
+    <p><strong>No invented local knowledge.</strong> Same rule the Niwot guide ran on: every event cites the organizer's own page, every image is logged with its license, and anything that cannot be checked is left out or marked rather than guessed.</p>
 
     <h2>What I built</h2>
-
-    <p><strong>One chassis, selected at build time.</strong> The whole network is a single Astro project. A <code>TOWN</code> environment variable picks which site is being built — <code>TOWN=lyons npm run build</code> — and the config loader fails loudly if it is unset or names a town that does not exist, because a build with the wrong town is worse than no build. Eight Vercel projects point at the same repository, one per domain, each with its own <code>TOWN</code>. One push rebuilds all of them.</p>
-
-    <p><strong>Town differences live in exactly two places.</strong> A config file in <code>src/config/towns/</code> carries the domain, the tagline, the county, the census figures, the school district, the commute notes, the official links to link out to, and the three colours. A content folder in <code>content/&lt;town&gt;/</code> carries the events, places, articles, pages and images. Twenty-eight components and two layouts are shared by all eight sites, and not one of them knows a town's name.</p>
-
-    <p><strong>Two colours per town, doing different jobs.</strong> Each town config carries a bright <code>accent</code> that is only ever a fill, a rule or a mark; a darker <code>accentDark</code> that words are set in; and a paper tint the whole site sits on. Splitting the bright one from the readable one is what let the accents get genuinely saturated: only the dark one has to clear 4.5:1, so nothing constrains the bright one beyond staying visible.</p>
 
     <!-- ── THE KEY VISUAL ───────────────────────────────────────────
          The hub over the seven towns that branch from it, each card
@@ -194,7 +197,7 @@
             <h4><a href="https://insideniwot.com" rel="noopener">Inside Niwot</a></h4>
             <p class="cs-net__dom">insideniwot.com</p>
             <p class="cs-net__meta">4,306 people. Unincorporated — no town hall, and a vote on that in 2026. <strong>+7%</strong> since 2010.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#108452</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -208,7 +211,7 @@
             <h4><a href="https://insidelyons.com" rel="noopener">Inside Lyons</a></h4>
             <p class="cs-net__dom">insidelyons.com</p>
             <p class="cs-net__meta">2,209 people. The canyon mouth: sandstone, the river, the music, a town that rebuilt after 2013. <strong>+9%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#CE4A2C</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -222,7 +225,7 @@
             <h4><a href="https://insideberthoud.com" rel="noopener">Inside Berthoud</a></h4>
             <p class="cs-net__dom">insideberthoud.com</p>
             <p class="cs-net__meta">10,332 people. The Garden Spot: a real Main Street and the lakes, short of Fort Collins prices. <strong>+102%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#1587B4</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -236,7 +239,7 @@
             <h4><a href="https://insideerie.com" rel="noopener">Inside Erie</a></h4>
             <p class="cs-net__dom">insideerie.com</p>
             <p class="cs-net__meta">30,038 people. A coal town that became a commuter town, with a downtown that caught up. <strong>+66%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#6257C0</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -250,7 +253,7 @@
             <h4><a href="https://insidejohnstown.com" rel="noopener">Inside Johnstown</a></h4>
             <p class="cs-net__dom">insidejohnstown.com</p>
             <p class="cs-net__meta">17,303 people. Sugar-beet town at the I-25 interchange, filling the gap to Greeley. <strong>+75%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#BE3762</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -264,7 +267,7 @@
             <h4><a href="https://insidetimnath.com" rel="noopener">Inside Timnath</a></h4>
             <p class="cs-net__dom">insidetimnath.com</p>
             <p class="cs-net__meta">6,487 people. A farm village of 600 that became a town of 6,000, mostly since the Costco. <strong>+938%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#A67A14</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
@@ -278,34 +281,38 @@
             <h4><a href="https://insideelizabeth.com" rel="noopener">Inside Elizabeth</a></h4>
             <p class="cs-net__dom">insideelizabeth.com</p>
             <p class="cs-net__meta">1,675 people. Prairie and ponderosa on the Palmer Divide, sold five acres at a time. <strong>+23%</strong>.</p>
-            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span><span class="cs-net__hex">#B26E2A</span></p>
+            <p class="cs-net__sw"><span class="cs-net__chip cs-net__chip--a"></span><span class="cs-net__chip cs-net__chip--d"></span><span class="cs-net__chip cs-net__chip--p"></span></p>
           </div>
         </li>
 
       </ul>
 
-      <figcaption>Every site in the network, with the accent, dark accent and paper each one actually ships. The three swatches on each card are the values in that town's config file; the hex is the bright accent. Population is the 2020 census, and the percentage is census-to-census growth from 2010 — the same basis for all seven, so the column is comparable rather than merely impressive.</figcaption>
+      <figcaption>Every site in the network, with the accent, dark accent and paper each one actually ships. The three swatches on each card are the values in that town's config file. Population is the 2020 census, and the percentage is census-to-census growth from 2010 — the same basis for all seven, so the column is comparable rather than merely impressive.</figcaption>
     </figure>
 
-    <p><strong>One amber holds it together.</strong> Seven sites with seven unrelated colour schemes do not read as a network. A single warm amber, <code>#F0A62E</code>, appears in the same three places on every site — the rule across the top of every page, the footer eyebrows, the "our pick" marks — and is never used as text. That one shared mark is most of what makes eight different palettes read as one family.</p>
+    <p><strong>One amber holds it together.</strong> Seven sites with seven unrelated color schemes do not read as a network. A single warm amber, <code>#F0A62E</code>, appears in the same three places on every site — the rule across the top of every page, the footer eyebrows, the "our pick" marks — and is never used as text. That one shared mark is most of what makes eight different palettes read as one family.</p>
 
-    <p><strong>A hue per category, so a list reads as a list of kinds.</strong> Each event category and place type carries two values: a bright dot for marks, and a dark ink for when the category is set as words. Place types borrow the event hues by what the place is for, rather than inventing nine more. Twenty upcoming events read as twenty kinds of thing rather than twenty grey rows.</p>
-
-    <p><strong>The colour system is proved, not asserted.</strong> <code>npm run check-colors</code> reads the real town configs and the real palette module — so it cannot drift from what renders — and checks every accent at 3:1 on its own paper, every dark accent at 4.5:1 both on paper and under white, the amber at 3:1 on every band, and every category colour against all eight papers and white. CI runs it on every push. It is what made brightening the whole palette safe to attempt: the first pass put Timnath's ochre at 2.60:1, and the script caught it before anyone saw it.</p>
-
-    <p><strong>A weekly session, not a weekly build.</strong> <code>npm run weekly</code> prints, per town, the events whose last date falls inside the next seven days, the ones already past, the towns with fewer than five upcoming, the places with no photograph, and the listings not re-checked in ninety days. The week's events go into a CSV; <code>npm run import-events</code> validates every row against the schema and writes the files, with a <code>--dry-run</code> that is meant to be read. Then <code>npm run validate</code>, commit, push — and Vercel rebuilds all eight sites.</p>
-
-    <p><strong>Finding things, without a server.</strong> Every site has a search page: Pagefind indexes the built output at the end of each build and the page loads that static index, so search works on a host that runs nothing. The directory lists every place by kind, with a name search and an "open now" pill that is decided in the reader's browser from the Denver clock, because a build is a snapshot and "open" has to stay true after it. The events page asks <em>when</em> before <em>what</em> — today, this weekend, the next seven days, free — and carries the chosen filters in the URL, so "free things this weekend" can be bookmarked, shared and linked from the email.</p>
+    <p><strong>A weekly session, not a weekly build.</strong> Once a week, one command lists what is coming up in each town, what has gone past, and what is missing or due for a re-check. The week's events go in, get validated, and one push rebuilds all eight sites.</p>
 
     <p><strong>Forms built dark, then switched on.</strong> The contact and submit-an-event forms on every site were built behind a provider id and shipped their fallback — an email address — until the id was set. They are live now, one endpoint per site rather than one shared, so a town that is ever handed to someone else takes its inbox with it. The build checks every host a form posts to against the sites' content-security policy, so a form cannot point somewhere the page would refuse.</p>
 
-    <p><strong>Three layers that keep "upcoming" true between deploys.</strong> A static build is correct on deploy day and quietly wrong a week later. So: a scheduled rebuild fires a deploy hook per project, daily and again on Thursday afternoon when people start looking at the weekend; every event carries the day it falls on and anything past is dropped in the reader's browser, so a stale build shows fewer events rather than wrong ones; and the hub's weekend page bakes three weeks and picks the weekend from the reader's clock. The layers exist because the first one has a specific failure mode worth designing around — GitHub disables a scheduled workflow by itself after sixty days without a push, silently, in exactly the quiet winter when nobody would notice.</p>
+    <details class="cs-built">
+      <summary>How it's built</summary>
+      <p><strong>One chassis, selected at build time.</strong> The whole network is a single Astro project. A <code>TOWN</code> environment variable picks which site is being built — <code>TOWN=lyons npm run build</code> — and the config loader fails loudly if it is unset or names a town that does not exist, because a build with the wrong town is worse than no build. Eight Vercel projects point at the same repository, one per domain, each with its own <code>TOWN</code>. One push rebuilds all of them.</p>
+      <p><strong>Town differences live in exactly two places.</strong> A config file in <code>src/config/towns/</code> carries the domain, the tagline, the county, the census figures, the school district, the commute notes, the official links to link out to, and the three colors. A content folder in <code>content/&lt;town&gt;/</code> carries the events, places, articles, pages and images. Twenty-eight components and two layouts are shared by all eight sites, and not one of them knows a town's name.</p>
+      <p><strong>Two colors per town, doing different jobs.</strong> Each town config carries a bright <code>accent</code> that is only ever a fill, a rule or a mark; a darker <code>accentDark</code> that words are set in; and a paper tint the whole site sits on. Splitting the bright one from the readable one is what let the accents get genuinely saturated: only the dark one has to clear 4.5:1, so nothing constrains the bright one beyond staying visible.</p>
+      <p><strong>A hue per category, so a list reads as a list of kinds.</strong> Each event category and place type carries two values: a bright dot for marks, and a dark ink for when the category is set as words. Place types borrow the event hues by what the place is for, rather than inventing nine more. Twenty upcoming events read as twenty kinds of thing rather than twenty gray rows.</p>
+      <p><strong>The color system is proved, not asserted.</strong> <code>npm run check-colors</code> reads the real town configs and the real palette module — so it cannot drift from what renders — and checks every accent at 3:1 on its own paper, every dark accent at 4.5:1 both on paper and under white, the amber at 3:1 on every band, and every category color against all eight papers and white. CI runs it on every push. It is what made brightening the whole palette safe to attempt: the first pass put Timnath's ochre at 2.60:1, and the script caught it before anyone saw it.</p>
+      <p><code>npm run weekly</code> prints, per town, the events whose last date falls inside the next seven days, the ones already past, the towns with fewer than five upcoming, the places with no photograph, and the listings not re-checked in ninety days. The week's events go into a CSV; <code>npm run import-events</code> validates every row against the schema and writes the files, with a <code>--dry-run</code> that is meant to be read. Then <code>npm run validate</code>, commit, push — and Vercel rebuilds all eight sites.</p>
+      <p><strong>Finding things, without a server.</strong> Every site has a search page: Pagefind indexes the built output at the end of each build and the page loads that static index, so search works on a host that runs nothing. The directory lists every place by kind, with a name search and an "open now" pill that is decided in the reader's browser from the Denver clock, because a build is a snapshot and "open" has to stay true after it. The events page asks <em>when</em> before <em>what</em> — today, this weekend, the next seven days, free — and carries the chosen filters in the URL, so "free things this weekend" can be bookmarked, shared and linked from the email.</p>
+      <p><strong>Three layers that keep "upcoming" true between deploys.</strong> A static build is correct on deploy day and quietly wrong a week later. So: a scheduled rebuild fires a deploy hook per project, daily and again on Thursday afternoon when people start looking at the weekend; every event carries the day it falls on and anything past is dropped in the reader's browser, so a stale build shows fewer events rather than wrong ones; and the hub's weekend page bakes three weeks and picks the weekend from the reader's clock. The layers exist because the first one has a specific failure mode worth designing around — GitHub disables a scheduled workflow by itself after sixty days without a push, silently, in exactly the quiet winter when nobody would notice.</p>
+    </details>
 
     <h2>Decisions and tradeoffs</h2>
 
-    <p><strong>Config and content, never a fork.</strong> The rule that nothing in a component may hard-code a town name, colour or domain is the single decision the whole network rests on. It costs something real: every town-specific idea has to be generalised into a field on the config before it can ship anywhere, which is slower than special-casing one site. What it buys is that a fix written once is a fix everywhere, and that the eighth town inherits seven towns' worth of work for free.</p>
+    <p><strong>Config and content, never a fork.</strong> The rule that nothing in a component may hard-code a town name, color or domain is the single decision the whole network rests on. It costs something real: every town-specific idea has to be generalized into a field on the config before it can ship anywhere, which is slower than special-casing one site. What it buys is that a fix written once is a fix everywhere, and that the eighth town inherits seven towns' worth of work for free.</p>
 
-    <p><strong>Dark mode, built and then removed the same day.</strong> It worked. I took it out anyway: I do not want these sites turning dark on a reader's phone without being asked. Two things from it were worth keeping and stayed — the text colour split out from the band fill as its own token, because those two pull in opposite directions the moment anything changes; and the derived tints mixing in plain sRGB rather than oklab, so the contrast checker can reproduce them exactly. The exercise paid for itself on the way through, catching a rule at 1.45:1, which is not a rule, it is nothing.</p>
+    <p><strong>Dark mode, built and then removed the same day.</strong> It worked. I took it out anyway: I do not want these sites turning dark on a reader's phone without being asked. Two things from it were worth keeping and stayed — the text color split out from the band fill as its own token, because those two pull in opposite directions the moment anything changes; and the derived tints mixing in plain sRGB rather than oklab, so the contrast checker can reproduce them exactly. The exercise paid for itself on the way through, catching a rule at 1.45:1, which is not a rule, it is nothing.</p>
 
     <p><strong>Twenty-one comparison pages were not generated.</strong> Seven towns make twenty-one pairs, and twenty-one pages built from one table with no argument in them is thin content — a search engine that decides that about one page tends to decide it about the set. A pair gets a page when somebody has actually written it. The list is a file, and Erie against Johnstown is the only one so far.</p>
 
@@ -313,13 +320,18 @@
 
     <p><strong>The newsletter shipped dark, then switched on.</strong> The signup block rendered nothing at all until a provider was configured on the hub — not a disabled form, not a "coming soon" input, nothing — because a form that takes an address and drops it is worse than no form. It is live now, through Buttondown: one email a week on Thursdays, with the reader's chosen towns carried as tags so the Erie issue goes to the people who asked for Erie. Each issue is drafted from the listings by a script and read by a person before it goes out, and the archive page fills as issues are sent.</p>
 
-    <p><strong>Growth is census-to-census, and says so.</strong> The brief wanted five-year growth. The state demography office publishes annual estimates, which would be the right source, but serves them from interactive lookups rather than a file — so there was no way to get a consistent figure for seven towns. The decennial census is authoritative and identical in basis across all seven. It is a weaker number, honestly labelled, instead of a stronger one nobody could check.</p>
+    <p><strong>Growth is census-to-census, and says so.</strong> The brief wanted five-year growth. The state demography office publishes annual estimates, which would be the right source, but serves them from interactive lookups rather than a file — so there was no way to get a consistent figure for seven towns. The decennial census is authoritative and identical in basis across all seven. It is a weaker number, honestly labeled, instead of a stronger one nobody could check.</p>
 
     <h2>How the network scales</h2>
-    <p>Adding a town is not a build. <code>npm run new-town elizabeth "Elizabeth"</code> writes the config file, appends the registry entry, creates the content folder with one sample event, place, article and moving-here page, generates a favicon, drops in a placeholder hero, and prints what to do next. What remains is the part that cannot be automated and should not be: the research. Reading the town, finding the places, confirming the events against organisers' own pages, and sourcing photographs with a licence attached.</p>
-    <p>That is the real shape of the cost curve. The first town cost a site. The seventh cost a week of local research and a colour. The eighth will cost the same week — and nothing else, because the chassis, the editorial rules, the contrast checker, the weekly tooling and the deployment pattern are already built and already maintained.</p>
+    <p>Adding a town is not a build. One command sets up the new site's files. What remains is the part that cannot be automated and should not be: the research. Reading the town, finding the places, confirming the events against organizers' own pages, and sourcing photographs with a license attached.</p>
+    <p>That is the real shape of the cost curve. The first town cost a site. The seventh cost a week of local research and a color. The eighth will cost the same week — and nothing else, because the chassis, the editorial rules, the contrast checker, the weekly tooling and the deployment pattern are already built and already maintained.</p>
     <p><strong>The next one is a domain rather than a plan.</strong> <code>carbonvalleyguide.com</code> covers Frederick, Firestone and Dacono, and is wave eight in the build plan. It is also the first site in the network that is three towns rather than one, which is a content-model question the chassis has not been asked yet: the config gives a site one name and one set of official links, and three towns means three town governments to link out to.</p>
     <p>It is not described as live anywhere on any of the sites, and will not be until it is.</p>
+
+    <details class="cs-built">
+      <summary>How it's built</summary>
+      <p><code>npm run new-town elizabeth "Elizabeth"</code> writes the config file, appends the registry entry, creates the content folder with one sample event, place, article and moving-here page, generates a favicon, drops in a placeholder hero, and prints what to do next.</p>
+    </details>
 
     <h2>Result</h2>
     <p>The figures below are counted from the repository on September 29, 2026, at its commit of September 27. They are things that can be counted, not claims about reach; the study was first written on September 18 and the counts that moved since — five more components, two fewer events, the tests — moved because the network is being worked on.</p>
@@ -337,15 +349,12 @@
       <div><dt>Feeds per town</dt><dd>2 RSS, 2 iCalendar: the calendar, and one per event</dd></div>
     </dl>
 
-    <!-- PLACEHOLDER — traffic and usage. Fill these in from the analytics the
-         network actually runs, with the date and the source, the way the
-         lernerworks.com case study quotes its own measurements. Do not
-         estimate: an unsourced traffic number is the one claim on this page
-         a reader cannot check. -->
-    <div class="cs-slot">
-      <p class="cs-slot__k">Placeholder — traffic and usage</p>
-      <p>Sessions, top towns and newsletter signups go here once there is a reporting period worth quoting, each with the date range and the source it was read from.</p>
-    </div>
+    <!-- Traffic and newsletter signups are not measured yet. Replace this line
+         with the figures once there is a full month to quote (Buttondown
+         subscribers, Search Console clicks), each with its date range and
+         source. Do not estimate: an unsourced traffic number is the one claim
+         on this page a reader cannot check. -->
+    <p><strong>Not yet measured:</strong> traffic and newsletter signups. They'll be added with a date range and source after the first full month.</p>
 
     <h2>Where it stands</h2>
     <p>Seven town sites and the hub are live, one Vercel project per domain, all deploying from the same repository. The network runs on a weekly editorial session rather than a release cycle: gather the week's events, validate, push, and all eight rebuild.</p>
@@ -359,7 +368,7 @@
       <ul>
         <li><strong>Content kept apart from design</strong>, so a weekly update is an edit rather than a rebuild, and one you can make yourself.</li>
         <li><strong>Several locations or brands from one build.</strong> If you run three branches or two businesses, one codebase and one set of rules is the difference between a site that stays current and one that quietly stops.</li>
-        <li><strong>Colour and contrast proved by a script</strong>, not judged by eye, so every page clears accessibility before it ships and keeps clearing it after every change.</li>
+        <li><strong>Color and contrast proved by a script</strong>, not judged by eye, so every page clears accessibility before it ships and keeps clearing it after every change.</li>
       </ul>
       <a class="btn btn--go" href="../../services/">See what a build includes</a>
     </div>
@@ -368,7 +377,7 @@
 </article>
 
 <div class="wrap cs-next">
-  <a href="../townofniwot/"><span><small>Next case study</small><strong>TownofNiwot.com</strong></span><span>Read it →</span></a>
+  <a href="../lernerworks/"><span><small>Next case study</small><strong>lernerworks.com</strong></span><span>Read it →</span></a>
 </div>
 </main>
 

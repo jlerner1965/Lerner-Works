@@ -22,6 +22,7 @@
 <meta name="twitter:image" content="https://www.lernerworks.com/case-studies/townofniwot/01-home.jpg" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
 
 <!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
      connection to set up and no CSS-then-font request chain. These two
@@ -50,7 +51,7 @@
       "mainEntityOfPage": "https://www.lernerworks.com/work/townofniwot/",
       "image": "https://www.lernerworks.com/case-studies/townofniwot/01-home.jpg",
       "datePublished": "2026-09-11",
-      "dateModified": "2026-09-29",
+      "dateModified": "2026-09-30",
       "author": {"@type": "Person", "name": "James Lerner", "url": "https://www.lernerworks.com/about/"},
       "publisher": {"@type": "ProfessionalService", "@id": "https://www.lernerworks.com/#business", "name": "Lerner Works", "url": "https://www.lernerworks.com/"}
     },
@@ -108,6 +109,14 @@
           <span class="badge">Own project</span>
           <h1>TownofNiwot.com</h1>
           <p class="cs-summary">An independent community guide for a place with no town hall, built to be trusted during a live incorporation election.</p>
+          <div class="cs-short">
+            <h2>In short</h2>
+            <ul>
+              <li><strong>The problem.</strong> Niwot has no town hall and was heading into a vote on becoming a town, so a site called TownofNiwot.com could be mistaken for the official word.</li>
+              <li><strong>What I built.</strong> A nine-page guide where every listing and event cites its source and date, with neutral election information and a build that refuses stale records.</li>
+              <li><strong>What it means for you.</strong> A site earns trust by showing where its facts come from, and automated checks catch mistakes before a customer does.</li>
+            </ul>
+          </div>
         </div>
         <dl class="cs-facts" aria-label="Project facts">
           <div><dt>Owner</dt><dd>Lerner Works. I publish and edit the guide myself. It is not a government body, the Election Commission, or a campaign.</dd></div>
@@ -152,7 +161,7 @@
     <h2>Constraints</h2>
     <p><strong>Never be mistaken for an official source.</strong> A disclaimer, fixed in wording, on every page: not a municipal website, not the Election Commission, not the county, not a campaign. No seals, no civic-looking crests, no "town of" phrasing in the interface beyond the domain itself.</p>
     <p><strong>Nothing published without a source and a date.</strong> Every business listing, every event, every line of the history timeline and every election summary had to cite the page it came from and say when it was read. Where a fact could not be confirmed, the page had to say so rather than guess. That rule is the reason the site publishes no phone numbers at all: they change faster than anything else on a listing, so every row links to the business's own page instead.</p>
-    <p><strong>Neutral on the election.</strong> The ballot questions are summarised in plain language with the qualifications the official text carries, next to the Commission's own labels and a link to the official wording. Nothing on the site argues for or against incorporation.</p>
+    <p><strong>Neutral on the election.</strong> The ballot questions are summarized in plain language with the qualifications the official text carries, next to the Commission's own labels and a link to the official wording. Nothing on the site argues for or against incorporation.</p>
     <p><strong>Eight licensed photographs, and no stock.</strong> The whole visual identity had to come from those eight pictures and the materials of the actual place: brick, the caboose, cottonwoods, fields, the Front Range.</p>
 
     <h2>What I built</h2>
@@ -168,7 +177,7 @@
 
     <p><strong>A directory the build refuses to publish incorrectly.</strong> Each of the 63 published businesses is a record with a name, category, source URL, verification date and status. Validation runs on every build and stops it on a missing source, an unknown category, a duplicate, an insecure link, or an active record older than 180 days. Closed and unverified businesses stay in the file as the record of what was checked and never render. The rendered category counts are asserted by tests against the records they came from.</p>
 
-    <p><strong>A calendar with no scraper.</strong> An event is confirmed only when its organizer has published the date, and the record cites that page. Seasons that recur but aren't dated yet appear under "expected" and never in the upcoming list or the structured data. One piece of logic renders the month view and the "coming up" strips twice: at build time, so crawlers and readers without JavaScript get complete markup, and in the browser, so the list is right on the visitor's clock. Build machine, visitor and Niwot are in three different time zones; the code keeps dates as strings for exactly that reason.</p>
+    <p><strong>A calendar with no scraper.</strong> An event is confirmed only when its organizer has published the date, and the record cites that page. Seasons that recur but aren't dated yet appear under "expected" and never in the upcoming list or the structured data.</p>
 
     <figure class="cs-fig">
       <img src="../../case-studies/townofniwot/03-election.jpg"
@@ -179,10 +188,6 @@
 
     <p><strong>An election page held to a stricter standard than the rest.</strong> Three voting tasks first: the boundary, the ballot, and how to register. Then a status strip, a plain-language explanation of what incorporation decides, and each ballot question and fiscal issue with its official number, the revenue estimate the ballot states, and the qualifications the official text carries, such as the food exemption on the sales tax. A dated "changes to this page" list sits underneath. The page has its own verification date, separate from the rest of the site.</p>
 
-    <p><strong>Forms that work with JavaScript off.</strong> The submission form posts natively to a single serverless endpoint and gets a plain redirect back; a script upgrades that to an in-place response when it can. The endpoint checks method, content type and origin, caps body size, drops honeypot submissions silently, rate-limits bursts, and validates everything. The newsletter form was deliberately withheld from launch, because the audit could not prove delivery. It returns after one real signup, one correction and one unsubscribe have been seen to work.</p>
-
-    <p><strong>A verification suite that fails on the things reviewers find.</strong> Alongside 78 data and build tests, a browser runner loads every page at widths from 320 to 1,440 pixels and fails on any console or content-security-policy error, any horizontal overflow, any image without alt text, any text under 12 pixels, any focus ring under 3:1 contrast against its ground, any accessibility violation reported by axe at WCAG 2.2 AA, and any rounded corner, because the design system says there are none. It also checks the calendar's month view follows three presses of Next, that the mobile menu label resets on Escape, and that the navigation shows in full with scripting disabled.</p>
-
     <figure class="cs-fig cs-fig--phone">
       <img src="../../case-studies/townofniwot/05-home-mobile.jpg"
            width="780" height="1688" loading="lazy" decoding="async"
@@ -192,9 +197,16 @@
 
     <p><strong>Images from eight originals.</strong> Each photograph is emitted as AVIF, WebP and JPEG at five widths with its dimensions written in, and nothing is ever upscaled. The homepage went from 3.9 MB of images to 0.43 MB at desktop width and 0.13 MB on a phone. The originals stay published only because social previews want a stable JPEG.</p>
 
+    <details class="cs-built">
+      <summary>How it's built</summary>
+      <p>One piece of logic renders the month view and the "coming up" strips twice: at build time, so crawlers and readers without JavaScript get complete markup, and in the browser, so the list is right on the visitor's clock. Build machine, visitor and Niwot are in three different time zones; the code keeps dates as strings for exactly that reason.</p>
+      <p><strong>Forms that work with JavaScript off.</strong> The submission form posts natively to a single serverless endpoint and gets a plain redirect back; a script upgrades that to an in-place response when it can. The endpoint checks method, content type and origin, caps body size, drops honeypot submissions silently, rate-limits bursts, and validates everything. The newsletter form was deliberately withheld from launch, because the audit could not prove delivery. It returns after one real signup, one correction and one unsubscribe have been seen to work.</p>
+      <p><strong>A verification suite that fails on the things reviewers find.</strong> Alongside 78 data and build tests, a browser runner loads every page at widths from 320 to 1,440 pixels and fails on any console or content-security-policy error, any horizontal overflow, any image without alt text, any text under 12 pixels, any focus ring under 3:1 contrast against its ground, any accessibility violation reported by axe at WCAG 2.2 AA, and any rounded corner, because the design system says there are none. It also checks the calendar's month view follows three presses of Next, that the mobile menu label resets on Escape, and that the navigation shows in full with scripting disabled.</p>
+    </details>
+
     <h2>Decisions and tradeoffs</h2>
 
-    <p><strong>Two visual languages, then one.</strong> A mid-project refresh had layered a product-interface vocabulary over the original editorial identity: a translucent blurred masthead with a shadow, cards and buttons that lifted under the cursor, photographs that zoomed, seven background tints in one scroll, tracked capitals on every link and caption. Read fresh after a day away, it looked "off" without an obvious reason. The fix was subtraction: no shadows anywhere, nothing moves under the cursor but colour, four grounds with one reserved for civic content, one type scale, uppercase reserved for section labels, three photograph frames by job. The rules were written into the README so the next edit has something to drift against.</p>
+    <p><strong>Two visual languages, then one.</strong> A mid-project refresh had layered a product-interface vocabulary over the original editorial identity: a translucent blurred masthead with a shadow, cards and buttons that lifted under the cursor, photographs that zoomed, seven background tints in one scroll, tracked capitals on every link and caption. Read fresh after a day away, it looked "off" without an obvious reason. The fix was subtraction: no shadows anywhere, nothing moves under the cursor but color, four grounds with one reserved for civic content, one type scale, uppercase reserved for section labels, three photograph frames by job. The rules were written into the README so the next edit has something to drift against.</p>
 
     <p><strong>Consolidation over redesign.</strong> The third audit put the site at about seven out of ten launch-ready and said the problem was not the number of pages but how much of them was shown at once. So the navigation went from seven items to five, the homepage from nine regions to six, its height from 6,898 to 5,497 pixels, and the directory's search box from 906 pixels down the page to 501. Nothing was removed that a reader might need; it was folded, linked or moved.</p>
 
@@ -225,7 +237,7 @@
 
     <h2>Where it stands</h2>
     <p>The launch-readiness pass is complete, and the site went live at townofniwot.com. It is no longer served there: the domain now answers every URL with a permanent redirect into <a class="link" href="https://insideniwot.com" rel="noopener">insideniwot.com</a>, section by section, so nothing that was ever linked is lost. The redirects are the whole of what that domain does now, and they were checked again on September 29, 2026.</p>
-    <p>The guide itself did not stop; it moved onto a shared chassis and gained six sibling towns. The directory and the calendar are still maintained by hand from organizers' and businesses' own pages, and the build still refuses any record that goes stale — those rules travelled with it. The gates that were mine rather than the build's travelled too: proving form delivery into a monitored inbox, and reviewing the ballot summary once the Election Commission posts its proof.</p>
+    <p>The guide itself did not stop; it moved onto a shared chassis and gained six sibling towns. The directory and the calendar are still maintained by hand from organizers' and businesses' own pages, and the build still refuses any record that goes stale — those rules traveled with it. The gates that were mine rather than the build's traveled too: proving form delivery into a monitored inbox, and reviewing the ballot summary once the Election Commission posts its proof.</p>
     <p>Read <a class="link" href="../inside-the-towns/">Inside the Towns</a> for what one town's guide turned into.</p>
 
     <div class="cs-carry">

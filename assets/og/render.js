@@ -13,6 +13,9 @@
  *
  * If a page's h1 changes, change its entry here and re-render: a preview
  * that contradicts the page is worse than a plain one.
+ *
+ * It also renders /apple-touch-icon.png from icon.html, so the home-screen
+ * icon is drawn from the same colours and type as everything else.
  */
 const { chromium } = require('playwright');
 const path = require('path');
@@ -42,6 +45,15 @@ const CARDS = [
     await page.screenshot({ path: out });
     console.log(`${card.out}  ${SIZE.width}x${SIZE.height}`);
   }
+
+  // The home-screen icon: the favicon's "LW" mark, from icon.html, written to
+  // the site root because that is the path iOS asks for even without a link.
+  const icon = await browser.newContext({ viewport: { width: 180, height: 180 }, deviceScaleFactor: 1 });
+  const ip = await icon.newPage();
+  await ip.goto(`${BASE}/assets/og/icon.html`, { waitUntil: 'networkidle' });
+  await ip.evaluate(() => document.fonts.ready);
+  await ip.screenshot({ path: path.join(__dirname, '..', '..', 'apple-touch-icon.png') });
+  console.log('apple-touch-icon.png  180x180');
 
   await browser.close();
 })();

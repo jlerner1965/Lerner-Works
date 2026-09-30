@@ -20,7 +20,12 @@ assets/site.css                       @font-face, tokens, nav, every component,
                                       the case-study template
 assets/fonts/                         self-hosted woff2
 assets/og/                            link-preview cards: card.html template,
-                                      render.js, and the rendered PNGs
+                                      render.js, and the rendered PNGs; also
+                                      icon.html, the touch icon's source
+assets/james-lerner.jpg               James's portrait (/about/, home), made
+                                      from james-lerner-original.jpg by
+                                      tools/optimize-images.js
+apple-touch-icon.png                  home-screen icon, rendered by render.js
 case-studies/<slug>/                  screenshots used by that case study
 case-studies/inside-the-towns/        hub capture + seven town thumbnails
 areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
@@ -96,7 +101,12 @@ depends on them.
   under the home-page hero follows the same rule: every figure links to the
   case study that measures it, and none stands alone. "10 live sites" is the
   seven town guides and their hub, AragoCor, and this site — if one of them
-  goes away, the number and the list on `/work/` change the same day.
+  goes away, the number and the list on `/work/` change the same day. The
+  page weight in the strip is the home page's own: `measure.js --table`
+  prints the line, so re-measure and paste it whenever the home page or
+  anything it loads changes. (It replaced a Lighthouse score for
+  TownofNiwot.com that came from a build sandbox, on a domain that now
+  redirects, so no visitor could check it.)
 - **Fresh figures carry their date.** The Inside the Towns study quotes counts
   from the network's repository and says which commit it read; the AragoCor
   and Niwot studies say when the live site was last checked. When a count
@@ -105,13 +115,14 @@ depends on them.
   difference. Vercel Web Analytics is on every page of the towns network but
   is not switched on in the Vercel dashboard for any of the eight projects
   (checked September 29, 2026 — the API answers "Web Analytics not found"),
-  which is why the traffic slot on that study is still a placeholder. It is a
+  which is why that study says traffic is "Not yet measured". It is a
   dashboard click to enable; then wait for a period worth quoting.
-- **Placeholder slots look like placeholders.** Anything the site does not
-  have yet is marked with a `PLACEHOLDER` comment in the source and the dashed
-  `.cs-slot` treatment on the page, so nothing unfinished can be mistaken for
-  shipped work. One is left: traffic and usage on `/work/inside-the-towns/`.
-  Grep for `PLACEHOLDER` before launch.
+- **Nothing unfinished ships as a placeholder.** What the site does not have
+  yet is said in a plain sentence — "Not yet measured: traffic and newsletter
+  signups" on `/work/inside-the-towns/` — rather than shown as a dashed slot
+  on a live page. The dashed `.cs-slot` treatment now lives only in the
+  unwritten, noindex service-area scaffolds. `check.js` still lists any
+  `PLACEHOLDER` mark it finds, so grep before launch.
 - **Accessibility is checked, not assumed.** Every page passes axe-core at
   WCAG 2.2 AA at 1280, 860 and 390 px — `node tools/audit.js` is the check,
   and it also runs at 390 px with the mobile menu open, because that is the
@@ -133,8 +144,8 @@ depends on them.
   site's repository, at 1600×1000 and 390×844 at 2×, and kept under
   `case-studies/<slug>/`. The Niwot shots came from
   `jlerner1965/townofniwot.com` at its launch-readiness commit and are kept as
-  the record of the site as it launched — townofniwot.com now 301s to
-  insideniwot.com, so they cannot be re-taken from the live domain. Inside the
+  the record of the site as it launched — townofniwot.com now redirects
+  permanently (308) to insideniwot.com, so they cannot be re-taken from the live domain. Inside the
   Towns screenshots come from a local build of `jlerner1965/insidethetowns`.
 - **Numbers on `/work/lernerworks/` are measured.** If you change anything
   that affects page weight, re-run `tools/measure.js` and update the table.
@@ -254,6 +265,12 @@ is worse than a plain one. `card.html` carries `noindex`.
 The case studies use their own lead image as the OG image — a real
 screenshot of the work beats a generated card.
 
+The same run renders `/apple-touch-icon.png` (180×180) from
+`assets/og/icon.html`: the "LW" mark every page already declares as its
+favicon, in the site's own serif, full-bleed and opaque because iOS rounds
+the corners itself. Nothing owns the `<head>`, so `check.js` fails any page
+whose favicon differs from the rest or which lacks the touch-icon link.
+
 Playwright is the only thing any of the dev tooling needs (`npx playwright
 install chromium`), and it is dev-only — the site itself still has no build
 step and no packages.
@@ -340,13 +357,18 @@ python3 -m http.server 8000
 Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
 
 1. Replace the copy. The section order is the template: badge, title and
-   one-line summary → facts panel → lead image → "At a glance" outcomes →
+   one-line summary → "In short" box (`.cs-short`: the problem, what I built,
+   what it means for you) → facts panel → lead image → "At a glance" outcomes →
    The situation → Constraints → What I built → Decisions and tradeoffs →
    Result → Where it stands → "What this means for your project" → next
    case study → CTA. The last of those is the `.cs-carry` panel: three things
    the reader's own project would inherit from the decisions above, and one
    link to `/services/`. It is the study's only sales copy; keep it specific
-   to that study, never a generic "hire me".
+   to that study, never a generic "hire me". Paragraphs whose subject is
+   implementation — commands, config, CI, the security policy, test suites —
+   go in a `<details class="cs-built">` headed "How it's built" at the end of
+   the section they belong to, with no headings inside it, so the story reads
+   whole without them.
 2. Pick the badge honestly: `badge badge--client` for commissioned work the
    client has approved for publication, plain `badge` with "Own project" for
    something you publish and run yourself. If a case study is ever unpaid work
@@ -365,7 +387,10 @@ Copy `work/aragocor-minerals/index.html` to `work/<slug>/index.html`, then:
    everything below the lead image by hand.
 5. Add a card to `work/index.html` (a 2×2 grid, `work-grid--2`) and, if it
    belongs among the three on the home page, to the "Selected work" grid on
-   `index.html`. If the site is live, add its domain to the "All of it is
+   `index.html`. Client work goes first. The order today is AragoCor Minerals,
+   Inside the Towns, lernerworks.com, TownofNiwot.com, the same on the Work
+   page, on the home page (the first three) and in the "Next case study"
+   links, which run in a loop back to AragoCor. If the site is live, add its domain to the "All of it is
    live" list under the grid on `/work/` and correct the count in that
    paragraph and in the "10 live sites" figure on the home page.
 6. Add a `<url>` entry to `sitemap.xml`. Its `<loc>` must match the page's
@@ -497,8 +522,8 @@ thin ones is not.
 ## Before launch
 
 - [x] Phone, email and booking link are real on every page.
-- [x] No placeholder cards remain anywhere on the site — except the Inside the
-      Towns traffic slot below, which is deliberate and marked as such.
+- [x] No placeholder cards remain anywhere on the site. Inside the Towns
+      traffic says "Not yet measured" in plain words until it is.
 - [x] Screenshots of this site on `/work/lernerworks/` re-taken against the
       current site (`node tools/measure.js --shots`). Re-take them whenever a
       page they show changes, or the case study argues from a stale picture.
@@ -514,8 +539,9 @@ thin ones is not.
 - [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
       from a local build. See `case-studies/inside-the-towns/README.md`.
 - [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
-- [ ] Fill the Inside the Towns traffic figures — the last `PLACEHOLDER`.
-      Needs a real reporting period; do not estimate. First enable Web
+- [ ] Replace the Inside the Towns "Not yet measured" line with Buttondown
+      subscribers and Search Console clicks, each with its date range and
+      source. Needs a real reporting period; do not estimate. First enable Web
       Analytics on the eight `inside*` projects in the Vercel dashboard — the
       script is already on every page, but the dashboard side is off, so
       there is nothing to read yet.

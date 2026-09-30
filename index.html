@@ -22,6 +22,7 @@
 <meta name="twitter:image" content="https://www.lernerworks.com/assets/og/home.png" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%2314283F'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20fill='%235FBF97'%20text-anchor='middle'%3ELW%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
 <!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
      connection to set up and no CSS-then-font request chain. These two
@@ -98,7 +99,9 @@
 
 <main id="main">
 
-<header class="hero">
+<!-- HERO: a section element, not a header. Tools that pull the main text out
+     of a page often drop header elements as page chrome, and this one holds the h1. -->
+<section class="hero">
   <div class="wrap hero__grid">
     <div>
       <p class="eyebrow">Web design &amp; marketing · Boulder County</p>
@@ -120,20 +123,22 @@
       </ul>
     </aside>
   </div>
-</header>
+</section>
 
 <!-- PROOF: four figures, each counted on a page a reader can go and check.
      Nothing here is an estimate or a claim about reach. Every label links to
      the case study that measures its number; the number never stands alone.
      "10 live sites" is seven town guides and their hub (Inside the Towns),
-     AragoCor Minerals, and this one. -->
+     AragoCor Minerals, and this one. The page weight is this page's own,
+     printed by tools/measure.js --table: re-measure whenever this page or
+     anything it loads changes, and paste the line it prints. -->
 <section class="proof" aria-labelledby="proof-h">
   <div class="wrap">
     <p class="eyebrow" id="proof-h">Counted, not claimed</p>
     <dl class="stats">
-      <div class="stat"><dt>live sites, each built by hand and open to visit from its case study. <a href="./work/">See the work</a></dt><dd>10</dd></div>
+      <div class="stat"><dt>live sites across three projects, each built by hand and open to visit from its case study. <a href="./work/">See the work</a></dt><dd>10</dd></div>
       <div class="stat"><dt>requests to any third party from any page of this site, and no JavaScript at all. <a href="./work/lernerworks/">How it's measured</a></dt><dd>0</dd></div>
-      <div class="stat"><dt>Lighthouse accessibility, best practices and SEO, on every audited page of TownofNiwot.com. <a href="./work/townofniwot/">The case study</a></dt><dd>100 · 100 · 100</dd></div>
+      <div class="stat"><dt>for this whole homepage, lighter than one photo from your phone. <a href="./work/lernerworks/">How it's measured</a></dt><dd>345 KB</dd></div>
       <div class="stat"><dt>codebase running seven town guides and the hub above them, maintained by one person. <a href="./work/inside-the-towns/">How it scales</a></dt><dd>1</dd></div>
     </dl>
   </div>
@@ -147,31 +152,11 @@
       <div>
         <p class="eyebrow">Selected work</p>
         <h2>Case studies, with the reasoning shown.</h2>
-        <p class="sec__lede">Each one covers what was actually wrong, what I built, the tradeoffs I made, and what can be measured. Nothing here is presented as client work unless it was, and every number is one I can show you how I measured. A fourth, on this site itself, is on the Work page.</p>
+        <p class="sec__lede">Each one covers what was actually wrong, what I built, the tradeoffs I made, and what can be measured. Nothing here is presented as client work unless it was, and every number is one I can show you how I measured. A fourth, TownofNiwot.com, the single-town guide Inside the Towns grew out of, is on the Work page.</p>
       </div>
       <a class="sec__link" href="./work/">All work →</a>
     </div>
     <div class="work-grid">
-
-      <a class="wcard" href="./work/inside-the-towns/">
-        <div class="wcard__img"><img src="./case-studies/inside-the-towns/01-hub-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Inside the Towns hub: independent guides to the small towns worth knowing, with seven guides live" /></div>
-        <div class="wcard__body">
-          <p class="wcard__tag">Own project · Network of community guides · 2026</p>
-          <h3>Inside the Towns</h3>
-          <p>Seven independent guides to Colorado Front Range towns and the hub above them, built from one Astro codebase. Each site carries its own colour and local research; none is special-cased in code.</p>
-          <p class="wcard__out"><strong>1 codebase, 8 sites</strong><span>Read the case study →</span></p>
-        </div>
-      </a>
-
-      <a class="wcard" href="./work/townofniwot/">
-        <div class="wcard__img"><img src="./case-studies/townofniwot/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The TownofNiwot.com homepage with the NIWOT wordmark and a photograph of Second Avenue" /></div>
-        <div class="wcard__body">
-          <p class="wcard__tag">Own project · Community guide · 2026 · Now redirects</p>
-          <h3>TownofNiwot.com</h3>
-          <p>A nine-page guide for a place with no town hall, carrying a sourced directory, an organizer-confirmed calendar and neutral voter information for a live election. The guide Inside the Towns grew out of.</p>
-          <p class="wcard__out"><strong>63 dated listings, 78 tests</strong><span>Read the case study →</span></p>
-        </div>
-      </a>
 
       <a class="wcard" href="./work/aragocor-minerals/">
         <div class="wcard__img"><img src="./case-studies/aragocor/01-home-hero-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="AragoCor Minerals homepage: oolitic aragonite sized to your process, over Bahamian ocean photography" /></div>
@@ -180,6 +165,26 @@
           <h3>AragoCor Minerals</h3>
           <p>A marketing site for a mineral supplier selling one product into five technical markets, plus the AI sourcing tool that turns visitors into quote requests.</p>
           <p class="wcard__out"><strong>5 markets, 1 site</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./work/inside-the-towns/">
+        <div class="wcard__img"><img src="./case-studies/inside-the-towns/01-hub-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Inside the Towns hub: independent guides to the small towns worth knowing, with seven guides live" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">Own project · Network of community guides · 2026</p>
+          <h3>Inside the Towns</h3>
+          <p>Seven independent guides to Colorado Front Range towns and the hub above them, built from one Astro codebase. Each site carries its own color and local research; none is special-cased in code.</p>
+          <p class="wcard__out"><strong>1 codebase, 8 sites</strong><span>Read the case study →</span></p>
+        </div>
+      </a>
+
+      <a class="wcard" href="./work/lernerworks/">
+        <div class="wcard__img"><img src="./case-studies/lernerworks/01-home-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="The Lerner Works homepage" /></div>
+        <div class="wcard__body">
+          <p class="wcard__tag">This site · 2026</p>
+          <h3>lernerworks.com</h3>
+          <p>The site you're reading, built the way I'd build yours: hand-written pages, self-hosted fonts, no JavaScript, no third-party requests. Every claim on the page is measured.</p>
+          <p class="wcard__out"><strong>0 third-party requests</strong><span>Read the case study →</span></p>
         </div>
       </a>
 
@@ -222,7 +227,7 @@
       <div>
         <p class="eyebrow">What I do</p>
         <h2>Three jobs, in the order they matter.</h2>
-        <p class="sec__lede">A well-designed site nobody visits is an expensive business card. So the work runs in sequence: get found, turn visits into enquiries, then keep customers coming back.</p>
+        <p class="sec__lede">A well-designed site nobody visits is an expensive business card. So the work runs in sequence: get found, turn visits into inquiries, then keep customers coming back.</p>
       </div>
       <a class="sec__link" href="./services/">Services &amp; pricing →</a>
     </div>
@@ -348,6 +353,7 @@
       <p><a class="link" href="./about/">More about how I work →</a></p>
     </div>
     <aside class="aside" aria-label="At a glance">
+      <img class="portrait" src="./assets/james-lerner.jpg" width="640" height="800" loading="lazy" decoding="async" alt="James Lerner" />
       <p class="aside__h">At a glance</p>
       <dl>
         <div><dt>Based in</dt><dd>Niwot, Boulder County, Colorado</dd></div>

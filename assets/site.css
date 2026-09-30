@@ -231,6 +231,16 @@ strong{font-weight:600;}
 .page-head p{margin-top:1.2rem;max-width:var(--measure);color:var(--slate);
   font-size:clamp(1.02rem,1rem + .3vw,1.16rem);}
 .page-head__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem;}
+/* A header with a portrait beside it (/about/). */
+.page-head__grid{display:grid;grid-template-columns:minmax(0,1fr) 13rem;gap:clamp(1.5rem,5vw,4rem);align-items:end;}
+@media (max-width:700px){.page-head__grid{grid-template-columns:1fr;}.page-head__grid .portrait{max-width:10rem;}}
+
+/* ── portrait ────────────────────────────────────────
+   James, on /about/ beside the h1 and in the home page's
+   "Who you're hiring" card. The markup carries the real
+   640×800 dimensions, so the slot is reserved before it loads. */
+.portrait{width:100%;max-width:18rem;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--paper);}
+.aside .portrait{margin-bottom:1.3rem;}
 
 /* ── work cards ──────────────────────────────────── */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem;}
@@ -422,6 +432,18 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
   line-height:1.42;color:var(--navy-2);}
 .cs-head .badge{margin-bottom:1rem;}
 
+/* In short: three lines under the summary, before the facts panel — the
+   problem, what was built, what it means for the reader. Same callout
+   family as .cs-carry, so every study opens and closes on the same note. */
+.cs-short{margin-top:1.6rem;max-width:var(--measure);background:var(--ever-soft);border:1px solid #CBE0D6;
+  border-left:4px solid var(--ever);border-radius:var(--r-lg);padding:1rem 1.4rem 1.1rem;}
+.cs-short h2{font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ever-dark);}
+.cs-short ul{list-style:none;margin-top:.4rem;}
+.cs-short li{padding-block:.55rem;border-top:1px solid #CBE0D6;font-size:.97rem;line-height:1.5;color:#2E4A3E;}
+.cs-short li:first-child{border-top:0;}
+.cs-short strong{color:var(--navy);}
+
 /* Facts panel: the engagement in five lines. */
 .cs-facts{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper);padding:.4rem 1.3rem;}
 .cs-facts div{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding-block:.7rem;border-top:1px solid var(--line);}
@@ -460,6 +482,19 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-body strong{font-weight:600;color:var(--navy);}
 .cs-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--white);
   border:1px solid var(--line);border-radius:4px;padding:.05em .35em;color:var(--navy);}
+
+/* How it's built: implementation detail folded into a <details> at the end
+   of the section it came from — the same element as the mobile menu and the
+   FAQ, so it needs no script. The story reads whole without opening it. */
+.cs-built{margin-top:clamp(1.8rem,4vw,2.4rem);border-block:1px solid var(--line);}
+.cs-built[open]{padding-bottom:1.3rem;}
+.cs-built summary{cursor:pointer;list-style:none;padding:1rem 2.2rem 1rem 0;position:relative;
+  font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);}
+.cs-built summary::-webkit-details-marker{display:none;}
+.cs-built summary::after{content:"+";position:absolute;right:.25rem;top:.85rem;
+  font-family:var(--sans);font-weight:400;font-size:1.4rem;color:var(--ever);}
+.cs-built[open] summary::after{content:"–";}
+.cs-built summary + p{margin-top:.2rem;}
 
 .cs-fig{margin:clamp(2rem,5vw,2.8rem) 0 0;max-width:56rem;}
 .cs-fig img{width:100%;height:auto;border:1px solid var(--line);
@@ -620,8 +655,6 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-net .cs-net__chip--a{background:var(--t);}
 .cs-net .cs-net__chip--d{background:var(--td);}
 .cs-net .cs-net__chip--p{background:var(--tp);}
-.cs-net .cs-net__hex{margin-left:.15rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:.66rem;color:var(--slate-2);letter-spacing:-.01em;}
 
 /* ── placeholder slots ───────────────────────────────
    Deliberately unfinished-looking. Anything wearing this
