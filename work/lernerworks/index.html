@@ -196,7 +196,7 @@
     <h2>Result</h2>
     <p>Measured in headless Chromium at a 1,600-pixel viewport with an empty cache, using the script kept in the repository, after the rebuild. "Requests" is everything the page fetches; "external" is any request to a domain other than this one.</p>
 
-    <p>Both figures in the strip at the top of this page and every row below are printed by <code>tools/measure.js --table</code> as markup, and pasted in. They used to be typed twice: the home page is 306.54 KB, which got rounded to 306 in one place and 307 in the other, and both readings were defensible enough that the disagreement sat there. One run, one rounding rule, one paste.</p>
+    <p>Every figure on this page is printed in one run of <code>tools/measure.js --table</code> and pasted in, so no two numbers can disagree.</p>
 
     <div class="cs-table" tabindex="0" role="region" aria-label="Measured page weights">
       <table>
@@ -224,7 +224,7 @@
     <p>What is checked rather than measured: every page passes axe-core at WCAG 2.2 AA at 1,280, 860 and 390 pixels, and loads under the content-security policy above without a single violation. Both are one command, <code>tools/audit.js</code>, run before every deploy.</p>
 
     <h2>Where it stands</h2>
-    <p>Live, re-measured after every change with the same script, and now checked before every deploy by the three scripts above, so the table can be regenerated rather than trusted and a broken link cannot ship. Regenerating it after the last change caught two things worth catching: the screenshots of this site on this page were of a version of the site that no longer existed, and the /work/ capture was shipping as a 262 KB PNG when the same image is 122 KB as JPEG. Both are fixed above, which is most of why this page is no longer the heaviest one on the site. The case studies carrying full-size captures have since taken that place — TownofNiwot with four, AragoCor with three — and in AragoCor’s case deliberately: its screenshots were viewport slices that cut through a card row, and capturing each section whole costs bytes that a sliced picture was only pretending to save. Regenerating it this time caught a third: the script was reading the pages without scrolling them, so every screenshot marked <code>loading="lazy"</code> went uncounted and four rows quietly understated themselves. Nothing in the markup had changed; the pages had simply grown tall enough for the browser to stop fetching below the fold. The script now walks each page to the bottom and waits for the images before it records. And this time a fourth: the site's own smooth scrolling animated the walk back to the top, and the screenshot beat it, so the capture of the home page started at the second section with no hero in it. The script now scrolls back instantly, and the picture above is the one a visitor sees.</p>
+    <p>Live, re-measured after every change, and checked before every deploy by the three scripts above, so the table is regenerated rather than trusted and a broken link can't ship. Each re-measure has caught something worth fixing, from out-of-date screenshots to images the script hadn't waited for.</p>
 
     <div class="cs-carry">
       <h2>What this means for your project</h2>

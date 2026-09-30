@@ -645,8 +645,6 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-net .cs-net__chip--a{background:var(--t);}
 .cs-net .cs-net__chip--d{background:var(--td);}
 .cs-net .cs-net__chip--p{background:var(--tp);}
-.cs-net .cs-net__hex{margin-left:.15rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:.66rem;color:var(--slate-2);letter-spacing:-.01em;}
 
 /* ── placeholder slots ───────────────────────────────
    Deliberately unfinished-looking. Anything wearing this
