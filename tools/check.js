@@ -13,6 +13,7 @@
  *   - one h1 per page, no skipped heading levels, alt text on every image
  *   - a title, a description and a canonical on every page; titles and
  *     descriptions unique across the indexable pages
+ *   - the same favicon, and a link to /apple-touch-icon.png, on every page
  *   - every JSON-LD block parses
  *   - noindex pages are out of the sitemap, and every lastmod is a real,
  *     past date
@@ -86,6 +87,7 @@ for (const [f, s] of docs) {
 // ── 3. headings, alt text, head tags ─────────────────────────────────────
 const titles = new Map();
 const descs = new Map();
+const icons = new Set();
 for (const [f, s] of docs) {
   const hs = [...s.matchAll(/<h([1-6])\b/g)].map((m) => +m[1]);
   const h1s = hs.filter((h) => h === 1).length;
@@ -104,6 +106,13 @@ for (const [f, s] of docs) {
   if (!canon) fails.push(`${rel(f)}: no canonical`);
   if (!/<meta name="viewport"/.test(s)) fails.push(`${rel(f)}: no viewport meta`);
   if (!/<html lang="/.test(s)) fails.push(`${rel(f)}: no lang on <html>`);
+  // No script owns the <head>, so the icons are checked here: every page
+  // declares the same favicon and links the home-screen icon at the root.
+  const icon = (s.match(/<link rel="icon" href="([^"]+)"/) || [])[1];
+  if (!icon) fails.push(`${rel(f)}: no <link rel="icon">`);
+  else if (icons.size && !icons.has(icon)) fails.push(`${rel(f)}: favicon differs from the other pages'`);
+  else icons.add(icon);
+  if (!/<link rel="apple-touch-icon" href="(?:\.\/|(?:\.\.\/)+)apple-touch-icon\.png"/.test(s)) fails.push(`${rel(f)}: no <link rel="apple-touch-icon"> to /apple-touch-icon.png`);
   if (!isNoindex(s)) {
     if (!/property="og:title"/.test(s) || !/property="og:image"/.test(s)) fails.push(`${rel(f)}: missing og:title or og:image`);
     if (title) { if (titles.has(title)) fails.push(`${rel(f)}: title duplicates ${titles.get(title)}`); titles.set(title, rel(f)); }
