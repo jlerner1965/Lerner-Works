@@ -231,6 +231,16 @@ strong{font-weight:600;}
 .page-head p{margin-top:1.2rem;max-width:var(--measure);color:var(--slate);
   font-size:clamp(1.02rem,1rem + .3vw,1.16rem);}
 .page-head__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem;}
+/* A header with a portrait beside it (/about/). */
+.page-head__grid{display:grid;grid-template-columns:minmax(0,1fr) 13rem;gap:clamp(1.5rem,5vw,4rem);align-items:end;}
+@media (max-width:700px){.page-head__grid{grid-template-columns:1fr;}.page-head__grid .portrait{max-width:10rem;}}
+
+/* ── portrait ────────────────────────────────────────
+   James, on /about/ beside the h1 and in the home page's
+   "Who you're hiring" card. The markup carries the real
+   640×800 dimensions, so the slot is reserved before it loads. */
+.portrait{width:100%;max-width:18rem;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--paper);}
+.aside .portrait{margin-bottom:1.3rem;}
 
 /* ── work cards ──────────────────────────────────── */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem;}

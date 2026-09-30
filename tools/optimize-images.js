@@ -37,6 +37,9 @@ const JOBS = [
   // Re-measure before adding one here; do not assume JPEG is smaller.
   ['case-studies/lernerworks/02-work.png',         'case-studies/lernerworks/02-work.jpg',               null],
   ['case-studies/lernerworks/01-home.png',         'case-studies/lernerworks/01-home-thumb.jpg',         800],
+  // James's portrait, on /about/ and the home page's "Who you're hiring". It
+  // never displays wider than ~300 CSS px, so 640 covers a 2× screen.
+  ['assets/james-lerner-original.jpg',             'assets/james-lerner.jpg',                            640],
 ];
 
 (async () => {
