@@ -176,7 +176,7 @@
 
     <p><strong>A directory the build refuses to publish incorrectly.</strong> Each of the 63 published businesses is a record with a name, category, source URL, verification date and status. Validation runs on every build and stops it on a missing source, an unknown category, a duplicate, an insecure link, or an active record older than 180 days. Closed and unverified businesses stay in the file as the record of what was checked and never render. The rendered category counts are asserted by tests against the records they came from.</p>
 
-    <p><strong>A calendar with no scraper.</strong> An event is confirmed only when its organizer has published the date, and the record cites that page. Seasons that recur but aren't dated yet appear under "expected" and never in the upcoming list or the structured data. One piece of logic renders the month view and the "coming up" strips twice: at build time, so crawlers and readers without JavaScript get complete markup, and in the browser, so the list is right on the visitor's clock. Build machine, visitor and Niwot are in three different time zones; the code keeps dates as strings for exactly that reason.</p>
+    <p><strong>A calendar with no scraper.</strong> An event is confirmed only when its organizer has published the date, and the record cites that page. Seasons that recur but aren't dated yet appear under "expected" and never in the upcoming list or the structured data.</p>
 
     <figure class="cs-fig">
       <img src="../../case-studies/townofniwot/03-election.jpg"
@@ -187,10 +187,6 @@
 
     <p><strong>An election page held to a stricter standard than the rest.</strong> Three voting tasks first: the boundary, the ballot, and how to register. Then a status strip, a plain-language explanation of what incorporation decides, and each ballot question and fiscal issue with its official number, the revenue estimate the ballot states, and the qualifications the official text carries, such as the food exemption on the sales tax. A dated "changes to this page" list sits underneath. The page has its own verification date, separate from the rest of the site.</p>
 
-    <p><strong>Forms that work with JavaScript off.</strong> The submission form posts natively to a single serverless endpoint and gets a plain redirect back; a script upgrades that to an in-place response when it can. The endpoint checks method, content type and origin, caps body size, drops honeypot submissions silently, rate-limits bursts, and validates everything. The newsletter form was deliberately withheld from launch, because the audit could not prove delivery. It returns after one real signup, one correction and one unsubscribe have been seen to work.</p>
-
-    <p><strong>A verification suite that fails on the things reviewers find.</strong> Alongside 78 data and build tests, a browser runner loads every page at widths from 320 to 1,440 pixels and fails on any console or content-security-policy error, any horizontal overflow, any image without alt text, any text under 12 pixels, any focus ring under 3:1 contrast against its ground, any accessibility violation reported by axe at WCAG 2.2 AA, and any rounded corner, because the design system says there are none. It also checks the calendar's month view follows three presses of Next, that the mobile menu label resets on Escape, and that the navigation shows in full with scripting disabled.</p>
-
     <figure class="cs-fig cs-fig--phone">
       <img src="../../case-studies/townofniwot/05-home-mobile.jpg"
            width="780" height="1688" loading="lazy" decoding="async"
@@ -199,6 +195,13 @@
     </figure>
 
     <p><strong>Images from eight originals.</strong> Each photograph is emitted as AVIF, WebP and JPEG at five widths with its dimensions written in, and nothing is ever upscaled. The homepage went from 3.9 MB of images to 0.43 MB at desktop width and 0.13 MB on a phone. The originals stay published only because social previews want a stable JPEG.</p>
+
+    <details class="cs-built">
+      <summary>How it's built</summary>
+      <p>One piece of logic renders the month view and the "coming up" strips twice: at build time, so crawlers and readers without JavaScript get complete markup, and in the browser, so the list is right on the visitor's clock. Build machine, visitor and Niwot are in three different time zones; the code keeps dates as strings for exactly that reason.</p>
+      <p><strong>Forms that work with JavaScript off.</strong> The submission form posts natively to a single serverless endpoint and gets a plain redirect back; a script upgrades that to an in-place response when it can. The endpoint checks method, content type and origin, caps body size, drops honeypot submissions silently, rate-limits bursts, and validates everything. The newsletter form was deliberately withheld from launch, because the audit could not prove delivery. It returns after one real signup, one correction and one unsubscribe have been seen to work.</p>
+      <p><strong>A verification suite that fails on the things reviewers find.</strong> Alongside 78 data and build tests, a browser runner loads every page at widths from 320 to 1,440 pixels and fails on any console or content-security-policy error, any horizontal overflow, any image without alt text, any text under 12 pixels, any focus ring under 3:1 contrast against its ground, any accessibility violation reported by axe at WCAG 2.2 AA, and any rounded corner, because the design system says there are none. It also checks the calendar's month view follows three presses of Next, that the mobile menu label resets on Escape, and that the navigation shows in full with scripting disabled.</p>
+    </details>
 
     <h2>Decisions and tradeoffs</h2>
 

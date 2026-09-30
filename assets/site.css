@@ -473,6 +473,19 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--white);
   border:1px solid var(--line);border-radius:4px;padding:.05em .35em;color:var(--navy);}
 
+/* How it's built: implementation detail folded into a <details> at the end
+   of the section it came from — the same element as the mobile menu and the
+   FAQ, so it needs no script. The story reads whole without opening it. */
+.cs-built{margin-top:clamp(1.8rem,4vw,2.4rem);border-block:1px solid var(--line);}
+.cs-built[open]{padding-bottom:1.3rem;}
+.cs-built summary{cursor:pointer;list-style:none;padding:1rem 2.2rem 1rem 0;position:relative;
+  font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);}
+.cs-built summary::-webkit-details-marker{display:none;}
+.cs-built summary::after{content:"+";position:absolute;right:.25rem;top:.85rem;
+  font-family:var(--sans);font-weight:400;font-size:1.4rem;color:var(--ever);}
+.cs-built[open] summary::after{content:"–";}
+.cs-built summary + p{margin-top:.2rem;}
+
 .cs-fig{margin:clamp(2rem,5vw,2.8rem) 0 0;max-width:56rem;}
 .cs-fig img{width:100%;height:auto;border:1px solid var(--line);
   border-radius:var(--r);background:var(--white);}
