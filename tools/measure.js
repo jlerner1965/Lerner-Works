@@ -120,7 +120,7 @@ const kb = (bytes) => Math.round(bytes / 1024);
 
   console.log('\n─── paste into the "At a glance" strip on /work/lernerworks/ ───\n');
   console.log(`        <div><dt>to load the home page in full, images included</dt><dd>${home.requests} requests</dd></div>`);
-  console.log(`        <div><dt>for the whole home page, of which ${kb(homeImages)} KB is images: the three case-study thumbnails and my photo</dt><dd>${kb(home.bytes)} KB</dd></div>`);
+  console.log(`        <div><dt>for the whole home page, of which ${kb(homeImages)} KB is images: the three case-study thumbnails</dt><dd>${kb(home.bytes)} KB</dd></div>`);
 
   console.log('\n─── paste into the results table ───\n');
   for (const r of rows) {

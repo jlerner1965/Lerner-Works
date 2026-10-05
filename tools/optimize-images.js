@@ -37,9 +37,6 @@ const JOBS = [
   // Re-measure before adding one here; do not assume JPEG is smaller.
   ['case-studies/lernerworks/02-work.png',         'case-studies/lernerworks/02-work.jpg',               null],
   ['case-studies/lernerworks/01-home.png',         'case-studies/lernerworks/01-home-thumb.jpg',         800],
-  // James's portrait, on /about/ and the home page's "Who you're hiring". It
-  // never displays wider than ~300 CSS px, so 640 covers a 2× screen.
-  ['assets/james-lerner-original.jpg',             'assets/james-lerner.jpg',                            640],
 ];
 
 (async () => {
@@ -48,7 +45,7 @@ const JOBS = [
   await page.goto(BASE + '/');   // same origin as the images, or the canvas is tainted
   for (const [src, out, maxW] of JOBS) {
     // A source that has been re-encoded and deleted leaves a stale job behind.
-    // Say so and carry on: one dead entry should not stop the other seven.
+    // Say so and carry on: one dead entry should not stop the rest.
     if (!fs.existsSync(path.join(ROOT, src))) {
       console.log(`${out}  SKIPPED — source missing: ${src}`);
       continue;

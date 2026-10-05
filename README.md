@@ -22,9 +22,6 @@ assets/fonts/                         self-hosted woff2
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs; also
                                       icon.html, the touch icon's source
-assets/james-lerner.jpg               James's portrait (/about/, home), made
-                                      from james-lerner-original.jpg by
-                                      tools/optimize-images.js
 apple-touch-icon.png                  home-screen icon, rendered by render.js
 case-studies/<slug>/                  screenshots used by that case study
 case-studies/inside-the-towns/        hub capture + seven town thumbnails
