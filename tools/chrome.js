@@ -53,7 +53,6 @@ const nav = (P, section) => {
       <a href="${P}services/"${cur('services')}>Services</a>
       <a href="${P}about/"${cur('about')}>About</a>
       <a href="${P}contact/"${cur('contact')}>Contact</a>
-      <a class="nav__tel" href="${CONTACT.telHref}">${CONTACT.telText}</a>
       <a class="btn btn--go" href="${CONTACT.booking}">Book a call</a>
     </div>
     <details class="menu">
@@ -64,7 +63,6 @@ const nav = (P, section) => {
         <a href="${P}about/"${cur('about')}>About</a>
         <a href="${P}contact/"${cur('contact')}>Contact</a>
         <hr />
-        <a href="${CONTACT.telHref}">Call ${CONTACT.telText}</a>
         <a href="mailto:${CONTACT.email}">${CONTACT.email}</a>
         <a class="btn btn--go" href="${CONTACT.booking}">Book a call</a>
       </div>
@@ -90,7 +88,6 @@ const foot = (P) => `    <div class="foot">
       <div>
         <p class="foot__h">Contact</p>
         <ul>
-          <li><a href="${CONTACT.telHref}">${CONTACT.telText}</a></li>
           <li><a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
           <li><a href="${CONTACT.booking}">Book a call</a></li>
         </ul>

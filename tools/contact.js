@@ -1,12 +1,12 @@
 /*
- * The single source for the three details that appear on every page: the
- * phone number, the email address and the booking link.
+ * The single source for the two details that appear on every page: the
+ * email address and the booking link.
  *
  * The site has no build step and no includes — that is one of the four
  * constraints it is built on — so a header partial is not available. This is
  * the next best thing: the values live here once, and the script finds every
- * copy of them in the HTML and either checks or rewrites it. Changing a
- * number is one edit and one command, not thirty edits and a grep you hope
+ * copy of them in the HTML and either checks or rewrites it. Changing an
+ * address is one edit and one command, not thirty edits and a grep you hope
  * was complete.
  *
  *   node tools/contact.js            # check every page agrees; exit 1 if not
@@ -22,9 +22,6 @@ const fs = require('fs');
 const path = require('path');
 
 const CONTACT = {
-  // Digits only, as a tel: URI. Both forms below are generated from it.
-  telHref: 'tel:+19492059056',
-  telText: '(949) 205-9056',
   email: 'james@lernerworks.com',
   // ── PENDING: flip to /20min once the Calendly event is renamed ──────────
   // The CTA copy says "Book a 20-minute call" in twelve places, and the event
@@ -44,8 +41,6 @@ const CONTACT = {
 
 // Anything matching the left pattern must read as the right value.
 const RULES = [
-  [/tel:\+\d{10,}/g,                                CONTACT.telHref, 'phone href'],
-  [/\(\d{3}\) \d{3}-\d{4}/g,                        CONTACT.telText, 'phone text'],
   [/[a-z.]+@lernerworks\.com/g,                     CONTACT.email,   'email'],
   [/https:\/\/calendly\.com\/[A-Za-z0-9-]+\/[A-Za-z0-9-]+/g, CONTACT.booking, 'booking link'],
 ];
