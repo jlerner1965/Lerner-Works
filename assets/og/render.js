@@ -27,7 +27,7 @@ const CARDS = [
   { out: 'work.png',     k: 'Work · Case studies',                      t: 'What was wrong, what I built, and what it cost to decide.' },
   { out: 'services.png', k: 'Services & pricing',                       t: 'Three services, one process, prices you can read before you call.' },
   { out: 'about.png',    k: 'About · James Lerner',                     t: 'One person. The one you talk to.' },
-  { out: 'contact.png',  k: 'Contact',                                  t: 'Three ways to reach me. All of them reach me.' },
+  { out: 'contact.png',  k: 'Contact',                                  t: 'Two ways to reach me. Both of them reach me.' },
 ];
 
 (async () => {

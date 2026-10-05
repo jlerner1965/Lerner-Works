@@ -372,7 +372,7 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .aside .btn{width:100%;margin-top:1rem;}
 
 /* ── contact ─────────────────────────────────────── */
-.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.2rem;}
+.ways{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:2.2rem;}
 @media (max-width:880px){.ways{grid-template-columns:1fr;}}
 .way{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow);display:flex;flex-direction:column;}
 .way__k{font-size:.74rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--slate-2);}

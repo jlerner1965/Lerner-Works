@@ -15,7 +15,7 @@ work/lernerworks/index.html           this site, as a case study
 services/index.html                   services, process, pricing, guarantee, FAQ
 boulder-county-web-design/index.html  primary local-search service page
 about/index.html                      who you're hiring, how I work, what I won't do
-contact/index.html                    three ways to reach James
+contact/index.html                    two ways to reach James
 assets/site.css                       @font-face, tokens, nav, every component,
                                       the case-study template
 assets/fonts/                         self-hosted woff2
@@ -35,7 +35,7 @@ tools/check.js                        PRE-FLIGHT: every file-level check in
 tools/audit.js                        the browser checks: axe at three widths
                                       and the content-security policy, per page
 tools/chrome.js                       single source for the nav and footer
-tools/contact.js                      single source for phone, email, booking
+tools/contact.js                      single source for email and booking
 tools/set-image-dims.py               writes real image sizes into the HTML
 tools/measure.js                      requests / bytes / scripts per page,
                                       and --table emits the markup for them
@@ -172,9 +172,9 @@ drifted footers the first time it ran. What it does not own is the "Next
 step" heading and lede above the footer grid — those are written per page on
 purpose — and anything inside `<main>`.
 
-## Phone, email and the booking link
+## Email and the booking link
 
-These three appear throughout all ten public pages. There is no build
+These two appear throughout all ten public pages. There is no build
 step and no includes, so there is no partial to edit — `tools/contact.js` is
 the single source instead. The values live in one object at the top of it:
 
@@ -183,7 +183,7 @@ node tools/contact.js            # check every page agrees; exits 1 if not
 node tools/contact.js --write    # rewrite every page to match
 ```
 
-To change a number, an address or the booking link: **edit `CONTACT` in that
+To change the address or the booking link: **edit `CONTACT` in that
 file, run `--write`, commit.** One edit and one command. Do not hand-edit the
 pages and hope a grep caught them all — that is the failure this replaces.
 `chrome.js` reads the same object, so the nav and footer follow it.
@@ -521,7 +521,7 @@ thin ones is not.
 
 ## Before launch
 
-- [x] Phone, email and booking link are real on every page.
+- [x] Email and booking link are real on every page.
 - [x] No placeholder cards remain anywhere on the site. Inside the Towns
       traffic says "Not yet measured" in plain words until it is.
 - [x] Screenshots of this site on `/work/lernerworks/` re-taken against the
