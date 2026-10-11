@@ -135,9 +135,21 @@ strong{font-weight:600;}
 .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
      backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
 .nav__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.8rem;}
-.brand{font-family:var(--serif);font-weight:700;font-size:1.12rem;text-decoration:none;letter-spacing:-.015em;}
+.brand{display:inline-flex;align-items:center;gap:.7rem;
+  font-family:var(--serif);font-weight:700;font-size:1.12rem;text-decoration:none;letter-spacing:-.015em;}
+/* The "LW." mark, in the logo's own navy and green (assets/brand/lw-mark.svg),
+   which sit close to --navy and --ever but are not them: a logo keeps its
+   colours. Sized to the two lines of the name beside it. */
+.brand__mark{flex:none;height:2.2rem;width:auto;aspect-ratio:893/450;}
+.brand__ink{fill:#0D2C43;}
+.brand__dot{fill:#019673;}
 .brand small{display:block;font-family:var(--sans);font-size:.64rem;font-weight:500;
              letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);margin-top:.1rem;}
+/* With the mark beside it, the tagline no longer fits one line on a phone and
+   wrapped mid-phrase, leaving "· Boulder County" on a line of its own. Below
+   this width it breaks at the separator instead, and the separator goes. */
+@media (max-width:560px){.brand__sep{display:block;height:0;overflow:hidden;}}
+@media (max-width:380px){.brand{gap:.5rem;}.brand__mark{height:1.7rem;}.brand small{letter-spacing:.05em;}}
 .nav__links{display:flex;gap:1.6rem;align-items:center;}
 /* :not(.btn) matters — without it these rules out-specify .btn--go and paint
    the nav's primary CTA slate-on-green, which is about 1.3:1 contrast. */

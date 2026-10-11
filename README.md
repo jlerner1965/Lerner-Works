@@ -19,6 +19,8 @@ contact/index.html                    two ways to reach James
 assets/site.css                       @font-face, tokens, nav, every component,
                                       the case-study template
 assets/fonts/                         self-hosted woff2
+assets/brand/                         the logo: lw-logo-source.jpg as supplied,
+                                      lw-mark.svg traced from it (see "The logo")
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs; also
                                       icon.html, the touch icon's source
@@ -182,7 +184,39 @@ To change the nav or the footer grid: **edit the template in `chrome.js`,
 run `--write`, commit.** Do not hand-edit fifteen copies. It found six
 drifted footers the first time it ran. What it does not own is the "Next
 step" heading and lede above the footer grid — those are written per page on
-purpose — and anything inside `<main>`.
+purpose — and anything inside `<main>`. It does own one line of the `<head>`:
+the favicon, because it is drawn from the same logo as the nav (next section).
+
+## The logo
+
+The "LW." monogram — navy serif letters and a green square for the full stop
+— was supplied as a 1254 px JPEG on October 11, 2026, kept as
+`assets/brand/lw-logo-source.jpg`. `assets/brand/lw-mark.svg` is a trace of
+it: one path for the letters, one rounded rect for the square, 1.6 KB, and a
+pixel-for-pixel match to the source at 98.6% (the rest is edge
+anti-aliasing). It keeps the logo's own colours, `#0D2C43` and `#019673`,
+which sit close to `--navy` and `--ever` without being them; a logo keeps its
+colours.
+
+It appears in three places, all drawn from that one file:
+
+- **The nav**, beside "Lerner Works", as inline SVG so it costs no request,
+  coloured by class in `site.css` because the policy forbids inline styles.
+  `chrome.js` reads the path from the SVG when it renders the nav. On a phone
+  the tagline beside it breaks at its "·" instead of mid-phrase.
+- **The favicon**, the same mark on a white rounded tile, as a `data:` URI in
+  every page's `<head>`. `chrome.js` builds it and keeps it identical across
+  pages; `check.js` still fails any page whose favicon differs.
+- **`/apple-touch-icon.png`**, rendered from `assets/og/icon.html` (below).
+
+To change the logo: replace `lw-mark.svg` with the same viewBox, one
+`<path>` and one `<rect>`, then `node tools/chrome.js --write` and re-render
+the touch icon. The trace was made with potrace from the source, the green
+square removed first and the letters smoothed with a 1.6 px blur before
+thresholding, so the curves come out as curves rather than a staircase. The
+link-preview cards are on navy, where the navy mark would disappear, so they
+keep the typographic "Lerner Works" until there is a reversed version of the
+logo.
 
 ## Email and the booking link
 
@@ -278,10 +312,12 @@ The case studies use their own lead image as the OG image — a real
 screenshot of the work beats a generated card.
 
 The same run renders `/apple-touch-icon.png` (180×180) from
-`assets/og/icon.html`: the "LW" mark every page already declares as its
-favicon, in the site's own serif, full-bleed and opaque because iOS rounds
-the corners itself. Nothing owns the `<head>`, so `check.js` fails any page
-whose favicon differs from the rest or which lacks the touch-icon link.
+`assets/og/icon.html`: the "LW." mark from `assets/brand/lw-mark.svg`, on
+white as the logo is supplied, full-bleed and opaque because iOS rounds the
+corners itself. `check.js` fails any page whose favicon differs from the rest
+or which lacks the touch-icon link. Re-rendering also rewrites the five card
+PNGs; if their template has not changed, the new files differ only in text
+anti-aliasing, so restore them rather than commit noise.
 
 Playwright is the only thing any of the dev tooling needs (`npx playwright
 install chromium`), and it is dev-only — the site itself still has no build
