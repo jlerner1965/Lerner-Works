@@ -8,7 +8,7 @@ requests at all.
 ```
 index.html                            home
 work/index.html                       /work/ — case study index
-work/inside-the-towns/index.html      own project — the seven-town network
+work/inside-the-towns/index.html      own project — the 24-guide town network
 work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
 work/lernerworks/index.html           this site, as a case study
@@ -19,12 +19,14 @@ contact/index.html                    two ways to reach James
 assets/site.css                       @font-face, tokens, nav, every component,
                                       the case-study template
 assets/fonts/                         self-hosted woff2
+assets/brand/                         the logo: lw-logo-source.jpg as supplied,
+                                      lw-mark.svg traced from it (see "The logo")
 assets/og/                            link-preview cards: card.html template,
                                       render.js, and the rendered PNGs; also
                                       icon.html, the touch icon's source
 apple-touch-icon.png                  home-screen icon, rendered by render.js
 case-studies/<slug>/                  screenshots used by that case study
-case-studies/inside-the-towns/        hub capture + seven town thumbnails
+case-studies/inside-the-towns/        hub capture + 24 town thumbnails
 areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
                                       unwritten; see "Service-area pages"
 tools/check.js                        PRE-FLIGHT: every file-level check in
@@ -96,9 +98,11 @@ depends on them.
   work is never dressed as a commission. Outcomes in the "At a glance" strips
   are limited to things that can be counted. The "Counted, not claimed" strip
   under the home-page hero follows the same rule: every figure links to the
-  case study that measures it, and none stands alone. "10 live sites" is the
-  seven town guides and their hub, AragoCor, and this site — if one of them
-  goes away, the number and the list on `/work/` change the same day. The
+  case study that measures it, and none stands alone. "27 live sites" is the
+  twenty-four town guides and their hub, AragoCor, and this site — if one of
+  them goes away, the number and the list on `/work/` change the same day.
+  (It was 10 until October 11, 2026, when the study caught up with seventeen
+  guides launched in the two weeks before.) The
   page weight in the strip is the home page's own: `measure.js --table`
   prints the line, so re-measure and paste it whenever the home page or
   anything it loads changes. (It replaced a Lighthouse score for
@@ -107,13 +111,26 @@ depends on them.
 - **Fresh figures carry their date.** The Inside the Towns study quotes counts
   from the network's repository and says which commit it read; the AragoCor
   and Niwot studies say when the live site was last checked. When a count
-  moves (it did: 23 components became 28 in nine days), change the number
-  *and* the date, and re-read the "Result" paragraph that explains the
-  difference. Vercel Web Analytics is on every page of the towns network but
-  is not switched on in the Vercel dashboard for any of the eight projects
-  (checked September 29, 2026 — the API answers "Web Analytics not found"),
-  which is why that study says traffic is "Not yet measured". It is a
-  dashboard click to enable; then wait for a period worth quoting.
+  moves (it did: 23 components became 28 in nine days, then 38, and seven
+  guides became twenty-four in three weeks), change the number *and* the
+  date, and re-read the "Result" paragraph that explains the difference. Count
+  the way the last pass did so the figures stay comparable: places and events
+  are the files in each live guide's `places/` and `events/` folders, staging
+  excluded; tests are `npm test`'s own total; routes are the page patterns in
+  `src/integrations/town-routes.ts` and `src/pages/`, feeds and icons not
+  counted. Vercel Web Analytics is on every page of the towns network, but on
+  September 29, 2026 it was not switched on in the dashboard for any of the
+  original eight projects (the API answered "Web Analytics not found"), and the
+  network's own notes say it still has to be enabled by hand on the newer
+  ones — which is why that study says traffic is "Not yet measured". It is a
+  dashboard click per project; then wait for a period worth quoting.
+- **A client's withdrawn claim is withdrawn here too.** AragoCor keeps a
+  register of claims it has retracted (`data/technical-values.json` in its
+  repository) and its own validator fails on any of them. The October 11, 2026
+  pass found this site still quoting two — "96–98% CaCO₃" and one 20–325 mesh
+  range across every grade — plus a home-page grid and a five-stage sourcing
+  story the client site had dropped on September 25. Re-read the case study
+  against the client site, not against the last version of the study.
 - **Nothing unfinished ships as a placeholder.** What the site does not have
   yet is said in a plain sentence — "Not yet measured: traffic and newsletter
   signups" on `/work/inside-the-towns/` — rather than shown as a dashed slot
@@ -167,7 +184,39 @@ To change the nav or the footer grid: **edit the template in `chrome.js`,
 run `--write`, commit.** Do not hand-edit fifteen copies. It found six
 drifted footers the first time it ran. What it does not own is the "Next
 step" heading and lede above the footer grid — those are written per page on
-purpose — and anything inside `<main>`.
+purpose — and anything inside `<main>`. It does own one line of the `<head>`:
+the favicon, because it is drawn from the same logo as the nav (next section).
+
+## The logo
+
+The "LW." monogram — navy serif letters and a green square for the full stop
+— was supplied as a 1254 px JPEG on October 11, 2026, kept as
+`assets/brand/lw-logo-source.jpg`. `assets/brand/lw-mark.svg` is a trace of
+it: one path for the letters, one rounded rect for the square, 1.6 KB, and a
+pixel-for-pixel match to the source at 98.6% (the rest is edge
+anti-aliasing). It keeps the logo's own colours, `#0D2C43` and `#019673`,
+which sit close to `--navy` and `--ever` without being them; a logo keeps its
+colours.
+
+It appears in three places, all drawn from that one file:
+
+- **The nav**, beside "Lerner Works", as inline SVG so it costs no request,
+  coloured by class in `site.css` because the policy forbids inline styles.
+  `chrome.js` reads the path from the SVG when it renders the nav. On a phone
+  the tagline beside it breaks at its "·" instead of mid-phrase.
+- **The favicon**, the same mark on a white rounded tile, as a `data:` URI in
+  every page's `<head>`. `chrome.js` builds it and keeps it identical across
+  pages; `check.js` still fails any page whose favicon differs.
+- **`/apple-touch-icon.png`**, rendered from `assets/og/icon.html` (below).
+
+To change the logo: replace `lw-mark.svg` with the same viewBox, one
+`<path>` and one `<rect>`, then `node tools/chrome.js --write` and re-render
+the touch icon. The trace was made with potrace from the source, the green
+square removed first and the letters smoothed with a 1.6 px blur before
+thresholding, so the curves come out as curves rather than a staircase. The
+link-preview cards are on navy, where the navy mark would disappear, so they
+keep the typographic "Lerner Works" until there is a reversed version of the
+logo.
 
 ## Email and the booking link
 
@@ -263,10 +312,12 @@ The case studies use their own lead image as the OG image — a real
 screenshot of the work beats a generated card.
 
 The same run renders `/apple-touch-icon.png` (180×180) from
-`assets/og/icon.html`: the "LW" mark every page already declares as its
-favicon, in the site's own serif, full-bleed and opaque because iOS rounds
-the corners itself. Nothing owns the `<head>`, so `check.js` fails any page
-whose favicon differs from the rest or which lacks the touch-icon link.
+`assets/og/icon.html`: the "LW." mark from `assets/brand/lw-mark.svg`, on
+white as the logo is supplied, full-bleed and opaque because iOS rounds the
+corners itself. `check.js` fails any page whose favicon differs from the rest
+or which lacks the touch-icon link. Re-rendering also rewrites the five card
+PNGs; if their template has not changed, the new files differ only in text
+anti-aliasing, so restore them rather than commit noise.
 
 Playwright is the only thing any of the dev tooling needs (`npx playwright
 install chromium`), and it is dev-only — the site itself still has no build
@@ -533,14 +584,15 @@ thin ones is not.
       say "20-minute"; the event does not.
 - [x] Apex vs `www` settled: everything names `www.lernerworks.com`, the host
       that actually serves. `node tools/check-host.js` re-proves it.
-- [x] Inside the Towns screenshots — hub capture and seven town thumbnails,
-      from a local build. See `case-studies/inside-the-towns/README.md`.
+- [x] Inside the Towns screenshots — hub capture and twenty-four town
+      thumbnails, from local builds at the network's October 10 commit. See
+      `case-studies/inside-the-towns/README.md`.
 - [x] Every page passes axe-core at WCAG 2.2 AA, at three widths.
 - [ ] Replace the Inside the Towns "Not yet measured" line with Buttondown
       subscribers and Search Console clicks, each with its date range and
       source. Needs a real reporting period; do not estimate. First enable Web
-      Analytics on the eight `inside*` projects in the Vercel dashboard — the
-      script is already on every page, but the dashboard side is off, so
-      there is nothing to read yet.
+      Analytics on every live project of the network in the Vercel dashboard
+      (twenty-five, plus Castle Rock when it launches) — the script is already
+      on every page, but the dashboard side has to be switched on by hand.
 - [ ] Run PageSpeed on https://www.lernerworks.com/ after this deploys and, if
       you quote it anywhere, quote it with the date.

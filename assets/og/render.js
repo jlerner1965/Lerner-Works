@@ -46,7 +46,7 @@ const CARDS = [
     console.log(`${card.out}  ${SIZE.width}x${SIZE.height}`);
   }
 
-  // The home-screen icon: the favicon's "LW" mark, from icon.html, written to
+  // The home-screen icon: the favicon's "LW." mark, from icon.html, written to
   // the site root because that is the path iOS asks for even without a link.
   const icon = await browser.newContext({ viewport: { width: 180, height: 180 }, deviceScaleFactor: 1 });
   const ip = await icon.newPage();

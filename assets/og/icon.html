@@ -6,19 +6,19 @@
 <title>Touch icon source — not a page</title>
 <!--
   Source for /apple-touch-icon.png, rendered to a 180×180 PNG by render.js.
-  The same mark as the favicon every page declares in its <head> — "LW" in
-  evergreen on navy — set in the site's own serif rather than Georgia, which
-  the dev browser does not have. Full-bleed and opaque: iOS rounds the
-  corners itself and fills any transparency with black.
+  The same mark as the favicon every page declares in its <head> and the nav
+  carries beside the name: the "LW." monogram from assets/brand/lw-mark.svg,
+  navy with its green square, on white, as the supplied logo has it.
+  Full-bleed and opaque: iOS rounds the corners itself and fills any
+  transparency with black.
 -->
-<link rel="stylesheet" href="../site.css" />
 <style>
   html,body{margin:0;width:180px;height:180px;overflow:hidden;}
-  body{background:#14283F;display:flex;align-items:center;justify-content:center;}
-  .mark{font-family:var(--serif);font-weight:700;font-size:92px;line-height:1;letter-spacing:-.02em;color:#5FBF97;margin-top:-6px;}
+  body{background:#fff;display:flex;align-items:center;justify-content:center;}
+  img{width:136px;height:auto;display:block;}
 </style>
 </head>
 <body>
-<p class="mark">LW</p>
+<img src="../brand/lw-mark.svg" width="893" height="450" alt="" />
 </body>
 </html>

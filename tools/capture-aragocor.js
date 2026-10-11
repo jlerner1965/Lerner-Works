@@ -1,5 +1,6 @@
 /*
- * Re-capture the three AragoCor screenshots the case study uses.
+ * Re-capture the three AragoCor screenshots the case study uses: the home
+ * hero, the industries grid and the product grades.
  *
  * The old ones were 1265x712 viewport slices: they cut through a card row,
  * carried the browser scrollbar down the right edge and rounded corners at
@@ -47,36 +48,41 @@ const settle = async (p) => {
   await p.screenshot({ path: `${OUT}/01-home-hero.png`, clip: { x: 0, y: 0, width: cw, height: 1000 } });
   console.log(`01-home-hero      ${cw}x1000   hero as it arrives`);
 
-  // 2 ── the applications band, complete
-  const appBand = await p.evaluate(() => {
-    const h = [...document.querySelectorAll('h2')].find(x => x.textContent.replace(/\s+/g, ' ').includes('One mineral'));
-    let n = h.parentElement, best = null;
-    while (n && n !== document.body) {
-      const r = n.getBoundingClientRect();
-      if (r.width >= innerWidth * 0.9 && r.height < 2200) best = n;
-      if (r.width >= innerWidth * 0.9 && r.height >= 2200) break;
-      n = n.parentElement;
-    }
-    const r = best.getBoundingClientRect();
-    return { top: Math.round(r.top + scrollY), height: Math.round(r.height) };
+  // 2 ── the industries grid, complete. The home page's eleven-card
+  // applications band was replaced on September 25, 2026 by four priority
+  // applications; the eleven now live on /industries, under a visually
+  // hidden h2, so the frame is that h2's section, eyebrow to last card.
+  await p.goto(SITE + '/industries', { waitUntil: 'networkidle' });
+  await settle(p);
+  const ind = await p.evaluate(() => {
+    const h = [...document.querySelectorAll('h2')].find(x => x.textContent.trim() === 'Industry applications');
+    if (!h) return null;
+    const sec = h.closest('section') || h.parentElement;
+    const r = sec.getBoundingClientRect();
+    const cards = sec.querySelectorAll('a[href^="/industries/"]').length;
+    return { top: Math.round(r.top + scrollY), height: Math.round(r.height), cards };
   });
-  // fullPage, because a clip below the fold is "outside the resulting image"
-  // when the screenshot is only the viewport.
-  await p.screenshot({ path: `${OUT}/03-home-applications.png`, fullPage: true,
-    clip: { x: 0, y: appBand.top, width: cw, height: appBand.height } });
-  console.log(`03-applications   ${cw}x${appBand.height}   complete band, no sliced row`);
+  if (!ind) { console.log('industries: grid not found'); }
+  else {
+    // fullPage, because a clip below the fold is "outside the resulting image"
+    // when the screenshot is only the viewport.
+    await p.screenshot({ path: `${OUT}/03-industries.png`, fullPage: true,
+      clip: { x: 0, y: ind.top, width: cw, height: ind.height } });
+    console.log(`03-industries     ${cw}x${ind.height}   ${ind.cards} industry links, complete section`);
+  }
 
-  // 3 ── the product grades, with the particle sizing the caption points at
+  // 3 ── the product grades, with the sizing the caption points at
   await p.goto(SITE + '/products/', { waitUntil: 'networkidle' });
   await settle(p);
   const prod = await p.evaluate(() => {
-    // Frame from the page heading down past the last card, so every grade
-    // shows its sizing line — that is what the figure is there to show.
-    const h1 = document.querySelector('h1');
+    // Frame from the grid's own heading ("Four grades. Choose by process.")
+    // and its eyebrow down past the last card, so every grade shows its
+    // sizing line — that is what the figure is there to show.
+    const h = [...document.querySelectorAll('h2')].find(x => /^Four grades/.test(x.textContent.trim()));
     const cards = [...document.querySelectorAll('article,li,div')]
       .filter(e => /AG-CAL|GL-CAL|WT-CAL|PL-CAL/.test(e.textContent || '') && e.getBoundingClientRect().height > 180 && e.getBoundingClientRect().width < innerWidth * 0.5);
-    if (!cards.length) return null;
-    const top = Math.round(h1.getBoundingClientRect().top + scrollY) - 90;
+    if (!h || !cards.length) return null;
+    const top = Math.round(h.getBoundingClientRect().top + scrollY) - 62;
     const bottom = Math.round(Math.max(...cards.map(c => c.getBoundingClientRect().bottom + scrollY))) + 40;
     return { top: Math.max(0, top), height: bottom - Math.max(0, top), cards: cards.length };
   });
