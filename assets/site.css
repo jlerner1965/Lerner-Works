@@ -548,21 +548,29 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 /* ═══════════════════════════════════════════════════
    NETWORK DIAGRAM — /work/inside-the-towns/
    The parent hub over the town sites that branch from
-   it, each card carrying that town's own palette.
+   it, grouped under the hub's own five regions, each
+   card carrying that town's own palette.
 
-   Per-card colour arrives as three custom properties
-   set inline from the real town config:
-     --t   the town's bright accent (fills, rules, marks)
-     --td  its dark accent (text; clears 4.5:1 on white)
-     --tp  its paper tint (the card's screenshot ground)
+   Per-card colour arrives as three custom properties,
+   set by one class per town (see "town palettes" near
+   the end of this file), in Color System 2.0's roles:
+     --t   the town's accent (decoration only: the rule
+           across the card, the hover edge)
+     --td  its primary (the words set in the town's
+           colour; every one clears 4.5:1 on white)
+     --tp  its paper, warm or cool (the screenshot
+           ground)
 
-   No script. The connecting rails are drawn by the cards
-   themselves: each one paints a rail segment across its
-   own top that runs half a gap past both edges, so the
-   segments meet and every row reads as one bus whatever
-   the column count wraps to. At one column there is no
-   row to connect, so the rails go away and the cards
-   simply stack.
+   No script. A spine drops from the hub to each
+   region's label; under the label, the rails are drawn
+   by the cards themselves: each one paints a rail
+   segment across its own top that runs half a gap past
+   both edges, so the segments meet and every row reads
+   as one bus whatever the column count wraps to. Rows
+   are centred, so a region of one or two towns sits
+   under its own label rather than off to the left. At
+   one column there is no row to connect, so the rails
+   and the spine go away and the cards simply stack.
 
    The diagram sits inside .cs-body, whose prose rules
    (.cs-body p, .cs-body ul, .cs-body li + li) are all
@@ -574,7 +582,9 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
    .cs-net, which wins on class count.
    ═══════════════════════════════════════════════════ */
 
-.cs-net{--net-gap:.85rem;margin:clamp(2rem,5vw,3rem) 0 0;max-width:none;}
+.cs-net{--net-gap:.85rem;--net-cols:4;margin:clamp(2rem,5vw,3rem) 0 0;max-width:none;}
+@media (max-width:1000px){.cs-net{--net-cols:3;}}
+@media (max-width:760px){.cs-net{--net-cols:2;}}
 .cs-net figcaption{margin-top:1.1rem;font-size:.84rem;line-height:1.55;
   color:var(--slate-2);max-width:var(--measure);}
 
@@ -588,18 +598,19 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
    evergreen: inside the diagram, colour means "which site is this". */
 .cs-net .cs-net__hub .link{color:var(--td);}
 
-/* Hub → rail. A stem down to the first row's bus. */
-.cs-net .cs-net__stem{position:relative;height:1.2rem;}
-.cs-net .cs-net__stem::before{content:"";position:absolute;left:50%;top:0;bottom:0;
-  width:2px;margin-left:-1px;background:var(--line-2);}
+/* A region: the spine drops onto its label, the label sits on its bus. */
+.cs-net .cs-net__region{position:relative;margin:0;padding-top:1.5rem;text-align:center;
+  font-size:.66rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--slate-2);}
+.cs-net .cs-net__region::before{content:"";position:absolute;left:50%;top:0;
+  width:2px;height:1.25rem;margin-left:-1px;background:var(--line-2);}
+.cs-net .cs-net__towns + .cs-net__region{margin-top:2.1rem;}
 
 .cs-net .cs-net__towns{margin:0;padding:1.2rem 0 0;color:inherit;list-style:none;
   overflow:hidden;
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.1rem var(--net-gap);}
-@media (max-width:1000px){.cs-net .cs-net__towns{grid-template-columns:repeat(3,minmax(0,1fr));}}
-@media (max-width:760px){.cs-net .cs-net__towns{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  display:flex;flex-wrap:wrap;justify-content:center;gap:2.1rem var(--net-gap);}
 
 .cs-net .cs-net__card{margin:0;position:relative;display:flex;flex-direction:column;
+  flex:0 1 calc((100% - (var(--net-cols) - 1) * var(--net-gap)) / var(--net-cols));
   background:var(--white);border:1px solid var(--line);border-top:3px solid var(--t);
   border-radius:var(--r-lg);transition:border-color .15s ease,box-shadow .15s ease;}
 .cs-net .cs-net__card:hover{border-color:var(--t);}
@@ -613,13 +624,16 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-net .cs-net__card::after{content:"";position:absolute;left:50%;top:-1.15rem;
   width:2px;height:1.15rem;margin-left:-1px;background:var(--line-2);}
 @media (max-width:520px){
-  .cs-net .cs-net__towns{grid-template-columns:1fr;gap:.9rem;padding-top:0;}
-  .cs-net .cs-net__stem{height:1.1rem;}
+  .cs-net .cs-net__towns{gap:.9rem;padding-top:.8rem;}
+  .cs-net .cs-net__card{flex-basis:100%;}
+  .cs-net .cs-net__region{padding-top:0;}
+  .cs-net .cs-net__towns + .cs-net__region{margin-top:1.6rem;}
+  .cs-net .cs-net__hub + .cs-net__region{margin-top:1.4rem;}
+  .cs-net .cs-net__region::before,
   .cs-net .cs-net__card::before,.cs-net .cs-net__card::after{display:none;}
 }
 
-/* Screenshot slot. Empty until a capture is dropped in — and it says so,
-   in the town's own paper, rather than pretending to be a picture. The
+/* Screenshot slot, in the town's own paper behind the capture. The
    clipping lives here because the card itself cannot clip. */
 .cs-net .cs-net__shot{aspect-ratio:16/10;background:var(--tp,var(--paper));
   border-bottom:1px solid var(--line);border-radius:7px 7px 0 0;overflow:hidden;}
@@ -636,9 +650,9 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
 .cs-net .cs-net__meta{margin-top:.55rem;font-size:.78rem;line-height:1.45;color:var(--slate);}
 .cs-net .cs-net__meta strong{color:var(--navy);}
 
-/* The palette, shown rather than described: the two colours the town's own
-   config carries, over the paper they are checked against. margin-top:auto
-   is what pins this row to the bottom of every card in a row. */
+/* The palette, shown rather than described: the primary and the accent the
+   town's own config carries, over the paper it sits on. margin-top:auto is
+   what pins this row to the bottom of every card in a row. */
 .cs-net .cs-net__sw{margin-top:auto;padding-top:.8rem;display:flex;align-items:center;gap:.3rem;}
 .cs-net .cs-net__chip{width:1.15rem;height:1.15rem;border-radius:4px;
   border:1px solid rgba(20,40,63,.14);flex:0 0 auto;}
@@ -724,14 +738,36 @@ a.wcard:hover .wcard__out span{text-decoration:underline;}
    Each card's three colours as a class rather than a
    style attribute, so the content-security policy can
    refuse inline styles outright. The values are the
-   ones in each town's config file in the network repo;
-   when a town's colours change, change them here too. */
-.cs-net__hub{--t:#2C74CC;--td:#1B4A86;--tp:#F4F3EF;}
-.cs-net__card--niwot{--t:#108452;--td:#0C5B39;--tp:#F5F2EA;}
-.cs-net__card--lyons{--t:#CE4A2C;--td:#8A2D19;--tp:#F5EDE0;}
-.cs-net__card--berthoud{--t:#1587B4;--td:#0D5170;--tp:#F6F3EC;}
-.cs-net__card--erie{--t:#6257C0;--td:#3B3480;--tp:#F3F1EC;}
-.cs-net__card--johnstown{--t:#BE3762;--td:#7B1F3C;--tp:#F5F1EE;}
-.cs-net__card--timnath{--t:#A67A14;--td:#6C4F0C;--tp:#F7F4EC;}
-.cs-net__card--elizabeth{--t:#B26E2A;--td:#78491A;--tp:#FAF7F2;}
+   ones in each town's config file in the network repo
+   (Color System 2.0, applied there on October 10, 2026):
+   --t the accent, --td the primary, --tp the paper,
+   which is one of two shared values, warm #F7F5F0 or
+   cool #F2F6F7. In the hub's region order, A to Z
+   within each. When a town's colours change, change
+   them here too. */
+.cs-net__hub{--t:#7A8A6B;--td:#24455D;--tp:#F7F5F0;}
+.cs-net__card--erie{--t:#6498B2;--td:#96453C;--tp:#F7F5F0;}
+.cs-net__card--longmont{--t:#B75A3F;--td:#1F6582;--tp:#F2F6F7;}
+.cs-net__card--lyons{--t:#3C8374;--td:#A3482D;--tp:#F7F5F0;}
+.cs-net__card--niwot{--t:#A26449;--td:#355E46;--tp:#F7F5F0;}
+.cs-net__card--berthoud{--t:#C39B50;--td:#3D6041;--tp:#F7F5F0;}
+.cs-net__card--fortcollins{--t:#D0A34B;--td:#1E6657;--tp:#F7F5F0;}
+.cs-net__card--johnstown{--t:#BAA071;--td:#7F3C3E;--tp:#F7F5F0;}
+.cs-net__card--loveland{--t:#BA8C57;--td:#873762;--tp:#F7F5F0;}
+.cs-net__card--severance{--t:#C4AC76;--td:#526849;--tp:#F7F5F0;}
+.cs-net__card--timnath{--t:#638A96;--td:#746023;--tp:#F7F5F0;}
+.cs-net__card--windsor{--t:#C2A16D;--td:#226A66;--tp:#F2F6F7;}
+.cs-net__card--carbon-valley{--t:#C48B54;--td:#3B4E52;--tp:#F2F6F7;}
+.cs-net__card--fort-lupton{--t:#5E7D72;--td:#835039;--tp:#F7F5F0;}
+.cs-net__card--black-hawk{--t:#B9995B;--td:#652B38;--tp:#F7F5F0;}
+.cs-net__card--estes-park{--t:#4D6955;--td:#285970;--tp:#F2F6F7;}
+.cs-net__card--evergreen{--t:#648B8D;--td:#234B3C;--tp:#F2F6F7;}
+.cs-net__card--georgetown{--t:#B0B5BD;--td:#354664;--tp:#F2F6F7;}
+.cs-net__card--golden{--t:#3D5760;--td:#94651E;--tp:#F7F5F0;}
+.cs-net__card--grand-lake{--t:#A57952;--td:#225D7A;--tp:#F2F6F7;}
+.cs-net__card--idaho-springs{--t:#2C7D83;--td:#87542F;--tp:#F7F5F0;}
+.cs-net__card--leadville{--t:#A3ADBC;--td:#3D4D70;--tp:#F2F6F7;}
+.cs-net__card--manitou-springs{--t:#439590;--td:#6D4478;--tp:#F2F6F7;}
+.cs-net__card--nederland{--t:#7A8F5D;--td:#514B7C;--tp:#F2F6F7;}
+.cs-net__card--elizabeth{--t:#C7A36A;--td:#805434;--tp:#F7F5F0;}
 .brief a{color:var(--navy);text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px;}
