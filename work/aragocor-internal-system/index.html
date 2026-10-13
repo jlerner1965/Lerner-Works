@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AragoCor Minerals — internal system | Lerner Works</title>
+<meta name="description" content="Case study: one operations system for a six-person minerals supplier — leads, samples, quotes, invoices, documents and spend — on Cloudflare Workers, for $5 a month." />
+<link rel="canonical" href="https://www.lernerworks.com/work/aragocor-internal-system/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.lernerworks.com/work/aragocor-internal-system/" />
+<meta property="og:title" content="AragoCor Minerals — internal system | Lerner Works" />
+<meta property="og:description" content="Case study: one operations system for a six-person minerals supplier — leads, samples, quotes, invoices, documents and spend — on Cloudflare Workers, for $5 a month." />
+<meta property="og:site_name" content="Lerner Works" />
+<meta property="og:image" content="https://www.lernerworks.com/case-studies/aragocor-internal-system/01-dashboard.jpg" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:image:alt" content="The AragoCor internal system's dashboard: what is waiting on the signed-in person, late items first, with the company's pipeline, samples, quotes and receivables above" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AragoCor Minerals — internal system | Lerner Works" />
+<meta name="twitter:description" content="Case study: one operations system for a six-person minerals supplier — leads, samples, quotes, invoices, documents and spend — on Cloudflare Workers, for $5 a month." />
+<meta name="twitter:image" content="https://www.lernerworks.com/case-studies/aragocor-internal-system/01-dashboard.jpg" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23fff'/%3E%3Csvg%20x='4'%20y='17.9'%20width='56'%20height='28.2'%20viewBox='0%200%20893%20450'%3E%3Cpath%20fill='%230D2C43'%20d='M150%201C128%202%2066%202%2038%202C12%201%209%201%205%207C0%2015%204%2021%2016%2023C39%2028%2049%2038%2052%2060C53%2072%2053%20377%2052%20389C49%20410%2038%20421%2015%20425C1%20428-5%20435%203%20443L6%20446%2024%20446C88%20443%20106%20443%20172%20443C211%20444%20257%20445%20274%20445C322%20447%20324%20447%20330%20442C338%20434%20343%20418%20352%20363C358%20325%20359%20324%20354%20320C348%20317%20344%20319%20335%20335C301%20391%20260%20415%20196%20415C162%20416%20155%20414%20150%20404C148%20399%20147%2065%20150%2053C153%2036%20161%2027%20177%2023C189%2020%20193%2012%20186%205C182%200%20179%200%20150%201M406%2041C397%2042%20366%2042%20335%2043L280%2044%20277%2046C272%2053%20275%2060%20287%2062C309%2067%20319%2078%20331%20111C333%20115%20336%20125%20339%20132C382%20240%20403%20299%20435%20399C449%20443%20448%20441%20452%20445C456%20449%20464%20449%20468%20445C472%20441%20469%20447%20504%20368C522%20330%20529%20313%20557%20253C566%20234%20575%20217%20576%20215C579%20211%20575%20201%20619%20326C652%20418%20658%20436%20660%20440C664%20447%20672%20451%20680%20449C690%20446%20690%20446%20713%20394C725%20364%20746%20316%20753%20299C755%20295%20759%20286%20762%20280C767%20268%20772%20257%20791%20215C796%20204%20806%20181%20814%20164C846%2088%20861%2068%20885%2060C891%2059%20894%2052%20891%2047C889%2042%20886%2042%20846%2042C826%2042%20802%2042%20792%2041C767%2040%20760%2042%20760%2050C760%2056%20763%2058%20774%2059C791%2060%20799%2067%20801%2083C804%20104%20792%20139%20745%20242C740%20254%20732%20272%20727%20282C711%20319%20710%20319%20708%20315C707%20313%20690%20267%20672%20218C664%20198%20657%20178%20656%20174C649%20156%20625%2090%20624%2085C619%2068%20627%2058%20646%2058C651%2058%20654%2055%20654%2050C654%2041%20650%2040%20622%2041C611%2042%20580%2042%20553%2043L505%2043%20502%2046C496%2052%20499%2059%20508%2062C519%2065%20529%2073%20534%2084C539%2095%20562%20162%20562%20166C562%20168%20557%20180%20532%20233C523%20253%20514%20273%20512%20278C500%20305%20495%20314%20493%20314C491%20314%20484%20294%20419%20110C405%2070%20407%2060%20431%2058C451%2057%20446%2040%20426%2040C424%2040%20415%2041%20406%2041'/%3E%3Crect%20fill='%23019673'%20x='770'%20y='361'%20width='88'%20height='88'%20rx='8'/%3E%3C/svg%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+<!-- Fonts are self-hosted (assets/fonts/), so there is no third-party
+     connection to set up and no CSS-then-font request chain. These two
+     preloads are the latin subsets actually used by English copy; the
+     latin-ext files load only if a page needs them. -->
+<link rel="preload" href="../../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Shared foundation: webfonts, tokens, nav, buttons, footer, and every
+     component on the site. Pages carry no CSS of their own. -->
+<link rel="stylesheet" href="../../assets/site.css" />
+
+<!-- Structured data for the case study. Data, not code: it runs nothing, and
+     the content-security policy would refuse it if it tried. Every value here
+     is on the page a reader can see. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.lernerworks.com/work/aragocor-internal-system/#article",
+      "headline": "AragoCor Minerals — internal system",
+      "description": "Case study: one operations system for a six-person minerals supplier — leads, samples, quotes, invoices, documents and spend — on Cloudflare Workers, for $5 a month.",
+      "url": "https://www.lernerworks.com/work/aragocor-internal-system/",
+      "mainEntityOfPage": "https://www.lernerworks.com/work/aragocor-internal-system/",
+      "image": "https://www.lernerworks.com/case-studies/aragocor-internal-system/01-dashboard.jpg",
+      "datePublished": "2026-10-13",
+      "dateModified": "2026-10-13",
+      "author": {"@type": "Person", "name": "James Lerner", "url": "https://www.lernerworks.com/about/"},
+      "publisher": {"@type": "ProfessionalService", "@id": "https://www.lernerworks.com/#business", "name": "Lerner Works", "url": "https://www.lernerworks.com/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Lerner Works", "item": "https://www.lernerworks.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://www.lernerworks.com/work/"},
+        {"@type": "ListItem", "position": 3, "name": "AragoCor Minerals — internal system", "item": "https://www.lernerworks.com/work/aragocor-internal-system/"}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="top" aria-label="Main">
+  <div class="wrap nav__in">
+    <a class="brand" href="../../"><svg class="brand__mark" viewBox="0 0 893 450" aria-hidden="true" focusable="false"><path class="brand__ink" d="M150 1C128 2 66 2 38 2C12 1 9 1 5 7C0 15 4 21 16 23C39 28 49 38 52 60C53 72 53 377 52 389C49 410 38 421 15 425C1 428-5 435 3 443L6 446 24 446C88 443 106 443 172 443C211 444 257 445 274 445C322 447 324 447 330 442C338 434 343 418 352 363C358 325 359 324 354 320C348 317 344 319 335 335C301 391 260 415 196 415C162 416 155 414 150 404C148 399 147 65 150 53C153 36 161 27 177 23C189 20 193 12 186 5C182 0 179 0 150 1M406 41C397 42 366 42 335 43L280 44 277 46C272 53 275 60 287 62C309 67 319 78 331 111C333 115 336 125 339 132C382 240 403 299 435 399C449 443 448 441 452 445C456 449 464 449 468 445C472 441 469 447 504 368C522 330 529 313 557 253C566 234 575 217 576 215C579 211 575 201 619 326C652 418 658 436 660 440C664 447 672 451 680 449C690 446 690 446 713 394C725 364 746 316 753 299C755 295 759 286 762 280C767 268 772 257 791 215C796 204 806 181 814 164C846 88 861 68 885 60C891 59 894 52 891 47C889 42 886 42 846 42C826 42 802 42 792 41C767 40 760 42 760 50C760 56 763 58 774 59C791 60 799 67 801 83C804 104 792 139 745 242C740 254 732 272 727 282C711 319 710 319 708 315C707 313 690 267 672 218C664 198 657 178 656 174C649 156 625 90 624 85C619 68 627 58 646 58C651 58 654 55 654 50C654 41 650 40 622 41C611 42 580 42 553 43L505 43 502 46C496 52 499 59 508 62C519 65 529 73 534 84C539 95 562 162 562 166C562 168 557 180 532 233C523 253 514 273 512 278C500 305 495 314 493 314C491 314 484 294 419 110C405 70 407 60 431 58C451 57 446 40 426 40C424 40 415 41 406 41"/><rect class="brand__dot" x="770" y="361" width="88" height="88" rx="8"/></svg><span>Lerner Works<small>Web design &amp; marketing<span class="brand__sep"> · </span>Boulder County</small></span></a>
+    <div class="nav__links">
+      <a href="../../work/" aria-current="page">Work</a>
+      <a href="../../services/">Services</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+    </div>
+    <details class="menu">
+      <summary><span class="menu__bars" aria-hidden="true"></span>Menu</summary>
+      <div class="menu__panel">
+        <a href="../../work/" aria-current="page">Work</a>
+        <a href="../../services/">Services</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+        <hr />
+        <a href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+        <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a call</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<main id="main">
+<article>
+
+  <header class="cs-head">
+    <div class="wrap">
+      <a class="cs-back" href="../">← All work</a>
+      <div class="cs-head__grid">
+        <div>
+          <span class="badge badge--client">Client project</span>
+          <h1>AragoCor Minerals — internal system</h1>
+          <p class="cs-summary">One internal system for a six-person minerals supplier: leads, samples, quotes, invoices, documents, marketing and spend, with the company's approval policy written into the code rather than a PDF. Built end to end, run on Cloudflare for $5 a month.</p>
+          <div class="cs-short">
+            <h2>In short</h2>
+            <ul>
+              <li><strong>The problem.</strong> The business ran on spreadsheets, inboxes and memory. Samples weren't going out because no process owned them, and an approval policy existed on paper that nothing enforced.</li>
+              <li><strong>What I built.</strong> A web application the whole team signs into, with each lifecycle's rules enforced on the server, branded PDFs generated from the record, and every enquiry from the website landing in it on its own.</li>
+              <li><strong>What it means for you.</strong> A small company's own process, written into a system that fits it, costs less to run than a single seat of most off-the-shelf software.</li>
+            </ul>
+          </div>
+        </div>
+        <dl class="cs-facts" aria-label="Project facts">
+          <div><dt>Client</dt><dd>AragoCor Minerals, supplier of Bahamian oolitic aragonite, Stockton, California</dd></div>
+          <div><dt>Sector</dt><dd>Industrial minerals, business-to-business</dd></div>
+          <div><dt>Scope</dt><dd>Process design, data model, the React client, the Cloudflare Worker API, the document templates, deployment and verification, the launch audit</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Status</dt><dd>In daily use by the team; the formal launch is 15 October 2026, with a code freeze until then. Figures below read from the repository on 13 October 2026, at its commit of 8 October. The system holds the company's own records, so it is not open to visit.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <!-- Lead image. Not lazy, and prioritised — it is the LCP element.
+       The screens on this page are the launch design mock-ups the shipped
+       look was built from (docs/launch/design/mocks in the system's
+       repository), rendered with the demo data the repository ships and
+       with the people's and companies' names changed. The live system holds
+       the client's records, so it is not captured. The captions say so. -->
+  <div class="cs-lead">
+    <div class="wrap">
+      <img src="../../case-studies/aragocor-internal-system/01-dashboard.jpg"
+           width="1600" height="1000" fetchpriority="high" decoding="async"
+           alt="The dashboard: a Needs you list of what is waiting on the signed-in person, late items first, under tiles for the open pipeline, samples out, quotes waiting and receivables; the company's activity feed beside it" />
+    </div>
+  </div>
+
+  <div class="cs-outcomes">
+    <div class="wrap">
+      <p class="eyebrow">At a glance</p>
+      <dl>
+        <div><dt>for the whole hosting bill — Cloudflare's Workers plan, no servers, no per-seat licence</dt><dd>$5 a month</dd></div>
+        <div><dt>automated tests on the API, plus a smoke test that walks the samples lifecycle through the real code</dt><dd>263 tests</dd></div>
+        <div><dt>pull requests in the launch run, each deploying itself on merge and verifying the live commit</dt><dd>29 deploys</dd></div>
+        <div><dt>the Expense Authorization &amp; Approval Policy, translated into rules the software applies</dt><dd>1 policy in code</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap cs-body">
+
+    <h2>The situation</h2>
+    <p>AragoCor sells one mineral into several industries, and the <a href="../aragocor-minerals/">website built for that</a> was starting to send in enquiries. Behind it was a six-person company: executives, a site lead, finance, marketing. The work behind a single order is not small. A prospect asks for a sample; someone has to approve it, pull it from a lot, attach the certificate of analysis, ship it, follow up and close it with an outcome. A quote has to become an invoice without the numbers drifting. Spend has to be authorised by the right person at the right threshold.</p>
+    <p>All of this was happening in spreadsheets, inboxes and people's heads. Samples were not going out, because no process owned them. Quotes and invoices were built by hand. The company had a written Expense Authorization &amp; Approval Policy, and nothing enforced it, so "who can sign off on this, and when does it escalate?" was re-answered every week. The executives wanted a view of the company; the staff wanted to stop re-typing things.</p>
+    <p>Off-the-shelf CRM and ERP software was either built for a company fifty times this size or did not fit how a minerals supplier actually works: lots, grades, certificates, tonnage.</p>
+
+    <h2>Constraints</h2>
+    <p>Six people, so nothing could depend on a full-time administrator. The rules had to be the company's own rules, not a vendor's idea of a sales process, and they had to hold when nobody was checking. The whole thing had to run for close to nothing, because the budget it would otherwise come out of was the marketing budget. And it had to be safe to change in production, because it would be changed often: the system went live to the team while it was still being built.</p>
+
+    <h2>What I built</h2>
+
+    <p><strong>A system of record, one module per job.</strong> Leads &amp; customers, Samples, Quotes, Documents, Invoices and Marketing under one heading; Expenses &amp; budgets under another; Assets, help and settings at the foot. The dashboard opens on <em>Needs you</em>: what is waiting on whoever is signed in, late items first, each line linking to exactly those items. Below it, the company at a glance. A tile turns red only for a late item of the viewer's own, so red means late and yours.</p>
+
+    <p><strong>Every website enquiry arrives by itself.</strong> The quote and sample requests on aragocorminerals.com land here with first-touch attribution and the grade already filled in. The form never overwrites an existing record. An enquiry nobody has answered reminds its owner after one business day and the managers after two.</p>
+
+    <p><strong>Samples with a lifecycle, and the rules on the server.</strong> Request, approve, pull, ship, follow up, close. Up to 50 lb of a standard grade approves itself; a specialty grade needs a manager at any size; staff cannot approve, and nobody can approve their own request. A pull records the lot and values the material at list price for the QuickBooks export. A shipment needs the certificate attached first. Every late sample, whoever it is waiting on, is on one Overdue list.</p>
+
+    <figure class="cs-fig">
+      <img src="../../case-studies/aragocor-internal-system/02-new-quote.jpg"
+           width="1200" height="750" loading="lazy" decoding="async"
+           alt="A new quote: customer, dates and line items on the left, and on the right the PDF the customer will receive, with the company's details, the line, the total and an acceptance block, updating as the form is filled in" />
+      <figcaption>A quote, and the PDF the customer will receive beside it. The quote, the invoice it becomes and the data sheets are generated from the record, in the company's own template. Launch design mock-up, rendered with the repository's demo data; names changed.</figcaption>
+    </figure>
+
+    <p><strong>Quotes that become invoices, to the cent.</strong> An invoice raised from a quote carries its freight, the due date from the terms and the customer's reference. One quote, one invoice; void them together; no hard delete; numbers never reused. Money is kept to the cent and every invoice was re-rated to prove it. An invoice cannot be issued until the company's bank details are on file.</p>
+
+    <p><strong>The approval policy, as code.</strong> The Expense Authorization &amp; Approval Policy v1.0, the one on paper, became three roles, thresholds and an escalation path the system applies, with a vote log. Spend over an editable review figure, and Google Ads spend past what was budgeted, notify the people who asked to hear.</p>
+
+    <p><strong>Nothing waits in silence.</strong> A new lead, a sample request left a day, a quote sent, accepted or unanswered for a week, an invoice past due, a domain about to lapse: an email goes out, and every notification is logged with who it went to and whether it was sent.</p>
+
+    <p><strong>The vault, and the company's other things.</strong> Contracts, certificates and presentations go to versioned storage with who uploaded what and when. The company's eight domains, with registrar, expiry and what each one does. Every data sheet, brochure, photo and video the website uses, copied in nightly. A deleted-records page that keeps a copy of anything an admin removes.</p>
+
+    <figure class="cs-fig">
+      <img src="../../case-studies/aragocor-internal-system/03-phones.jpg"
+           width="1200" height="1250" loading="lazy" decoding="async"
+           alt="The same system on a phone: the Samples list with each request's status, overdue marker and next action, and the Leads list with stage filters" />
+      <figcaption>The same system on a phone — samples and leads. It installs like an app, and keeps no copy of pages or data on the device. Launch design mock-ups with demo data; names changed.</figcaption>
+    </figure>
+
+    <h2>How it's built</h2>
+    <p>React on the front end, served as static files. A Cloudflare Worker, written with Hono, for the API; D1 for the records and R2 for the files, so nothing binary goes in the database. Seventy-five tables, fifteen migrations, and migrations only ever add. Production changes go one way: merge a pull request on <code>main</code>, and a GitHub Action applies the migrations, deploys the Worker, then verifies that the live health check names the new commit. Every night the whole database is copied to R2, kept thirty days and the first of each month for a year, with a second copy outside Cloudflare.</p>
+
+    <figure class="cs-dgm">
+      <svg class="dgm" viewBox="0 0 360 318" role="img" aria-labelledby="dgm1-t dgm1-d">
+        <title id="dgm1-t">How a change reaches the team</title>
+        <desc id="dgm1-d">A merged pull request triggers a GitHub Action. The action applies database migrations, deploys the Worker, and then verifies that the live health check reports the new commit. The team uses the React client, which calls the Worker API; the Worker reads and writes D1 for records and R2 for files.</desc>
+        <defs>
+          <marker id="is-ah" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path class="ah" d="M0,1 L9,5 L0,9 Z" />
+          </marker>
+          <marker id="is-ah-ok" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path class="ah ah--ok" d="M0,1 L9,5 L0,9 Z" />
+          </marker>
+        </defs>
+
+        <rect class="b" x="14" y="8" width="164" height="40" rx="5" />
+        <text class="k" x="24" y="24">ON MERGE</text>
+        <text class="t" x="24" y="40">Pull request</text>
+
+        <path class="ln" d="M96,48 L96,64" marker-end="url(#is-ah)" />
+
+        <rect class="b" x="14" y="66" width="164" height="88" rx="5" />
+        <text class="k" x="24" y="82">GITHUB ACTION</text>
+        <text class="t" x="24" y="100">1. Apply migrations</text>
+        <text class="t" x="24" y="120">2. Deploy the Worker</text>
+        <text class="t" x="24" y="140">3. Verify the commit</text>
+
+        <path class="ln ln--ok" d="M178,110 L196,110" marker-end="url(#is-ah-ok)" />
+
+        <rect class="b" x="198" y="8" width="148" height="40" rx="5" />
+        <text class="k" x="208" y="24">THE TEAM</text>
+        <text class="t" x="208" y="40">React client</text>
+
+        <path class="ln" d="M272,48 L272,82" marker-end="url(#is-ah)" />
+        <text class="s" x="280" y="69">/api</text>
+
+        <rect class="b b--end" x="198" y="84" width="148" height="52" rx="5" />
+        <text class="k" x="208" y="100">CLOUDFLARE WORKER</text>
+        <text class="t" x="208" y="120">Rules live here</text>
+
+        <path class="ln" d="M236,136 L236,164" marker-end="url(#is-ah)" />
+        <path class="ln" d="M310,136 L310,164" marker-end="url(#is-ah)" />
+
+        <rect class="b" x="198" y="166" width="68" height="44" rx="5" />
+        <text class="t" x="232" y="185" text-anchor="middle">D1</text>
+        <text class="s" x="232" y="201" text-anchor="middle">records</text>
+
+        <rect class="b" x="278" y="166" width="68" height="44" rx="5" />
+        <text class="t" x="312" y="185" text-anchor="middle">R2</text>
+        <text class="s" x="312" y="201" text-anchor="middle">files</text>
+
+        <path class="ln ln--dash" d="M232,210 L232,244" marker-end="url(#is-ah)" />
+        <text class="s" x="240" y="231">nightly</text>
+
+        <rect class="b b--dash" x="198" y="246" width="148" height="52" rx="5" />
+        <text class="k k--mute" x="208" y="262">BACKUP</text>
+        <text class="t" x="208" y="282">30 days + monthly</text>
+      </svg>
+      <figcaption>One road to production. A merged pull request applies the migrations, deploys the Worker and checks that the live health endpoint names the new commit; the rules the team relies on live in the Worker, not the interface. Every night the records are copied out, with a second copy kept off Cloudflare.</figcaption>
+    </figure>
+
+    <h2>Decisions and tradeoffs</h2>
+
+    <p><strong>Policy as code, not as a reminder.</strong> Encoding the approval policy took longer than writing it down would have. It also means the policy is followed on a Friday afternoon when nobody is checking, and the vote log says who approved what.</p>
+
+    <p><strong>Rules on the server, not in the interface.</strong> A hidden button can be worked around; a status change the API refuses cannot. Every lifecycle rule in Samples, Quotes and Invoices is enforced where the data lives, and the tests prove it from the outside: a staff account trying to approve gets a 403, a self-approval a 409, a rejection without a reason a 400.</p>
+
+    <p><strong>Switch off, don't delete.</strong> The operations modules built first — stock and movements, production, shipments, equipment, the payment schedule — are switched off rather than removed. They still answer at their old addresses with their data intact, and one line brings any of them back. The system is the sales and marketing hub now, and the menu says so.</p>
+
+    <p><strong>Nothing is deleted.</strong> Business rows are never dropped by a migration. An admin can remove a sample, order, invoice, quote or document whatever its status, and a copy of everything goes to a deleted-records page. Numbers are never reused.</p>
+
+    <p><strong>Audit before launch, not after.</strong> Before the launch freeze the whole system was audited: 107 screens captured at desktop and phone widths, four parallel reviews (security and access, data integrity, engineering, front end) and an independent pass that re-checked every serious finding against the code. Seventy-two findings, each fixed in its own pull request or scheduled. The sign-in hardening, the invoice re-rating and the nightly backups all came out of it.</p>
+
+    <p><strong>The part that stays with the client.</strong> Samples shipped, quotes won and receivables are the company's figures and are not published here. What can be counted from the repository is below.</p>
+
+    <h2>Result</h2>
+    <p>Counted from the repository on 13 October 2026, at its commit of 8 October.</p>
+
+    <dl class="cs-metrics">
+      <div><dt>Modules in use</dt><dd>Leads &amp; customers, Samples, Quotes, Documents, Invoices, Marketing, Expenses &amp; budgets, Assets, Inbox, Notify</dd></div>
+      <div><dt>Roles</dt><dd>3 — admin, manager, staff — with the approval policy's thresholds and escalation</dd></div>
+      <div><dt>Database</dt><dd>75 tables, 15 migrations, none of which removes anything</dd></div>
+      <div><dt>Tests</dt><dd>263 on the API, and a smoke test that walks the samples lifecycle through the real Worker</dd></div>
+      <div><dt>Launch run</dt><dd>29 pull requests, 29 self-verifying deploys</dd></div>
+      <div><dt>Launch audit</dt><dd>107 screens, 72 findings, each fixed or scheduled</dd></div>
+      <div><dt>Hosting</dt><dd>$5 a month</dd></div>
+      <div><dt>Backups</dt><dd>Nightly, 30 days kept, the first of each month for a year, plus a copy off Cloudflare</dd></div>
+      <div><dt>Website enquiries</dt><dd>Every one lands in the system on its own</dd></div>
+    </dl>
+
+    <h2>Where it stands</h2>
+    <p>The team uses it every day, and the formal launch is set for 15 October 2026, alongside the company's first paid-search campaign, with a code freeze until then. The work queued for after launch — more of the setup checklist, the QuickBooks export in daily use, the imports the team asked for — is written down in the repository, in the same file that records every change so far.</p>
+
+    <div class="cs-carry">
+      <h2>What this means for your project</h2>
+      <p>Most small businesses are not shipping aragonite. The shape underneath is common: a process that lives in spreadsheets and inboxes, a policy nobody can enforce, and software built for a company fifty times your size.</p>
+      <ul>
+        <li><strong>Your own process, as the system.</strong> The rules you already have — who approves what, what has to be attached before something ships — written into software that applies them, instead of a tool that asks you to adopt its process.</li>
+        <li><strong>Rules where the data lives.</strong> A rule in the interface is a suggestion. A rule on the server holds when nobody is watching.</li>
+        <li><strong>Almost nothing to run.</strong> No servers, no per-seat licence, backups that happen by themselves. $5 a month is the whole bill here.</li>
+      </ul>
+      <a class="btn btn--go" href="../../services/">See what a build includes</a>
+    </div>
+
+  </div>
+</article>
+
+<div class="wrap cs-next">
+  <a href="../inside-the-towns/"><span><small>Next case study</small><strong>Inside the Towns</strong></span><span>Read it →</span></a>
+</div>
+</main>
+
+<footer class="end" id="contact">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark">Next step</p>
+    <h2>Have a project like this?</h2>
+    <p class="end__lede">Tell me what your business does and what you wish the website did. If I'm not the right fit I'll say so and point you somewhere better. — James</p>
+    <div class="end__cta">
+      <a class="btn btn--go" href="https://calendly.com/james-lernerworks/30min">Book a 20-minute call</a>
+      <a class="btn btn--onDark" href="mailto:james@lernerworks.com">james@lernerworks.com</a>
+    </div>
+
+    <div class="foot">
+      <div>
+        <p class="foot__brand">Lerner Works</p>
+        <p>Web design and marketing for small businesses in Boulder County. One person, start to finish.</p>
+      </div>
+      <div>
+        <p class="foot__h">Site</p>
+        <ul>
+          <li><a href="../../work/">Work</a></li>
+          <li><a href="../../services/">Services &amp; pricing</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Contact</p>
+        <ul>
+          <li><a href="mailto:james@lernerworks.com">james@lernerworks.com</a></li>
+          <li><a href="https://calendly.com/james-lernerworks/30min">Book a call</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__h">Service area</p>
+        <p>Based in Niwot, providing <a href="../../boulder-county-web-design/">web design across Boulder County</a>, including Boulder, Longmont, Louisville, Lafayette and Erie. Further afield by video call.</p>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 Lerner Works · James Lerner · Niwot, Colorado</span>
+      <span><a href="#top">Back to top</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

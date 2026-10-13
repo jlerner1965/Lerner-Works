@@ -11,6 +11,7 @@ work/index.html                       /work/ — case study index
 work/inside-the-towns/index.html      own project — the 24-guide town network
 work/townofniwot/index.html           own project — community guide (now redirects)
 work/aragocor-minerals/index.html     client project
+work/aragocor-internal-system/index.html  client project — the operations system
 work/lernerworks/index.html           this site, as a case study
 services/index.html                   services, process, pricing, guarantee, FAQ
 boulder-county-web-design/index.html  primary local-search service page
@@ -27,6 +28,7 @@ assets/og/                            link-preview cards: card.html template,
 apple-touch-icon.png                  home-screen icon, rendered by render.js
 case-studies/<slug>/                  screenshots used by that case study
 case-studies/inside-the-towns/        hub capture + 24 town thumbnails
+case-studies/aragocor-internal-system/  rendered launch mock-ups, demo data (see its README)
 areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
                                       unwritten; see "Service-area pages"
 tools/check.js                        PRE-FLIGHT: every file-level check in
