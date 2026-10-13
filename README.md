@@ -27,7 +27,7 @@ assets/og/                            link-preview cards: card.html template,
                                       icon.html, the touch icon's source
 apple-touch-icon.png                  home-screen icon, rendered by render.js
 case-studies/<slug>/                  screenshots used by that case study
-case-studies/inside-the-towns/        hub capture + 24 town thumbnails
+case-studies/inside-the-towns/        hub capture + 24 town thumbnails (two now folded)
 case-studies/aragocor-internal-system/  rendered launch mock-ups, demo data (see its README)
 areas/<town>/index.html               service-area pages — SCAFFOLDED, noindex,
                                       unwritten; see "Service-area pages"
@@ -100,11 +100,12 @@ depends on them.
   work is never dressed as a commission. Outcomes in the "At a glance" strips
   are limited to things that can be counted. The "Counted, not claimed" strip
   under the home-page hero follows the same rule: every figure links to the
-  case study that measures it, and none stands alone. "27 live sites" is the
-  twenty-four town guides and their hub, AragoCor, and this site — if one of
+  case study that measures it, and none stands alone. "25 live sites" is the
+  twenty-two town guides and their hub, AragoCor, and this site — if one of
   them goes away, the number and the list on `/work/` change the same day.
   (It was 10 until October 11, 2026, when the study caught up with seventeen
-  guides launched in the two weeks before.) The
+  guides launched in the two weeks before, and 27 until October 13, when
+  Severance and Fort Lupton were folded into Windsor and Carbon Valley.) The
   page weight in the strip is the home page's own: `measure.js --table`
   prints the line, so re-measure and paste it whenever the home page or
   anything it loads changes. (It replaced a Lighthouse score for
