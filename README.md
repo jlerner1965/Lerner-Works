@@ -13,7 +13,7 @@ work/townofniwot/index.html           own project — community guide (now redir
 work/aragocor-minerals/index.html     client project
 work/aragocor-internal-system/index.html  client project — the operations system
 work/lernerworks/index.html           this site, as a case study
-services/index.html                   services, process, pricing, guarantee, FAQ
+services/index.html                   services, process, guarantee, FAQ
 boulder-county-web-design/index.html  primary local-search service page
 about/index.html                      who you're hiring, how I work, what I won't do
 contact/index.html                    two ways to reach James
@@ -69,27 +69,22 @@ depends on them.
   requests" is enforced by the browser, not just promised. `audit.js` serves
   the site with that policy on and fails on a single violation. See
   "Headers" below before changing it.
-- **Prices are posted, in full.** The three tiers and the monthly figure are
-  on `/services/` under a heading that says why: "Posted, so you don't have to
-  ask." This is the site's most load-bearing claim, because every other one —
-  no testimonials, labelled work, measured page weights, "will you say no to a
-  project? yes" — is a version of *I tell you the truth before you have to
-  ask.* Going quiet on the first thing a visitor wants to know would be the
-  most conspicuous possible exception to that, sitting next to a page that
-  brags about measuring its own kilobytes. It would cost more credibility than
-  the leads it saved.
-  The escape hatch is the note under the tiers, not a hidden price: anything
-  larger or custom "is quoted separately, the same way: a written scope and one
-  number before anything starts." **Do not replace the figures with "contact
-  for a quote."** Changing the amounts is a business decision for James; hiding
-  them is a decision about what this site is.
-  If the complaint is that people balk at the figure, the answer goes next to
-  it rather than instead of it. Sticker shock is a risk-and-cashflow objection,
-  and the site already answers both: the refundable first design now sits in
-  the section directly below the tiers on `/services/` as well as on the home
-  page, and the terms under each one-time figure read "half to start, half at
-  launch". `From $2,400` is not that answer — it reads as a floor, which is the
-  fix for anchoring too low, the opposite problem.
+- **Prices are quoted, not posted.** Until October 14, 2026 the three tiers
+  (Starter, Growth and a monthly Care plan) were posted in full on
+  `/services/` and the home page, and this README called that the site's most
+  load-bearing claim. James took them off that day. Each project is now quoted
+  after the first call, as one fixed price in a one-page written scope, and
+  nothing starts until it is agreed. What stays is everything that is true
+  without a figure: "fixed price, agreed in writing" in the hero's terms, the
+  scope step in the process, the refundable first design, and the Boulder
+  County FAQ's answer to "How much does a small-business website cost?", which
+  says how the price is set rather than naming one.
+  Don't let a figure back in sideways. A "starting at", a `priceRange` in the
+  structured data, or one number left on one page reads as *the* price, and
+  would be the only one a visitor could find; the comment above the home
+  page's JSON-LD says the same. If prices go back up, they go up in full, in a
+  section of their own. The tier cards, their inclusions and the
+  `.price`/`.tier` styles are in the history: `git log -S tier__fig`.
 - **The service area is one list.** Niwot, Boulder, Longmont, Louisville,
   Lafayette, Erie, and the rest of Boulder County — in the footer of every
   page, the About page's prose, the `areaServed` in the structured data and
@@ -557,7 +552,8 @@ and `areas/erie/` are **scaffolded and unwritten**. Each carries
 `noindex,nofollow`, appears in no sitemap, no menu and no link, and shows four
 visible `BRIEF SLOT` blocks instead of copy.
 
-They exist because the Growth tier sells "service-area pages for local search".
+They exist because the local-search service sells "service-area pages for the
+towns you actually serve".
 They are empty because the obvious way to build five of them — one template
 with the town name swapped — is a doorway-page pattern, which Google treats as
 one, and which would contradict every other claim on this site. Each page has
