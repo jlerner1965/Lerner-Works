@@ -104,7 +104,7 @@ const foot = (P) => `    <div class="foot">
         <p class="foot__h">Site</p>
         <ul>
           <li><a href="${P}work/">Work</a></li>
-          <li><a href="${P}services/">Services &amp; pricing</a></li>
+          <li><a href="${P}services/">Services</a></li>
           <li><a href="${P}about/">About</a></li>
           <li><a href="${P}contact/">Contact</a></li>
         </ul>
