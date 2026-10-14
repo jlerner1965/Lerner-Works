@@ -16,6 +16,10 @@ and captured at `/` at 1600×1000, clipped to `clientWidth`.
                              idaho-springs leadville manitou-springs nederland elizabeth
 ```
 
+Two of the town files, `severance.jpg` and `fort-lupton.jpg`, are records of
+guides that were folded into Windsor and Carbon Valley on October 12, 2026;
+they are no longer in the network diagram and their domains redirect.
+
 The slugs are the network's own (`src/config/towns/registry.ts`), which is why
 Fort Collins is `fortcollins` and the rest are hyphenated.
 
