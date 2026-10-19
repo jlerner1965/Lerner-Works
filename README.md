@@ -57,7 +57,8 @@ depends on them.
   "external" count per page; it must stay 0.
 - **No JavaScript for visitors.** The mobile menu is a `<details>` element.
   The only `<script>` elements on the site are JSON-LD structured data — on
-  the home page, the Boulder County page and the four case studies — which is
+  the home page, the Boulder County page, the services page and the five
+  case studies — which is
   data, not code. `measure.js` counts scripts; 0. `check.js` fails on any
   `<script>` that is not JSON-LD.
 - **No inline styles, and a policy that enforces both.** Every rule is in
@@ -246,16 +247,18 @@ node tools/contact.js --check-live   # also confirms the booking link answers 20
 The booking link is a plain `<a href>` to Calendly, never an embedded widget.
 An embed would be a third-party request, and the site makes none.
 
-**Open: the CTA copy and the event disagree.** Twelve CTAs say "Book a
-20-minute call" and the Calendly event is still 30 minutes. The fix is on
-Calendly's side. `CONTACT.booking` points at `/30min` because that is the URL
-that answers — `/20min` 404s — and a dead booking link loses the enquiry
-outright, where a label that overstates the call by ten minutes merely
-misdescribes it.
+**The button says "Book a call", with no length in it.** Until October 19,
+2026 sixteen CTAs said "Book a 20-minute call" while the Calendly event was,
+and is, 30 minutes. The label was brought into line with the booking rather
+than the other way round, because the event is Calendly's to rename and the
+site cannot wait on it. The prose still says the call takes about twenty
+minutes, which is true inside a thirty-minute slot. `CONTACT.booking` points
+at `/30min` because that is the URL that answers — `/20min` 404s, re-checked
+October 19 — and a dead booking link loses the enquiry outright.
 
-When the event is renamed: change that one line, `node tools/contact.js
---write`, `node tools/contact.js --check-live`, commit. It rewrites all
-sixty-six links.
+If the event is ever renamed: change that one line, `node tools/contact.js
+--write`, `node tools/contact.js --check-live`, commit. It rewrites every
+link. Do not put a length back into the button unless the event matches it.
 
 ## Before a deploy
 
@@ -476,6 +479,8 @@ response headers (next section). The redirects:
 ```
 /work/hm-mechanical, /work/hm-mechanical/ and below  → /work/  (308)
 /concepts/ and everything below it                   → /work/  (308)
+/areas, /areas/<town>, /areas/<town>/ and below      → /boulder-county-web-design/  (307, temporary:
+                                                        the scaffolds are unwritten; see "Service-area pages")
 ```
 
 Those were live and the case study was in the sitemap, so removing them
@@ -559,10 +564,19 @@ with the town name swapped — is a doorway-page pattern, which Google treats as
 one, and which would contradict every other claim on this site. Each page has
 to say something true about that town that is not true of the other four.
 
+Until one is written, nobody can reach them: `vercel.json` redirects
+`/areas`, `/areas/<town>`, `/areas/<town>/` and everything below to
+`/boulder-county-web-design/`, temporarily (307), so a guessed URL lands on
+the page that does the job today rather than on a page headed "unwritten".
+The redirects are temporary on purpose: a 308 would be cached by browsers
+and search engines for the day a real page ships at that address.
+
 **To ship one:** fill all four slots with real local copy, delete the
-`noindex`, write a real `<title>` and description, then add it to
-`sitemap.xml`, to the footer's service-area line and to any internal links,
-and re-run `node tools/check-host.js` and `node tools/measure.js --table`.
+`noindex`, write a real `<title>` and description, **take its redirects out
+of `vercel.json`** (both the bare and the trailing-slash form — see the
+`:path*` trap under "How this is published"), then add it to `sitemap.xml`,
+to the footer's service-area line and to any internal links, and re-run
+`node tools/check-host.js` and `node tools/measure.js --table`.
 Ship them one at a time; four good pages and one empty one is fine, five
 thin ones is not.
 
@@ -578,9 +592,23 @@ thin ones is not.
       smooth scrolling once handed it a hero-less home page mid-animation.)
 - [x] `node tools/check.js` and `node tools/audit.js` both pass.
 - [ ] Confirm `james@lernerworks.com` actually receives mail.
-- [ ] Rename the Calendly event to 20 minutes, then flip `CONTACT.booking` in
-      `tools/contact.js` to `/20min` and run `--write`. Twelve CTAs already
-      say "20-minute"; the event does not.
+- [x] The booking button and the Calendly event agree: every button says
+      "Book a call" and the link points at the 30-minute event that answers.
+      Renaming the event to 20 minutes is optional; see "Email and the
+      booking link" for what to do if it happens.
+- [x] Every site in the "All of it is live" list on `/work/` re-checked
+      answering, October 19, 2026 — the twenty-three network domains,
+      aragocorminerals.com, and the Severance, Fort Lupton and townofniwot.com
+      redirects. The dates on `/work/`, the Inside the Towns study and the
+      AragoCor study say so. Re-check and re-date whenever a study changes.
+- [x] The unwritten `areas/` scaffolds cannot be reached on the live site:
+      `vercel.json` sends `/areas`, `/areas/<town>/` and anything below them
+      to `/boulder-county-web-design/` with a temporary (307) redirect. After
+      the deploy, confirm `curl -I https://www.lernerworks.com/areas/boulder/`
+      answers 307, not 200.
+- [x] Titles and descriptions fit a search result: no title over 70
+      characters, no description over 160. `node tools/check.js` warns on
+      either.
 - [x] Apex vs `www` settled: everything names `www.lernerworks.com`, the host
       that actually serves. `node tools/check-host.js` re-proves it.
 - [x] Inside the Towns screenshots — hub capture and twenty-four town

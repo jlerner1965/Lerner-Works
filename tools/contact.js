@@ -23,19 +23,16 @@ const path = require('path');
 
 const CONTACT = {
   email: 'james@lernerworks.com',
-  // ── PENDING: flip to /20min once the Calendly event is renamed ──────────
-  // The CTA copy says "Book a 20-minute call" in twelve places, and the event
-  // is still 30 minutes, so the label and the booking are out of step. The fix
-  // is on Calendly's side, not here.
+  // This points at /30min because that is the URL that answers; /20min 404s
+  // (re-checked October 19, 2026). Every button on the site says "Book a
+  // call", with no length in the label, so the copy no longer promises a
+  // twenty-minute booking the event does not offer. The prose still says the
+  // call takes about twenty minutes, which is true inside a thirty-minute
+  // slot.
   //
-  // This points at /30min because that is the URL that answers. /20min 404s
-  // today, and a dead booking link is far worse than a label that overstates
-  // the call by ten minutes — one loses the enquiry, the other mildly
-  // misdescribes it.
-  //
-  // When the event is renamed:  change this line, run `node tools/contact.js
-  // --write`, run `node tools/contact.js --check-live`, commit. That is the
-  // whole job — it rewrites all forty-six links.
+  // If the Calendly event is ever renamed: change this line, run `node
+  // tools/contact.js --write`, run `node tools/contact.js --check-live`,
+  // commit. That is the whole job — it rewrites every link.
   booking: 'https://calendly.com/james-lernerworks/30min',
 };
 
