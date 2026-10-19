@@ -2,6 +2,31 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/areas",
+      "destination": "/boulder-county-web-design/",
+      "permanent": false
+    },
+    {
+      "source": "/areas/",
+      "destination": "/boulder-county-web-design/",
+      "permanent": false
+    },
+    {
+      "source": "/areas/:town",
+      "destination": "/boulder-county-web-design/",
+      "permanent": false
+    },
+    {
+      "source": "/areas/:town/",
+      "destination": "/boulder-county-web-design/",
+      "permanent": false
+    },
+    {
+      "source": "/areas/:town/:path*",
+      "destination": "/boulder-county-web-design/",
+      "permanent": false
+    },
+    {
       "source": "/work/hm-mechanical",
       "destination": "/work/",
       "permanent": true
